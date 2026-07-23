@@ -3,18 +3,42 @@
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Navmenu - Desktop */
-@media (min-width: 1200px) {
+@media (min-width: 1199px) {
   .navmenu {
     padding: 0;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9998;
+    display: none;
 
-    ul {
+    .navmenu ul {
+      display: flex;
       margin: 0;
       padding: 0;
-      display: flex;
       list-style: none;
       align-items: center;
+      // en plus
+      flex-direction: column;
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      background: white;
+      padding: 20px;
+      list-style: none;
     }
 
+    .mobile-nav-active .navmenu {
+      display: block;
+    }
+
+    .mobile-nav-toggle {
+      display: block;
+      z-index: 9999;
+      cursor: pointer;
+    }
+
+    // fin code en plus 
     li {
       position: relative;
     }

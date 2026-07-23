@@ -1,156 +1,130 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-        {% block title %}Best Restaurant{% endblock %}</title>
-        
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
-            <link rel="stylesheet" href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}">
-            <link rel="stylesheet" href="{{asset('vendor/aos/aos.css') }}">
-            <link rel="stylesheet" href="{{asset('vendor/swiper/swiper-bundle.min.css')}}">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Best Restaurant
+			{% endblock %}
+		</title>
 
-            <link rel="stylesheet" href="{{asset('css/app.css') }}">
-        {% endblock %}
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
+			<link rel="stylesheet" href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}">
+			<link rel="stylesheet" href="{{asset('vendor/aos/aos.css') }}">
+			<link rel="stylesheet" href="{{asset('vendor/swiper/swiper-bundle.min.css')}}">
 
-    </head>
-    <body>
-        <header id="header" class="header d-flex align-items-center sticky-top">
-            <div class="container position-relative d-flex align-items-center justify-content-between">
-                <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-                <i class="bi bi-fork-knife"></i>
-                <h1 class="sitename">BestRestaurant</h1>
-                </a>
+			<link rel="stylesheet" href="{{asset('css/main.css') }}">
+		{% endblock %}
 
-              <nav id="navmenu" class="navmenu">
-                <ul>
-                    <li>
-                        <a href="{{ path('app_home') }}" class="active">Home</a>
-                    </li>
+	</head>
+	<body>
+		<header id="header" class="header d-flex align-items-center sticky-top">
+			<div class="container position-relative d-flex align-items-center justify-content-between">
+				<a href="{{ path('app_home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
+					<i class="bi bi-fork-knife"></i>
+					<h1 class="sitename">BestRestaurant</h1>
+				</a>
+				<nav id="navmenu" class="navmenu">
+					<ul >
+						<li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
+						<li><a href="#about">A propos</a></li>
+						<li><a href="#menu">Menu</a></li>
+						<li><a href="#chefs">Chefs</a></li>
+						<li><a href="#events">événements</a></li>
+						<li><a href="#galerie">Galerie</a></li>
+						<li><a href="#contact">Contact</a></li>
+						
+					</ul>
+					
+				</nav>
+				<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+				<a class="btn-getstarted d-none d-sm-block" href="#book-a-table">Connecter</a>
+				<a class="btn-getstarted d-none d-sm-block" href="#book-a-table">Réserver</a>
+			</div>
+		</header>
+		{% block body %}{% endblock %}
+		<footer id="footer" class="footer">
 
-                    <li>
-                      <a href="#about">About</a>
-                    </li>
-                    <li>
-                      <a href="#menu">Menu</a>
-                    </li>
+			<div class="container footer-top">
+				<div class="row gy-4">
+					<div class="col-lg-5 col-md-12 footer-about">
+						<a href="{{path("app_home")}}" class="logo d-flex align-items-center">
+							<span class="sitename">Best Restaurant</span>
+						</a>
+						<p>Bienvenue chez BestRestaurant, où saveurs, qualité et convivialité se rencontrent pour vous offrir une expérience culinaire inoubliable.</p>
+						<div class="social-links d-flex mt-4">
+							<a href="">
+								<i class="bi bi-twitter-x"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-facebook"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-instagram"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-linkedin"></i>
+							</a>
+						</div>
+					</div>
 
-                    <li>
-                      <a href="#book-a-table">Book a Table</a>
-                    </li>
-                    <li>
-                      <a href="#chefs">Chefs</a>
-                    </li>
-                    <li>
-                        <a href="#events">Events</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">
-                            <span>Dropdown</span>
-                            <i class="bi bi-chevron-down toggle-dropdown"></i>
-                        </a>
+					<div class="col-lg-2 col-6 footer-links">
+						<h4>Liens Utiles</h4>
+						<ul>
+							<li><a href="#">Acceuil</a></li>
+							<li><a href="#">A propos</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">Menus</a></li>
+							<li><a href="#">Réservations</a></li>
+							<li><a href="#">Evénements</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-2 col-6 footer-links">
+						<h4>Our Services</h4>
+						<ul>
+							<li><a href="#">Web Design</a></li>
+							<li><a href="#">Web Development</a></li>
+							<li><a href="#">Product Management</a></li>
+							<li><a href="#">Marketing</a></li>
+							<li><a href="#">Graphic Design</a></li>
+						</ul>
+						</div>
+					<div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+						<h4>Contactez-nous</h4>
+						<p>108 Avenue des belges</p>
+						<p>Paris, 93000  </p>
+						<p>France</p>
+						<p class="mt-4">
+							<strong>Télephone:</strong>
+							<span>+33 624097625</span>
+						</p>
+						<p>
+							<strong>Email:</strong>
+							<span>best@live.fr</span>
+						</p>
+					</div>
 
-                <ul>
-                <li><a href="#">Dropdown 1</a></li>
+				</div>
+			</div>
 
-                <li class="dropdown">
-                    <a href="#">
-                        <span>Deep Dropdown</span>
-                        <i class="bi bi-chevron-down toggle-dropdown"></i>
-                    </a>
+			<div class="container copyright text-center mt-4">
+				<p>©
+					<span>Copyright</span>
+					<strong class="px-1 sitename">NiceRestaurant</strong>
+					<span>All Rights Reserved</span>
+				</p>
+			</div>
 
-                    <ul>
-                        <li><a href="#">Deep Dropdown 1</a></li>
-                        <li><a href="#">Deep Dropdown 2</a></li>
-                        <li><a href="#">Deep Dropdown 3</a></li>
-                        <li><a href="#">Deep Dropdown 4</a></li>
-                        <li><a href="#">Deep Dropdown 5</a></li>
-                    </ul>
-                </li>
+		</footer>
+		{% block javascripts %}
+			<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+			<script src="{{ asset('vendor/aos/aos.js') }}"></script>
+			<script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
+			<script src="{{ asset('vendor/purecounter/purecounter_vanilla.js') }}"></script>
+			<script src="{{ asset('vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+			<script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="#contact">Contact</a>
-        </li>
-    </ul>
-
-    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-</nav>
-    <a class="btn-getstarted d-none d-sm-block" href="#book-a-table">Book a Table</a>
-
-        </div>
-    </header>
-    {% block body %}{% endblock %}
-    <footer id="footer" class="footer">
-
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-5 col-md-12 footer-about">
-          <a href="{{path("app_home")}}"class="logo d-flex align-items-center">
-            <span class="sitename">NiceRestaurant</span>
-          </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-          <h4>Contact Us</h4>
-          <p>A108 Adam Street</p>
-          <p>New York, NY 535022</p>
-          <p>United States</p>
-          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">NiceRestaurant</strong> <span>All Rights Reserved</span></p>
-    </div>
-
-  </footer>
-  {% block javascripts %}
-            <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('vendor/aos/aos.js') }}"></script>
-            <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
-            <script src="{{ asset('vendor/purecounter/purecounter_vanilla.js') }}"></script>
-            <script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-
-             <script src="{{ asset('js/main.js') }}"></script>
-        {% endblock %}
-</body>
+			<script src="{{ asset('js/main.js') }}"></script>
+		{% endblock %}
+	</body>
 </html>
