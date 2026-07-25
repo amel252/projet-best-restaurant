@@ -87,22 +87,25 @@
 
 .register-card .form-check-label {
     color: var(--default-color);
+    // margin-bottom: 8px;
 }
 
 .register-card .form-check-input {
     border-color: var(--default-color);
+    // margin-bottom: 8px;
 }
 
 .register-card .form-check-input:checked {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
+    margin-bottom: 8px;
 }
 
 /* BOUTON */
 
 .register-button {
     height: 54px;
-
+    // margin-bottom: 8px;
     border: none;
     border-radius: 8px;
 

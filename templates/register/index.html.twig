@@ -1,82 +1,5 @@
-{# 
-{% extends 'base.html.twig' %}
 
-{% block title %}Inscription | Mon Restaurant{% endblock %}
 
-{% block body %}
-
-    <main>
-    <div class="container">
-
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-              <div class="card mb-3">
-                <div class="card-body">
-
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">S'identifier pour accéder à votre compte</h5>
-                  </div> #}
-                  {#  nom  #}
-                  {# <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Votre nom </label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
-                      <div class="invalid-feedback">Veuillez insérer votre nom </div>
-                    </div> #}
-                    {#  prenom  #}
-                    {# <div class="col-12">
-                      <label for="yourUsername" class="form-label">Votre prénom</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">veuillez choisir un prénom</div>
-                      </div>
-                    </div> #}
-                    {# email #}
-                    {# <div class="col-12">
-                      <label for="yourEmail" class="form-label">Votre adresse mail</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">veuillez inserer votre adresse mail</div>
-                    </div> #}
-
-                {# password #}
-                    {# <div class="col-12">
-                      <label for="yourPassword" class="form-label">Mot de passe</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Merci d'inserer votre mot de passe</div>
-                    </div>
-
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">J'accepte les <a href="#">termes et conditions</a></label>
-                        <div class="invalid-feedback">Vous devez cocher avant de valider.</div>
-                      </div>
-                    </div> #}
-                    {#  create account #}
-                    {# <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Créer un compte</button>
-                    </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Vous avez déja un compte? <a href="pages-login.html">Connecter</a></p>
-                    </div>
-                  </form>
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-    </div>
-  </main>
-{% endblock %} #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription | Mon Restaurant{% endblock %}
@@ -85,7 +8,7 @@
 
 <section class="register min-vh-100 d-flex align-items-center justify-content-center py-5">
 
-```
+
 <div class="container">
 
     <div class="row justify-content-center">
@@ -105,109 +28,94 @@
                             Rejoignez notre restaurant et profitez pleinement de votre expérience.
                         </p>
                     </div>
+                    {#  mon formulaire #}
 
-                    <form class="row g-4 needs-validation" novalidate>
+                    {{form_start(registerForm)}}
 
+                    <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="yourName" class="form-label">
-                                Votre nom
-                            </label>
-
-                            <input
-                                type="text"
-                                name="name"
-                                class="form-control custom-input"
-                                id="yourName"
-                                placeholder="Votre nom"
-                                required
-                            >
-
-                            <div class="invalid-feedback">
-                                Veuillez insérer votre nom.
-                            </div>
+                            {{form_label(registerForm.lastName,'Votre nom',{
+                                'label_attr':{
+                                    'class': 'form-label'
+                                }
+                            })}}
+                            {{ form_widget(registerForm.lastName, {
+                                        'attr': {
+                                            'class': 'form-control custom-input',
+                                            'placeholder': 'Votre nom'
+                                        }
+                                    }) }}
+                            {{ form_errors(registerForm.lastName) }}
                         </div>
-
                         <div class="col-md-6">
-                            <label for="yourUsername" class="form-label">
-                                Votre prénom
-                            </label>
+                            {{form_label(registerForm.firstName, 'Votre prénom',{
+                                'label_attr': {
+                                            'class': 'form-label'
+                                        }
+                            })}}
+                            {{ form_widget(registerForm.firstName, {
+                                        'attr': {
+                                            'class': 'form-control custom-input',
+                                            'placeholder': 'Votre prénom'
+                                        }
+                                    }) }}
 
-                            <input
-                                type="text"
-                                name="username"
-                                class="form-control custom-input"
-                                id="yourUsername"
-                                placeholder="Votre prénom"
-                                required
-                            >
+                            {{ form_errors(registerForm.firstName) }}
+                        </div>
+                    </div>
+                        <div class="col-12">
+                            {{form_label(registerForm.email,'Votre adresse mail',{
+                                'label_attr': {
+                                    'class':'form-label'
 
-                            <div class="invalid-feedback">
-                                Veuillez insérer votre prénom.
-                            </div>
+                                }
+                            })}}
+                            {{ form_widget(registerForm.email, {
+                                    'attr': {
+                                        'class': 'form-control custom-input',
+                                        'placeholder': 'exemple@email.com'
+                                    }
+                                }) }}
+
+                            {{ form_errors(registerForm.email) }}
+                            
                         </div>
 
-                        <div class="col-12">
-                            <label for="yourEmail" class="form-label">
-                                Votre adresse mail
-                            </label>
+                        <div class="col-12 mb-4">
+                            {{form_label(registerForm.password,'Mot de passe',{
+                                'label_attr': {
+                                            'class': 'form-label'
+                                        }
+                            })}}
+                            {{ form_widget(registerForm.password, {
+                                'attr': {
+                                    'class': 'form-control custom-input',
+                                    'placeholder': 'Votre mot de passe'
+                                }
+                            }) }}
 
-                            <input
-                                type="email"
-                                name="email"
-                                class="form-control custom-input"
-                                id="yourEmail"
-                                placeholder="exemple@email.com"
-                                required
-                            >
+                            {{ form_errors(registerForm.password) }}
 
-                            <div class="invalid-feedback">
-                                Veuillez insérer votre adresse mail.
-                            </div>
                         </div>
 
-                        <div class="col-12">
-                            <label for="yourPassword" class="form-label">
-                                Mot de passe
-                            </label>
-
-                            <input
-                                type="password"
-                                name="password"
-                                class="form-control custom-input"
-                                id="yourPassword"
-                                placeholder="Votre mot de passe"
-                                required
-                            >
-
-                            <div class="invalid-feedback">
-                                Merci d'insérer votre mot de passe.
-                            </div>
-                        </div>
-
-                        <div class="col-12">
+                        <div class="col-12 ">
                             <div class="form-check">
                                 <input
                                     class="form-check-input"
-                                    name="terms"
                                     type="checkbox"
-                                    id="acceptTerms"
                                     required
                                 >
 
-                                <label class="form-check-label" for="acceptTerms">
+                                <label class="form-check-label mb-4" for="acceptTerms">
                                     J'accepte les
                                     <a href="#" class="terms-link">
                                         termes et conditions
                                     </a>
                                 </label>
-
-                                <div class="invalid-feedback">
-                                    Vous devez accepter les conditions.
-                                </div>
                             </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12 mb-3">
                             <button
                                 class="btn register-button w-100"
                                 type="submit"
@@ -215,6 +123,7 @@
                                 Créer mon compte
                             </button>
                         </div>
+
                         <div class="col-12 text-center">
                             <p class="small paragraphe mb-0">
                                 Vous avez déjà un compte ?
@@ -224,7 +133,7 @@
                             </p>
                         </div>
 
-                    </form>
+                    {{form_end(registerForm)}}
 
                 </div>
 

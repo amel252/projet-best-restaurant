@@ -2235,6 +2235,7 @@ section,
 .register-card .form-check-input:checked {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
+  margin-bottom: 8px;
 }
 
 /* BOUTON */
