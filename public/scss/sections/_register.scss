@@ -1,0 +1,142 @@
+/* =====================================================
+   PAGE INSCRIPTION
+===================================================== */
+
+.register {
+    min-height: 85vh;
+    padding: 60px 0;
+    background-color: var(--background-color);
+}
+
+/* CARTE */
+
+.register-card {
+    width: 100%;
+    border: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 85%);
+    border-radius: 18px;
+    background-color: var(--surface-color);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+.register-card .card-body {
+    padding: 50px !important;
+}
+
+/* TITRE */
+
+.register-title {
+    color: var(--heading-color);
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.register-subtitle {
+    color: var(--default-color);
+    font-size: 15px;
+}
+
+/* LABELS */
+
+.register-card .form-label {
+    color: var(--heading-color);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* CHAMPS */
+
+.custom-input {
+    width: 100%;
+    height: 52px;
+    padding: 12px 16px;
+
+    color: var(--default-color);
+    background-color: var(--background-color);
+
+    border: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 65%);
+
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.custom-input::placeholder {
+    color: color-mix(in srgb,
+            var(--default-color),
+            transparent 40%);
+}
+
+.custom-input:focus {
+    color: var(--default-color);
+    background-color: var(--background-color);
+
+    border-color: var(--accent-color);
+
+    box-shadow: 0 0 0 3px color-mix(in srgb,
+            var(--accent-color),
+            transparent 80%);
+
+    outline: none;
+}
+
+/* CHECKBOX */
+
+.register-card .form-check-label {
+    color: var(--default-color);
+}
+
+.register-card .form-check-input {
+    border-color: var(--default-color);
+}
+
+.register-card .form-check-input:checked {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* BOUTON */
+
+.register-button {
+    height: 54px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.register-button:hover {
+    background-color: color-mix(in srgb,
+            var(--accent-color),
+            black 15%);
+
+    color: var(--contrast-color);
+}
+
+/* LIENS */
+
+.terms-link,
+.login-link {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.terms-link:hover,
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.paragraphe {
+    color: white;
+}
