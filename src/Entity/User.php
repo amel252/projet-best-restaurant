@@ -17,7 +17,12 @@ class User
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $roles = null;
+    private array $roles = [];
+
+    public function __construct()
+    {
+    $this->roles = ['ROLE_USER'];
+    }
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
@@ -44,17 +49,21 @@ class User
 
         return $this;
     }
-
-    public function getRoles(): ?string
+    
+    public function getRoles(): array
     {
         return $this->roles;
     }
 
     public function setRoles(string $roles): static
     {
-        $this->roles = $roles;
+        // $this->roles = $roles;
 
-        return $this;
+        // return $this;
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
+
     }
 
     public function getPassword(): ?string
