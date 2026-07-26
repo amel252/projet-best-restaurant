@@ -24,6 +24,8 @@
 					<i class="bi bi-fork-knife"></i>
 					<h1 class="sitename">BestRestaurant</h1>
 				</a>
+				{# burger  #}
+				<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
 				<nav id="navmenu" class="navmenu">
 					<ul >
 						<li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
@@ -33,13 +35,36 @@
 						<li><a href="#events">événements</a></li>
 						<li><a href="#galerie">Galerie</a></li>
 						<li><a href="#contact">Contact</a></li>
-						
-					</ul>
-					
+						{# Connexion / Déconnexion #}
+						<li class="nav-login">
+
+							{% if app.user %}
+
+								<a href="{{ path('app_logout') }}">
+									<i class="bi bi-box-arrow-right"></i>
+									Déconnexion
+								</a>
+
+							{% else %}
+
+								<a href="{{ path('app_login') }}">
+									<i class="bi bi-person-circle"></i>
+									Connexion
+								</a>
+
+							{% endif %}
+
+						</li>
+
+						{# Réservation #}
+						<li class="nav-reservation">
+							<a href="#book-a-table">
+								Réserver
+							</a>
+						</li>
+
+    				</ul>
 				</nav>
-				<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-				<a class="btn-getstarted d-none d-sm-block" href="{{path('app_register')}}">Connecter</a>
-				<a class="btn-getstarted d-none d-sm-block" href="#book-a-table">Réserver</a>
 			</div>
 		</header>
 		{% block body %}{% endblock %}
