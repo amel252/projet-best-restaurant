@@ -30,7 +30,11 @@
                     </div>
                     {#  mon formulaire #}
 
-                    {{form_start(registerForm)}}
+                    {{form_start(registerForm,{
+                        attr:{
+                            class: 'row g-4 needs-validation'
+                        }
+                    })}}
 
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -81,20 +85,20 @@
                             
                         </div>
 
-                        <div class="col-12 mb-4">
-                            {{form_label(registerForm.password,'Mot de passe',{
+                        <div class="col-12 mb-1">
+                            {{form_label(registerForm.plainPassword,'Mot de passe',{
                                 'label_attr': {
                                             'class': 'form-label'
                                         }
                             })}}
-                            {{ form_widget(registerForm.password, {
+                            {{ form_widget(registerForm.plainPassword, {
                                 'attr': {
                                     'class': 'form-control custom-input',
                                     'placeholder': 'Votre mot de passe'
                                 }
                             }) }}
 
-                            {{ form_errors(registerForm.password) }}
+                            {{ form_errors(registerForm.plainPassword) }}
 
                         </div>
 
@@ -106,7 +110,7 @@
                                     required
                                 >
 
-                                <label class="form-check-label mb-4" for="acceptTerms">
+                                <label class="form-check-label mb-1" for="acceptTerms">
                                     J'accepte les
                                     <a href="#" class="terms-link">
                                         termes et conditions
@@ -115,7 +119,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 mb-3">
+                        <div class="col-12 mb-1">
                             <button
                                 class="btn register-button w-100"
                                 type="submit"

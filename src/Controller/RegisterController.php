@@ -4,31 +4,51 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-use App\Form\RegisterUserType;
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Attribute\Route;
+
+use App\Entity\User;
+use App\Form\RegisterUserType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
+
+
+
 
 final class RegisterController extends AbstractController
 {
     #[Route('/inscription', name: 'app_register')]
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
-        //  on crée un nouveau user 
+        // 1- on crée un nouveau user 
         $user = new User();
 
-        // pour créer notre form 
+        // 2- pour créer notre form 
         $form = $this->createForm(RegisterUserType::class, $user);
-        //  écoute la requette si le form est soumis 
+
+        //  3- récup les données envoyés 
         $form ->handleRequest($request);
-        //  si le form est soumis et valid 
+
+        //  4- si le form est soumis et valid 
         if($form->isSubmitted() && $form->isValid()){
-            //  dire à Doctrine de sauver le form dans BD 
+            //  5- récup le mot de passe temporaire
+            $plainPassword = $form->get('plainPassword')->getData();
+            // 6- hasher le MDP
+            $hashedPassword = $passwordHasher->hashPassword(
+                $user,
+                $plainPassword
+            );
+            // 7- Enregistrer le MDP
+            $user->setPassword($hashedPassword);
+
+            //  8- Enregister user dans BD 
             $entityManager->persist($user);
-            //  envoyer les donnée en BD 
+
+            //  9- excuter l'insertion SQL- envoyer les donnée en BD 
             $entityManager->flush();
-            return $this->redirectToRoute('app_register');
+            // 10 -redirige aprés vers page connexion
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('register/index.html.twig', [
