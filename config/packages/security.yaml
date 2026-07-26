@@ -17,6 +17,12 @@ security:
             pattern: ^/(_profiler|_wdt|assets|build)/
             security: false
         main:
+            logout:
+                path: app_logout
+            form_login:
+                login_path : app_login
+                check_path: app_login
+
             lazy: true
             provider: app_user_provider
 
@@ -28,6 +34,7 @@ security:
 
     # Note: Only the *first* matching rule is applied
     access_control:
+        #  - { path: ^/compte, roles: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 

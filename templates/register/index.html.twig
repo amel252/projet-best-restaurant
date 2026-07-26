@@ -32,7 +32,8 @@
 
                     {{form_start(registerForm,{
                         attr:{
-                            class: 'row g-4 needs-validation'
+                            class: 'row g-4 needs-validation',
+                            autocomplete: 'off'
                         }
                     })}}
 
@@ -49,7 +50,9 @@
                                             'placeholder': 'Votre nom'
                                         }
                                     }) }}
-                            {{ form_errors(registerForm.lastName) }}
+                            <div class='form-errors '>
+                                {{ form_errors(registerForm.lastName) }}
+                            </div>
                         </div>
                         <div class="col-md-6">
                             {{form_label(registerForm.firstName, 'Votre prénom',{
@@ -63,29 +66,31 @@
                                             'placeholder': 'Votre prénom'
                                         }
                                     }) }}
-
-                            {{ form_errors(registerForm.firstName) }}
+                            <div class='form-errors '>
+                                {{ form_errors(registerForm.firstName) }}
+                            </div>
                         </div>
                     </div>
-                        <div class="col-12">
-                            {{form_label(registerForm.email,'Votre adresse mail',{
-                                'label_attr': {
-                                    'class':'form-label'
-
-                                }
-                            })}}
-                            {{ form_widget(registerForm.email, {
-                                    'attr': {
-                                        'class': 'form-control custom-input',
-                                        'placeholder': 'exemple@email.com'
-                                    }
-                                }) }}
-
+                    <div class="col-12">
+                        {{form_label(registerForm.email,'Votre adresse mail',{
+                            'label_attr': {
+                            'class':'form-label'
+                        }
+                        })}}
+                        {{ form_widget(registerForm.email, {
+                            'attr': {
+                            'class': 'form-control custom-input',
+                            'placeholder': 'exemple@email.com'
+                        }
+                        }) }}
+                        <div class="form-errors">
                             {{ form_errors(registerForm.email) }}
-                            
                         </div>
+                        {# {{ form_errors(registerForm.email) }} #}
+                            
+                    </div>
 
-                        <div class="col-12 mb-1">
+                    <div class="col-12">
                             {{form_label(registerForm.plainPassword,'Mot de passe',{
                                 'label_attr': {
                                             'class': 'form-label'
@@ -94,15 +99,17 @@
                             {{ form_widget(registerForm.plainPassword, {
                                 'attr': {
                                     'class': 'form-control custom-input',
-                                    'placeholder': 'Votre mot de passe'
+                                    'placeholder': 'Votre mot de passe',
+                                    'autocomplete' : 'new-password'
                                 }
                             }) }}
+                            <div class='form-errors '>
+                                {{ form_errors(registerForm.plainPassword) }}
+                            </div>
 
-                            {{ form_errors(registerForm.plainPassword) }}
+                    </div>
 
-                        </div>
-
-                        <div class="col-12 ">
+                    <div class="col-12 ">
                             <div class="form-check">
                                 <input
                                     class="form-check-input"
@@ -110,7 +117,7 @@
                                     required
                                 >
 
-                                <label class="form-check-label mb-1" for="acceptTerms">
+                                <label class="form-check-label" for="acceptTerms">
                                     J'accepte les
                                     <a href="#" class="terms-link">
                                         termes et conditions
@@ -119,7 +126,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 mb-1">
+                        <div class="col-12 ">
                             <button
                                 class="btn register-button w-100"
                                 type="submit"
