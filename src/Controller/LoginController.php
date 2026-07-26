@@ -22,4 +22,9 @@ final class LoginController extends AbstractController
             'error'=> $error,
         ]);
     }
+    #[Route('/deconnexion', name: 'app_logout', methods:['GET'])]
+    public function logout(): void 
+    {
+        throw new \logicException('This method can be blanck - it will be intercepted by logout key on you firewall');
+    }
 }
