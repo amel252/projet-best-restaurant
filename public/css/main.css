@@ -2270,4 +2270,11 @@ section,
 
 .paragraphe {
   color: white;
+}
+
+.form-errors {
+  color: #cd4452;
+  font-size: 14px;
+  margin-top: 6px;
+  font-weight: 500;
 }/*# sourceMappingURL=main.css.map */
