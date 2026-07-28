@@ -18,58 +18,57 @@
 
 	</head>
 	<body>
-		<header id="header" class="header d-flex align-items-center sticky-top">
-			<div class="container position-relative d-flex align-items-center justify-content-between">
-				<a href="{{ path('app_home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
-					<i class="bi bi-fork-knife"></i>
-					<h1 class="sitename">BestRestaurant</h1>
-				</a>
-				{# burger  #}
-				<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-				<nav id="navmenu" class="navmenu">
-					<ul >
-						<li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
-						<li><a href="#about">A propos</a></li>
-						<li><a href="#menu">Menu</a></li>
-						<li><a href="#chefs">Chefs</a></li>
-						<li><a href="#events">événements</a></li>
-						<li><a href="#galerie">Galerie</a></li>
-						<li><a href="#contact">Contact</a></li>
-						{# Connexion / Déconnexion #}
-						<li class="nav-login">
-
-							{% if app.user %}
-
-								<a href="{{ path('app_logout') }}">
-									<i class="bi bi-box-arrow-right"></i>
-									Déconnexion
-								</a>
-
-							{% else %}
-
-								<a href="{{ path('app_login') }}">
-									<i class="bi bi-person-circle"></i>
-									Connexion
-								</a>
-
-							{% endif %}
-
-						</li>
-
-						{# Réservation #}
-						<li class="nav-reservation">
-							<a href="#book-a-table">
-								Réserver
+	<header id="header" class="header sticky-top">
+		<div class="container header-container">
+			{# LOGO #}
+			<a href="{{ path('app_home') }}" class="logo">
+				<i class="bi bi-fork-knife"></i>
+				<h1>BestRestaurant</h1>
+			</a>
+			{# MENU BURGER MOBILE #}
+			<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+			{# NAVIGATION #}
+			<nav id="navmenu" class="navmenu">
+				<ul>
+					<li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
+					<li><a href="#about">A propos</a></li>
+					<li><a href="#menu">Menu</a></li>
+					<li><a href="#chefs">Chefs</a></li>
+					<li><a href="#events">Événements</a></li>
+					<li><a href="#galerie">Galerie</a></li>
+					<li><a href="#contact">Contact</a></li>
+					
+					
+					{# PROFIL UTILISATEUR #}
+					<li class="nav-login">
+						{% if app.user %}
+							<a href="{{ path('app_account') }}" title="Mon profil">
+								<i class="bi bi-person-circle"></i>
+								<span>{{app.user.firstname}}</span>
 							</a>
-						</li>
+						{% else %}
+							<a href="{{ path('app_login') }}">
+								<i class="bi bi-person-circle"></i>
+								<span>Connexion</span>
+							</a>
+						{% endif %}
 
-    				</ul>
-				</nav>
-			</div>
-		</header>
+					</li>
+					{# RESERVATION #}
+					<li class="nav-reservation">
+
+						<a href="#book-a-table">
+							Réserver
+						</a>
+
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 		{% block body %}{% endblock %}
+		{# {{ dump(app.user) }} #}
 		<footer id="footer" class="footer">
-
 			<div class="container footer-top">
 				<div class="row gy-4">
 					<div class="col-lg-5 col-md-12 footer-about">
@@ -105,13 +104,13 @@
 						</ul>
 					</div>
 					<div class="col-lg-2 col-6 footer-links">
-						<h4>Our Services</h4>
+						<h4>Nos Services</h4>
 						<ul>
-							<li><a href="#">Web Design</a></li>
-							<li><a href="#">Web Development</a></li>
-							<li><a href="#">Product Management</a></li>
+							<li><a href="#"> Le design des sites</a></li>
+							<li><a href="#">Developement des sites </a></li>
+							<li><a href="#">Management des produits</a></li>
 							<li><a href="#">Marketing</a></li>
-							<li><a href="#">Graphic Design</a></li>
+							<li><a href="#">Le design graphique </a></li>
 						</ul>
 						</div>
 					<div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
