@@ -8,14 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-// use App\Repository\UserRepository;
-
-
-
-// #[ORM\Entity(repositoryClass: UserRepository::class)]
-// class User
-// {
-// Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.
+/*Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.*/ 
 #[ORM\Entity]
 #[UniqueEntity(
     fields: ['email'],
@@ -45,6 +38,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
+
+    /*Avatar */ 
+    #[ORM\Column(name:'profile_image', length: 255, nullable: true)]
+    private ?string $profileImage = null;
+
 
     public function __construct()
     {
@@ -121,5 +119,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->lastName = $lastName;
 
         return $this;
+    }
+    // rajout get et seter avatar
+    public function getProfileImage(): ?string
+    {
+        return $this->profileImage;
+    }
+
+    public function setProfileImage(?string $profileImage): static
+    {
+        $this->profileImage = $profileImage;
+
+    return $this;
     }
 }

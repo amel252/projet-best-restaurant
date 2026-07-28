@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Mon profil - BestRestaurant
+{% endblock %}
+
+{% block body %}
+
+<section class="profile-page">
+
+    <div class="container">
+
+        {# ================================
+           HEADER
+        ================================= #}
+
+        <div class="profile-header">
+
+            <div>
+                <span class="profile-subtitle">
+                    Mon espace personnel
+                </span>
+                <h1>Mon profil</h1>
+                <p>
+                    Gérez vos informations personnelles et votre compte.
+                </p>
+            </div>
+
+        </div>
+
+        {# ================================
+           CONTENU
+        ================================= #}
+
+        <div class="profile-content">
+
+            {# ================================
+               CARTE UTILISATEUR
+            ================================= #}
+
+            <div class="profile-card profile-user-card">
+
+                <form
+                    id="avatarForm"
+                    method="post"
+                    action="{{ path('app_account') }}"
+                    enctype="multipart/form-data"
+                >
+                    <div class="profile-avatar-wrapper">
+                        <label for="profileImage" class="profile-avatar">
+                            {% if app.user.profileImage %}
+                                <img
+                                    src="{{ asset('uploads/profile/' ~ app.user.profileImage) }}"
+                                    alt="Photo de profil"
+                                    id="profilePreview"
+                                >
+                            {% else %}
+                                <i class="bi bi-person" id="profileIcon"></i>
+
+                            {% endif %}
+                        </label>
+
+                        <input
+                            type="file"
+                            id="profileImage"
+                            name="profileImage"
+                            accept="image/*"
+                            hidden
+                        >
+
+                    </div>
+                    <h2 class='profile-card-title'>
+                        {{ app.user.firstName }}
+                        {{ app.user.lastName }}
+                    </h2>
+                    <p class="profile-email">
+                        {{ app.user.email }}
+                    </p>
+
+                </form>
+
+            </div>
+
+            {# ================================
+               INFORMATIONS
+            ================================= #}
+
+            <div class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <div>
+
+                        <span class="profile-card-subtitle">
+                            Informations personnelles
+                        </span>
+
+                        <h2>
+                            Mes informations
+                        </h2>
+
+                    </div>
+
+                    <i class="bi bi-person-vcard profile-card-icon"></i>
+
+                </div>
+
+                <div class="profile-info">
+
+                    <div class="profile-info-item">
+
+                        <span class="profile-info-label">
+                            Prénom
+                        </span>
+
+                        <span class="profile-info-value">
+                            {{ app.user.firstName }}
+                        </span>
+
+                    </div>
+
+                    <div class="profile-info-item">
+
+                        <span class="profile-info-label">
+                            Nom
+                        </span>
+
+                        <span class="profile-info-value">
+                            {{ app.user.lastName }}
+                        </span>
+
+                    </div>
+
+                    <div class="profile-info-item">
+
+                        <span class="profile-info-label">
+                            Adresse email
+                        </span>
+
+                        <span class="profile-info-value">
+                            {{ app.user.email }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="profile-actions">
+
+                    <a href="#" class="profile-button-primary">
+                        <i class="bi bi-pencil"></i>
+                        Modifier mes informations
+                    </a>
+
+                    <a
+                        href="{{ path('app_logout') }}"
+                        class="profile-button-danger"
+                    >
+                        <i class="bi bi-box-arrow-right"></i>
+                        Déconnexion
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

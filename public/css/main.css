@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*--------------------------------------------------------------
 # Font & Color Variables
 # Help: https://bootstrapmade.com/color-system/
@@ -133,61 +134,112 @@ h6 {
     transform: rotate(360deg);
   }
 }
+/* ------------------
+  Stylisation du HEADER
+*/
 .header {
-  color: var(--default-color);
-  background-color: var(--background-color);
+  position: sticky;
+  top: 0;
+  width: 100%;
   padding: 15px 0;
-  transition: all 0.3s ease;
-  z-index: 997;
+  background-color: var(--background-color);
+  color: var(--default-color);
+  z-index: 1000;
 }
 
+/*CONTENEUR HEADER*/
 .header-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
+  width: 100%;
 }
 
+/*LOGO*/
 .logo {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   text-decoration: none;
   flex-shrink: 0;
 }
 
 .logo i {
-  font-size: 24px;
+  font-size: 20px;
   color: var(--accent-color);
 }
 
 .logo h1 {
   margin: 0;
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  font-size: 20px;
   color: var(--heading-color);
 }
 
+/*NAVIGATION DESKTOP*/
 .navmenu {
   margin-left: auto;
 }
 
-.navmenu ul {
+.navmenu > ul {
   display: flex;
   align-items: center;
-  gap: 4px;
   margin: 0;
   padding: 0;
   list-style: none;
+  gap: 8px;
 }
 
-.navmenu li {
+.navmenu > ul > li {
   display: flex;
   align-items: center;
 }
 
-.navmenu a {
+/*LIENS DU MENU*/
+.navmenu > ul > li > a {
+  display: flex;
+  align-items: center;
+  padding: 8px 7px;
+  color: var(--nav-color);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.navmenu > ul > li > a:hover,
+.navmenu > ul > li > a.active {
+  color: var(--nav-hover-color);
+}
+
+/* BOUTON RESERVER*/
+.nav-reservation {
+  margin-left: 5px;
+}
+
+.nav-reservation > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 20px !important;
+  color: var(--contrast-color) !important;
+  background-color: var(--accent-color);
+  border-radius: 50px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-reservation > a:hover {
+  color: var(--contrast-color) !important;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+/*PROFIL DESKTOP */
+.nav-login {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-login a {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -197,128 +249,153 @@ h6 {
   font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
-  transition: 0.3s;
 }
 
-.navmenu a:hover,
-.navmenu a.active {
+.nav-login a:hover {
   color: var(--nav-hover-color);
 }
 
 .nav-login a i {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--accent-color);
 }
 
-.nav-reservation {
-  margin-left: 5px;
-}
-
-.nav-reservation a {
-  height: 45px;
-  padding: 9px 18px;
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  border-radius: 24px;
-  transition: 0.3s;
-}
-
-.nav-reservation a:hover {
-  color: var(--contrast-color);
-  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
-}
-
+/* =====================================================
+   BURGER
+===================================================== */
 .mobile-nav-toggle {
   display: none;
+  margin-left: auto;
   font-size: 28px;
   color: var(--default-color);
   cursor: pointer;
-  transition: 0.3s;
+  transition: color 0.2s ease;
 }
 
 .mobile-nav-toggle:hover {
   color: var(--accent-color);
 }
 
+/* =====================================================
+   TABLETTE
+   992px à 1199px
+===================================================== */
 @media (max-width: 1199px) {
   .header-container {
     gap: 15px;
   }
-  .logo h1 {
-    font-size: 21px;
+  .navmenu > ul {
+    gap: 4px;
   }
-  .navmenu ul {
-    gap: 2px;
-  }
-  .navmenu a {
+  .navmenu > ul > li > a {
     padding: 7px 5px;
-    font-size: 13px;
+    font-size: 14px;
   }
-  .nav-reservation a {
-    padding: 8px 14px;
+  .nav-login a {
+    padding: 7px 5px;
+    font-size: 14px;
+  }
+  .nav-reservation {
+    margin-left: 3px;
+  }
+  .nav-reservation > a {
+    padding: 9px 15px !important;
   }
 }
+/* =====================================================
+   MOBILE
+   991px et moins
+===================================================== */
 @media (max-width: 991px) {
   .header {
     padding: 15px 0;
   }
+  /* LOGO */
   .logo {
     margin-right: auto;
   }
+  /* BURGER */
   .mobile-nav-toggle {
     display: block;
-    order: 2;
   }
+  /* NAVIGATION FERMÉE */
   .navmenu {
     position: absolute;
     top: 100%;
     left: 15px;
     right: 15px;
     display: none;
-    padding: 20px;
+    margin: 0;
+    padding: 15px;
     background-color: var(--background-color);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    z-index: 999;
+    z-index: 9999;
   }
+  /* NAVIGATION OUVERTE */
   .mobile-nav-active .navmenu {
     display: block;
   }
-  .navmenu ul {
+  /* LISTE MOBILE */
+  .navmenu > ul {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 5px;
-  }
-  .navmenu li {
+    gap: 0;
     width: 100%;
   }
-  .navmenu a {
+  /* LI */
+  .navmenu > ul > li {
+    display: block;
+    width: 100%;
+  }
+  /* LIENS */
+  .navmenu > ul > li > a {
+    display: flex;
+    align-items: center;
     width: 100%;
     padding: 12px 15px;
     font-size: 15px;
   }
+  /* PROFIL / CONNEXION */
   .nav-login {
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 5px;
     border-top: 1px solid rgba(128, 128, 128, 0.2);
   }
-  .nav-reservation {
-    margin-top: 10px;
-    margin-left: 0;
+  .nav-login a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 15px;
   }
-  .nav-reservation a {
+  /* RESERVATION */
+  .nav-reservation {
+    width: 100%;
+    margin: 5px 0 0;
+  }
+  .nav-reservation > a {
     justify-content: center;
-    text-align: center;
+    width: 100%;
+    padding: 12px 15px !important;
   }
 }
+/* =====================================================
+   PETIT MOBILE
+   575px et moins
+===================================================== */
 @media (max-width: 575px) {
-  .header-container {
-    gap: 15px;
+  .header {
+    padding: 12px 0;
+  }
+  .logo {
+    gap: 3px;
   }
   .logo h1 {
-    font-size: 19px;
+    font-size: 18px;
   }
   .logo i {
-    font-size: 21px;
+    font-size: 19px;
   }
   .mobile-nav-toggle {
     font-size: 26px;
@@ -2419,4 +2496,283 @@ section,
   font-size: 14px;
   margin-top: 6px;
   font-weight: 500;
+}
+
+/* =====================================================
+   PAGE PROFIL
+===================================================== */
+.profile-page {
+  min-height: calc(100vh - 80px);
+  padding: 70px 0;
+  background-color: var(--background-color);
+}
+
+/* =====================================================
+   HEADER PROFIL
+===================================================== */
+.profile-header {
+  margin-bottom: 40px;
+}
+
+.profile-subtitle {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.profile-header h1 {
+  margin: 0 0 10px;
+  color: var(--heading-color);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.profile-header p {
+  margin: 0;
+  color: var(--default-color);
+  font-size: 16px;
+}
+
+/* =====================================================
+   CONTENU
+===================================================== */
+.profile-content {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+/* =====================================================
+   CARTES
+===================================================== */
+.profile-card {
+  padding: 30px;
+  background-color: var(--background-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+.profile-card-title {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.profile-email {
+  text-align: center;
+}
+
+/* =====================================================
+   CARTE UTILISATEUR
+===================================================== */
+/* =====================================================
+   AVATAR
+===================================================== */
+.profile-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Icône utilisateur */
+.profile-avatar > i {
+  font-size: 42px;
+}
+
+/* Image */
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================================
+   HEADER DE CARTE
+===================================================== */
+.profile-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.profile-card-subtitle {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--accent-color);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-card-header h2 {
+  margin: 0;
+  color: var(--heading-color);
+  font-size: 24px;
+}
+
+.profile-card-icon {
+  font-size: 28px;
+  color: var(--accent-color);
+}
+
+/* =====================================================
+   INFORMATIONS
+===================================================== */
+.profile-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.profile-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 15px;
+  background-color: color-mix(in srgb, var(--default-color), transparent 96%);
+  border-radius: 8px;
+}
+
+.profile-info-label {
+  color: var(--default-color);
+  font-size: 13px;
+}
+
+.profile-info-value {
+  color: var(--heading-color);
+  font-size: 15px;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+.profile-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.profile-button-primary,
+.profile-button-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.profile-button-primary {
+  text-align: center;
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+}
+
+.profile-button-primary:hover {
+  color: var(--contrast-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.profile-button-danger {
+  color: var(--default-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 75%);
+}
+
+.profile-button-danger:hover {
+  color: var(--contrast-color);
+  background: #a00606;
+}
+
+/* =====================================================
+   TABLETTE
+===================================================== */
+@media (max-width: 991px) {
+  .profile-page {
+    padding: 50px 0;
+  }
+  .profile-content {
+    grid-template-columns: 1fr;
+  }
+  .profile-user-card {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .profile-avatar {
+    flex-shrink: 0;
+    width: 75px;
+    height: 75px;
+    margin: 0;
+  }
+  .profile-user-card h2 {
+    margin-bottom: 5px;
+  }
+}
+/* =====================================================
+   MOBILE
+===================================================== */
+@media (max-width: 575px) {
+  .profile-page {
+    padding: 35px 0;
+  }
+  .profile-header h1 {
+    font-size: 30px;
+  }
+  .profile-card {
+    padding: 20px;
+  }
+  .profile-user-card {
+    display: block;
+    text-align: center;
+  }
+  .profile-avatar {
+    margin: 0 auto 15px;
+  }
+  .profile-info {
+    grid-template-columns: 1fr;
+  }
+  .profile-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .profile-button-primary,
+  .profile-button-danger {
+    width: 100%;
+  }
 }/*# sourceMappingURL=main.css.map */

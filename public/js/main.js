@@ -212,3 +212,20 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+//  fonction pour l'img avatar
+const profileImageInput = document.querySelector('#profileImage');
+const avatarForm = document.querySelector('#avatarForm');
+
+if (profileImageInput && avatarForm) {
+
+  profileImageInput.addEventListener('change', function () {
+
+    if (profileImageInput.files.length > 0) {
+      avatarForm.submit();
+    }
+
+  });
+
+}
+
