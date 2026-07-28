@@ -176,25 +176,24 @@
     background-color: color-mix(in srgb,
             var(--default-color),
             transparent 96%);
-
     border-radius: 8px;
 }
 
 .profile-info-label {
     color: var(--default-color);
-
     font-size: 13px;
 }
 
 .profile-info-value {
     color: var(--heading-color);
-
     font-size: 15px;
     font-weight: 500;
-
     word-break: break-word;
 }
 
+// .profile-info-item span {
+//     background: #c44242;
+// }
 
 /* =====================================================
    ACTIONS
