@@ -7,9 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 use App\Entity\User;
+use App\Form\ProfileType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
+
 
 final class AccountController extends AbstractController
 {
@@ -17,11 +20,11 @@ final class AccountController extends AbstractController
     public function index(Request $request ,EntityManagerInterface $entityManager): Response
     {
         $user=$this->getUser();
-        // si user n'est pas connecté
+        // si user n'est pas connecté , redirige vers login 
         if(!$user){
             return $this->redirectToRoute('app_login');
         }
-        
+
         $profileImage = $request->files->get('profileImage');
         if($profileImage){
             $newFilename= uniqid() .'.' . $profileImage->guessExtension();
@@ -47,6 +50,27 @@ final class AccountController extends AbstractController
         }
         return $this->render('account/index.html.twig',[
             'user'=> $user,
+        ]);
+    }
+    #[Route('/compte/modifier', name:'app_account_edit')]
+    public function edit(Request $request, EntityManagerInterface $entityManager):response
+    {
+        // on récup notre user
+        $user = $this->getUser();
+        $form = $this->createForm(ProfileType::class, $user);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // envoyé msg notification
+            $this->addFlash(
+                'success',
+                'vos informations ont été mises à jour'
+            );
+
+        }
+        return $this->render('account/edit.html.twig',[
+            'profilModifForm'=>$form,
         ]);
     }
 }
