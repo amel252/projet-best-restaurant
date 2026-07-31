@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 use App\Entity\User;
 use App\Form\RegisterUserType;
+// PasswordUserType
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
