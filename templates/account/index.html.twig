@@ -7,15 +7,9 @@
 {% block body %}
 
 <section class="profile-page">
-
     <div class="container">
-
-        {# ================================
-           HEADER
-        ================================= #}
-
+        {# HEADER #}
         <div class="profile-header">
-
             <div>
                 <span class="profile-subtitle">
                     Mon espace personnel
@@ -150,6 +144,10 @@
                     <a href="{{path('app_account_edit')}}" class="profile-button-primary">
                         <i class="bi bi-pencil"></i>
                         Modifier mes informations
+                    </a>
+                    <a href="{{path('app_account_edit_password')}}" class="profile-button-primary">
+                        <i class="bi bi-shield-lock"></i>
+                        Modifier mot de passe 
                     </a>
 
                     <a
