@@ -54,6 +54,6 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::linkToRoute('Utilisateurs', 'fas fa-user','admin_user_index');
             
-        yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_categorie_index');
+        // yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_category_index');
     }
 }
