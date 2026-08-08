@@ -27,13 +27,10 @@
         ================================= #}
 
         <div class="profile-content">
-
             {# ================================
                CARTE UTILISATEUR
             ================================= #}
-
             <div class="profile-card profile-user-card">
-
                 <form
                     id="avatarForm"
                     method="post"
@@ -78,47 +75,31 @@
             {# ================================
                INFORMATIONS
             ================================= #}
-
             <div class="profile-card">
-
                 <div class="profile-card-header">
-
                     <div>
-
                         <span class="profile-card-subtitle">
                             Informations personnelles
                         </span>
-
                         <h2>
                             Mes informations
                         </h2>
-
                     </div>
-
                     <i class="bi bi-person-vcard profile-card-icon"></i>
-
                 </div>
-
                 <div class="profile-info">
-
                     <div class="profile-info-item">
-
                         <span class="profile-info-label">
                             Prénom
                         </span>
-
                         <span class="profile-info-value">
                             {{ app.user.firstName }}
                         </span>
-
                     </div>
-
                     <div class="profile-info-item">
-
                         <span class="profile-info-label">
                             Nom
                         </span>
-
                         <span class="profile-info-value">
                             {{ app.user.lastName }}
                         </span>
@@ -126,11 +107,9 @@
                     </div>
 
                     <div class="profile-info-item">
-
                         <span class="profile-info-label">
                             Adresse email
                         </span>
-
                         <span class="profile-info-value">
                             {{ app.user.email }}
                         </span>
@@ -149,7 +128,6 @@
                         <i class="bi bi-shield-lock"></i>
                         Modifier mot de passe 
                     </a>
-
                     <a
                         href="{{ path('app_logout') }}"
                         class="profile-button-danger"

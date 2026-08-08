@@ -1,0 +1,36 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Bienvenue dans l'administration</h1>
+
+        <p>
+            Gérez ici les utilisateurs, les catégories et les produits de votre restaurant.
+        </p>
+
+        <div class="row mt-4">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Utilisateurs</h5>
+                        <p>Gestion des comptes utilisateurs.</p>
+                        <a href="{{ path('admin') }}" class="btn btn-primary">
+                            Voir
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Catégories</h5>
+                        <p>Gestion des catégories du restaurant.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

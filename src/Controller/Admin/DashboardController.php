@@ -8,38 +8,52 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Entity\User;
+use App\Entity\Categorie;
+use App\Controller\Admin\UserCrudController;
+use App\Controller\Admin\CategorieCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+// Cette classe permet de fabriquer des URLs vers une page EasyAdmin.
+
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
+    // ce fichier est le point d'entrée de mon interface d'admin 
     public function index(): Response
     {
-        return parent::index();
+        return $this->render('admin/dashboard.html.twig');
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // return $this->redirectToRoute('admin_user_index');
+        // quand tu arrives sur: http://localhost:8000/admin - Au lieu d'afficher la page Dashboard par défaut, on va rediriger directement vers une page CRUD.
 
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirectToRoute('...');
-        // }
+        // Tu demandes au conteneur Symfony : Donne-moi un objet AdminUrlGenerator.
+        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
 
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
+        // //  redirection par defaut vers User Crud
+        // return $this->redirect(
+        //     $adminUrlGenerator
+        //     // Tu lui dis :Je veux l'URL correspondant au CRUD des utilisateurs
+        //     ->setController(UserCrudController::class)
+        //     ->generateUrl()
+        // );
+       
     }
 
     public function configureDashboard(): Dashboard
     {
+          // Config générale du tableau de bord
         return Dashboard::new()
+        // Le texte affiché en haut à gauche de l'administration
             ->setTitle('Best Restaurant');
     }
 
     public function configureMenuItems(): iterable
     {
+         // Les éléments qui s'affcihent dans le menu vertical à gauche
+    
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkTo(SomeCrudController::class, 'The Label', 'fas fa-list');
+        
+        yield MenuItem::linkToRoute('Utilisateurs', 'fas fa-user','admin_user_index');
+            
+        yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_categorie_index');
     }
 }
