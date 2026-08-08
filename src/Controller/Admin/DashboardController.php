@@ -9,9 +9,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 
 use App\Entity\User;
-use App\Entity\Categorie;
+use App\Entity\Category;
 use App\Controller\Admin\UserCrudController;
-use App\Controller\Admin\CategorieCrudController;
+use App\Controller\Admin\CategoryCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 // Cette classe permet de fabriquer des URLs vers une page EasyAdmin.
 
@@ -28,14 +28,6 @@ class DashboardController extends AbstractDashboardController
         // Tu demandes au conteneur Symfony : Donne-moi un objet AdminUrlGenerator.
         // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
 
-        // //  redirection par defaut vers User Crud
-        // return $this->redirect(
-        //     $adminUrlGenerator
-        //     // Tu lui dis :Je veux l'URL correspondant au CRUD des utilisateurs
-        //     ->setController(UserCrudController::class)
-        //     ->generateUrl()
-        // );
-       
     }
 
     public function configureDashboard(): Dashboard
@@ -54,6 +46,6 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::linkToRoute('Utilisateurs', 'fas fa-user','admin_user_index');
             
-        // yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_category_index');
+        yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_category_index');
     }
 }
