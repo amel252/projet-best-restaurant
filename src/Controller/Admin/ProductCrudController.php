@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ProductCrudController extends AbstractCrudController
 {
-    //  rajout
+    //  rajout pour nom chemin de la  photo
     public function __construct(
         private ParameterBagInterface $params
     ) {
