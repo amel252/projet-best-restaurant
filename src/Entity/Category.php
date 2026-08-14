@@ -17,6 +17,12 @@ class Category
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+    
+    // convertir en string 
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;

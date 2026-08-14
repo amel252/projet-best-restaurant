@@ -30,7 +30,7 @@ class Product
     private ?float $price = null;
 
     #[ORM\Column]
-    private ?float $tva = null;
+    private ?int $tva = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
@@ -100,12 +100,12 @@ class Product
         return $this;
     }
 
-    public function getTva(): ?float
+    public function getTva(): ?int
     {
         return $this->tva;
     }
 
-    public function setTva(float $tva): static
+    public function setTva(int $tva): static
     {
         $this->tva = $tva;
 

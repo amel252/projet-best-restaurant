@@ -16,12 +16,9 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-
-
-
 final class AccountController extends AbstractController
 {
-    #[Route('/compte', name: 'app_account')]
+    #[Route('/profile', name: 'app_profil')]
     public function index(Request $request ,EntityManagerInterface $entityManager): Response
     {
         $user=$this->getUser();
@@ -56,12 +53,12 @@ final class AccountController extends AbstractController
                 );
             }
         }
-        return $this->render('account/index.html.twig',[
+        return $this->render('profile/index.html.twig',[
             'user'=> $user,
         ]);
     }
     // fonction modif infos profil 
-    #[Route('/compte/modifier-infos', name:'app_account_edit')]
+    #[Route('/profile/modifier-infos', name:'app_profil_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager):response
     {
         // on récup notre user
@@ -76,7 +73,7 @@ final class AccountController extends AbstractController
                 type:'success',
                 message:'vos informations ont été mises à jour'
             );
-                return $this->redirectToRoute('app_account');
+                return $this->redirectToRoute('app_profil');
         }
             // Notification d'erreur
         $this->addFlash(
@@ -85,12 +82,12 @@ final class AccountController extends AbstractController
         );
 
         }
-        return $this->render('account/edit.html.twig',[
+        return $this->render('profile/edit_profil.html.twig',[
             'profilModifForm'=>$form->createView(),
         ]);
     }
     // fonction modif mot-de-passe compte
-    #[Route('/compte/modifier-mot-de-passe', name:'app_account_edit_password')]
+    #[Route('/profile/modifier-mot-de-passe', name:'app_profil_edit_password')]
     public function edit_password(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher):response
     {
         //  on cible le user connecté 
@@ -120,9 +117,9 @@ final class AccountController extends AbstractController
                 'Votre mot de passe a été modifié avec succès'
             );
             //  quand tout est ok , redirige vers compte
-            return $this->redirectToRoute('app_account');
+            return $this->redirectToRoute('app_profil');
         }
-        return $this->render('account/password.html.twig',[
+        return $this->render('profile/password_edit.html.twig',[
             'modifyPwd'=> $form->createView()
         ]);
     }

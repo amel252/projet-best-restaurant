@@ -41,17 +41,23 @@
 					
 					{# PROFIL UTILISATEUR #}
 					<li class="nav-login">
-						{% if app.user %}
-							<a href="{{ path('app_account') }}" title="Mon profil">
-								<i class="bi bi-person-circle"></i>
-								<span>{{app.user.firstname}}</span>
+					{% if app.user %}
+						{% if is_granted('ROLE_ADMIN') %}
+						{#  voir pourquoi ca ffiche pas le user  #}
+        					<a href="{{ path('admin') }}">
+								<i class="bi bi-person"></i>
+								{{ app.user.firstname }}
 							</a>
-						{% else %}
-							<a href="{{ path('app_login') }}">
-								<i class="bi bi-person-circle"></i>
-								<span>Connexion</span>
+    					{% else %}
+        					<a href="{{ path('app_profil') }}">
+								<i class="bi bi-person"></i>
+								{{ app.user.firstname }}
 							</a>
-						{% endif %}
+    					{% endif %}
+
+					{% else %}
+    					<a href="{{ path('app_login') }}">Connexion</a>
+					{% endif %}
 
 					</li>
 					{# RESERVATION #}
