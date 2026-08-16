@@ -99,6 +99,12 @@ class Product
 
         return $this;
     }
+    //  fonction pour retourner le prix total avec TVA 
+    public function getPriceWithTaxe()
+    {
+        $coeff = 1 + ($this->tva / 100);
+        return $coeff * $this->price;
+    }
 
     public function getTva(): ?int
     {
