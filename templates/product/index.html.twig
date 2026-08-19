@@ -1,0 +1,45 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="product-detail">
+        <div class="container">
+
+            <div class="product-detail-card">
+                <div class="product-detail-image">
+                    <img
+                        src="{{ asset('uploads/products/' ~ product.illustration) }}"
+                        alt="{{ product.name }}"
+                    >
+                </div>
+                <div class="product-detail-content">
+                    <a
+                        href="{{ path('app_category', {slug: product.category.slug}) }}"
+                        class="product-category"
+                    >
+                        {{ product.category.name }}
+                    </a>
+
+                    <h1>{{ product.name }}</h1>
+                    <div class="product-description">
+                        {{ product.description|raw }}
+                    </div>
+                    <div class="product-detail-price">
+                        {{ product.price|number_format(2, ',', ' ') }} €
+                    </div>
+
+                    <div class="product-detail-actions">
+                        <a href="#" class="product-cart-btn">
+                            Ajouter au panier
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

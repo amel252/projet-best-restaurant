@@ -31,13 +31,13 @@ class ProductRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Product
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function findOneBySlug(string $slug): ?Product
+   {
+       return $this->createQueryBuilder('p')
+           ->andWhere('p.slug = :slug')
+           ->setParameter('slug', $slug)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
 }
