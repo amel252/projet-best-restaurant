@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="cart-container">
+
+    <div class="container">
+
+        {# TITRE #}
+        <div class="cart-header">
+            <h1>Mon panier</h1>
+            <p>Retrouvez les produits que vous avez ajoutés à votre panier.</p>
+        </div>
+
+
+        {# CONTENU DU PANIER #}
+        <div class="cart-layout">
+
+            {# PRODUITS #}
+            <div class="cart-products">
+
+                <div class="cart-section-title">
+                    <h2>Produits achetés</h2>
+                </div>
+
+                {# Tes produits viendront ici #}
+
+            </div>
+
+
+            {# RESUME #}
+            <div class="cart-summary">
+
+                <h2>Résumé du panier</h2>
+
+                <div class="summary-line">
+                    <span>Sous-total</span>
+                    <strong>25,00 €</strong>
+                </div>
+
+                <div class="summary-line">
+                    <span>Livraison</span>
+                    <strong>5,00 €</strong>
+                </div>
+
+                <hr>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <strong>30,00 €</strong>
+                </div>
+
+                <a href="#" class="cart-order-btn">
+                    Passer la commande
+                </a>
+                <a href="{{ path('app_home') }}" class="cart-continue">
+                    <i class="bi bi-arrow-left"></i>
+                    Continuer mes achats
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
