@@ -26,7 +26,7 @@
                         {{ product.description|raw }}
                     </div>
                     <div class="product-detail-price">
-                        {{ product.price|number_format(2, ',', ' ') }} €
+                        {{product.getPriceWithTaxe| price}}
                     </div>
 
                     <div class="product-detail-actions">
