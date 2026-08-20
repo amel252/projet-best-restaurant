@@ -23,12 +23,12 @@
                             <h3>{{ product.name }}</h3>
                             <div class="product-footer">
                                 <span class="product-price">
-                                    {#  prendre 2 chiffre aprés , et arrondir le chiffre #}
-                                    {{product.getPriceWithTaxe|number_format(2, ',', '') }} €
+                                    {#  on utilise la fonction ici #}
+                                    {{product.getPriceWithTaxe| price}}
                                 </span>
                             </div>
                             <div class="product-actions">
-                                <a href="#" class="product-btn product-btn-outline"> Voir le produit</a>
+                                <a href="{{path('app_product', {slug: product.slug})}}" class="product-btn product-btn-outline"> Voir le produit</a>
                                 <button type="button" class="product-btn product-btn-primary">
                                     Ajouter au panier</button>
                             </div>
