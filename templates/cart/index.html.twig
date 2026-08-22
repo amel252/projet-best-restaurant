@@ -3,67 +3,95 @@
 {% block body %}
 
 <section class="cart-container">
-
     <div class="container">
-
-        {# TITRE #}
+        {# TITRE#}
         <div class="cart-header">
             <h1>Mon panier</h1>
-            <p>Retrouvez les produits que vous avez ajoutés à votre panier.</p>
+            <p>
+                Retrouvez les produits que vous avez ajoutés à votre panier.
+            </p>
         </div>
-
-
-        {# CONTENU DU PANIER #}
+        {# CONTENU DU PANIER#}
         <div class="cart-layout">
+            {# PRODUITS ACHETÉS #}
 
-            {# PRODUITS #}
             <div class="cart-products">
 
                 <div class="cart-section-title">
                     <h2>Produits achetés</h2>
                 </div>
+                {# BOUCLE SUR LES PRODUITS DU PANIER #}
+                {% for product in cart %}
+                    <div class="cart-product">
+                        {# IMAGE #}
+                        <div class="cart-product-image">
 
-                {# Tes produits viendront ici #}
+                            <img
+                                src="{{ asset('uploads/products/' ~ product.object.illustration) }}"
+                                alt="{{ product.object.name }}"
+                            >
+                        </div>
+                        {# INFORMATIONS DU PRODUIT #}
 
+                        <div class="cart-product-content">
+                            <h3>{{ product.object.name }}</h3>
+                            <p class="cart-product-price">
+                                Prix :
+                                {{ product.object.getPricewithTaxe|price }}
+                            </p>
+                            <div class="cart-product-actions">
+                                <div class="quantity">
+                                    <button type="button">−</button>
+                                    <span>{{ product.qty }}</span>
+                                    <button type="button">+</button>
+                                </div>
+                                <a href="#" class="cart-remove">
+                                    <i class="bi bi-trash"></i>
+                                    Supprimer
+                                </a>
+                            </div >
+                        </div>
+                    </div>
+                {% else %}
+                    {# SI LE PANIER EST VIDE #}
+                    <p>Votre panier est vide.</p>
+                {% endfor %}
             </div>
-
-
-            {# RESUME #}
+            {# RÉSUMÉ DU PANIER #}
             <div class="cart-summary">
-
                 <h2>Résumé du panier</h2>
-
                 <div class="summary-line">
                     <span>Sous-total</span>
-                    <strong>25,00 €</strong>
+                    <strong>
+                        25,00 €
+                    </strong>
                 </div>
-
                 <div class="summary-line">
                     <span>Livraison</span>
-                    <strong>5,00 €</strong>
+                    <strong>
+                        5,00 €
+                    </strong>
                 </div>
-
                 <hr>
-
                 <div class="summary-total">
                     <span>Total</span>
-                    <strong>30,00 €</strong>
+                    <strong>
+                        30,00 €
+                    </strong>
                 </div>
-
                 <a href="#" class="cart-order-btn">
                     Passer la commande
                 </a>
-                <a href="{{ path('app_home') }}" class="cart-continue">
+                <a
+                    href="{{ path('app_home') }}"
+                    class="cart-continue"
+                >
                     <i class="bi bi-arrow-left"></i>
                     Continuer mes achats
                 </a>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 {% endblock %}
