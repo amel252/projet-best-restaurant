@@ -3162,6 +3162,7 @@ section,
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 30px;
+  align-items: stretch;
 }
 
 /* PRODUITS*/
@@ -3243,6 +3244,7 @@ section,
 /* QUANTITE */
 .quantity {
   display: flex;
+  color: #555;
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 50px;
@@ -3286,12 +3288,11 @@ section,
 
 /* RESUME */
 .cart-summary {
-  align-self: start;
+  align-self: stretch;
   padding: 30px;
   background: #dfcfcf;
   border: 1px solid rgba(72, 30, 30, 0.15);
   border-radius: 15px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
 }
 
