@@ -37,8 +37,11 @@ class Cart
     // function récup panier en cours , Elle sera utilisée par le CartController pour envoyer le panier à Twig.
     public function getCart()
     {
-        return $this->requestStack
-        ->getSession()
-        ->get('cart',[]);
+        return $this->requestStack->getSession()->get('cart',[]);
+    }
+    //  function pour supp panier 
+    public function removeCart()
+    {
+        return $this->requestStack->getSession()->remove('cart',[]);
     }
 }
