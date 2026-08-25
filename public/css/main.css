@@ -3156,7 +3156,7 @@ section,
 .cart-header h1 {
   margin: 0 0 12px;
   color: #fff;
-  font-size: 38px;
+  font-size: 24px;
   font-weight: 700;
 }
 
@@ -3263,32 +3263,43 @@ section,
 
 /* QUANTITE */
 .quantity {
-  display: flex;
-  color: #555;
+  display: inline-flex;
   align-items: center;
+  height: 38px;
   border: 1px solid #ddd;
-  border-radius: 50px;
+  border-radius: 20px;
   overflow: hidden;
+  background: #fff;
 }
 
-.quantity button {
+.quantity a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
-  height: 32px;
-  border: none;
+  height: 38px;
+  text-decoration: none;
+  color: #555;
   background: transparent;
-  cursor: pointer;
-  font-size: 18px;
-  transition: background-color 0.2s ease;
+  font-size: 20px;
+  font-weight: 400;
+  transition: all 0.2s ease;
 }
 
-.quantity button:hover {
-  background-color: #f2eeee;
+.quantity a:hover {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
 }
 
 .quantity span {
-  min-width: 30px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 35px;
+  height: 38px;
+  color: #333;
   font-weight: 600;
+  font-size: 15px;
 }
 
 /* SUPPRIMER */
