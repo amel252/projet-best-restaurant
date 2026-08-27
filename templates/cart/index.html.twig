@@ -71,7 +71,7 @@
                                     </div>
 
                                     {# SUPPRIMER produit du panier #}
-                                    <a href="#" class="cart-remove-product">
+                                    <a href="{{path('app_cart_remove_product', {id:product.object.id})}}" class="cart-remove-product">
                                         <i class="bi bi-trash"></i>
                                         Supprimer
                                     </a>

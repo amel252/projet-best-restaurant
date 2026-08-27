@@ -53,6 +53,13 @@ final class CartController extends AbstractController
     
                 return $this->redirectToRoute('app_home');
     }
+    // route pour supprimer un produit seul 
+    #[Route('/panier/supprimer-produit/{id}',name:'app_cart_remove_product')]
+    public function removeProduct($id, Cart $cart):response
+    {
+        $cart->remove($id);
+        return $this->redirectToRoute('app_cart');
+    }
     //  la route pour réduction qty produits 
     #[Route('/panier/reduction/{id}',name:'app_cart_decrease')]
     public function descrease($id, Cart $cart):response
@@ -61,6 +68,7 @@ final class CartController extends AbstractController
         $cart->decreaseCart($id);
         return $this->redirectToRoute('app_cart');
     }
+
     //  la route pour augmenter qty produits 
     #[Route('/panier/augmentation/{id}',name:'app_cart_increase')]
     public function inscrease($id, Cart $cart):response
@@ -69,5 +77,7 @@ final class CartController extends AbstractController
         $cart->increaseCart($id);
         return $this->redirectToRoute('app_cart');
     }
+
+    
 
 }
