@@ -61,5 +61,13 @@ final class CartController extends AbstractController
         $cart->decreaseCart($id);
         return $this->redirectToRoute('app_cart');
     }
+    //  la route pour augmenter qty produits 
+    #[Route('/panier/augmentation/{id}',name:'app_cart_increase')]
+    public function inscrease($id, Cart $cart):response
+    {
+        //  récup fonction dans cart.php
+        $cart->increaseCart($id);
+        return $this->redirectToRoute('app_cart');
+    }
 
 }

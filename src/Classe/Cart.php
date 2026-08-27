@@ -44,6 +44,7 @@ class Cart
     {
         return $this->requestStack->getSession()->remove('cart',[]);
     }
+
     //  function pour diminuer qty panier 
     public function decreaseCart($id)
     {
@@ -56,6 +57,20 @@ class Cart
         }else{
             //  else intervient quand qty est 1 , on supprime le produit
             unset($cart[$id]);
+        }
+        // sauvegarde le panier (calcul de tout )
+        $this->requestStack->getSession()->set('cart', $cart);
+
+    } 
+    //  function pour augmenter qty panier 
+    public function increaseCart($id)
+    {
+        // récup le panier stocké depuis la session
+        $cart = $this->requestStack->getSession()->get('cart',[]);
+        //  si qty est est égal ou + à 1 on diminue à travers l'id
+        if($cart[$id]['qty'] > 1 ) {
+            //  condition true on dimunue 
+            $cart[$id]['qty']= $cart[$id]['qty'] + 1;
         }
         // sauvegarde le panier (calcul de tout )
         $this->requestStack->getSession()->set('cart', $cart);
