@@ -8,6 +8,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /*Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.*/ 
 #[ORM\Entity]
 #[UniqueEntity(
@@ -44,15 +47,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $profileImage = null;
 
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+    /*mapped fait refernce a user */ 
+    /*déclarer addresses :  sorte de liste d'objets address */ 
+    private Collection $addresses;
+
     public function __construct()
     {
     $this->roles = ['ROLE_USER'];
+    /*initialiser liste adresses */ 
+    $this->addresses = new ArrayCollection();
     }
+
     
     public function getId(): ?int
     {
         return $this->id;
     }
+
 
     public function getEmail(): ?string
     {
@@ -65,7 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    // rajout 
+
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
@@ -120,7 +132,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    // rajout get et seter avatar
+    // getter et seter avatar
     public function getProfileImage(): ?string
     {
         return $this->profileImage;
@@ -132,4 +144,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     return $this;
     }
+
+    // récupérer la liste des adresses de l'utilisateur.
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    //  add address
+    public function addAddresse(Address $adress): static
+    {
+        //  vérif si l'addresse n'existe dans ma liste ?
+        if(!$this->address->contains($address)){
+            // ajoute l'addresse dans la collection
+            $this->addresses->add($address);
+            //  faire le lien avec user -> cette addresse appartient a ce user 
+            $address->setUser($this);
+        }
+        return $this;
+
+    }
+
+    //  remove addresse 
+    public function removeAddress(Address $address): static
+    {
+        //  si l'addresse est trouvé on la ca retire de la collection
+        if($this->addresses->removeElement($address)){
+            // Est-ce que l'utilisateur de cette adresse est bien l'utilisateur actuel ?
+            if($address->getUser()=== $this){
+                //  si oui je supprime aussi le lien vers cet utilisateur
+                $address->setUser(null);
+            }
+        }
+        // je retourne l'utilisateur.
+        return $this;
+    }
+
 }
