@@ -67,15 +67,11 @@
                                         <a href="{{path('app_cart_decrease', {id:product.object.id})}}">−</a>
                                         <span> {{ product.qty }}</span>
                                         <a href="#">+</a>
-                                        {# <button type="button">
-                                            +
-                                        </button> #}
+                                        
                                     </div>
 
                                     {# SUPPRIMER produit du panier #}
-                                    <a
-                                        href=
-                                    >
+                                    <a href="#" class="cart-remove-product">
                                         <i class="bi bi-trash"></i>
                                         Supprimer
                                     </a>
@@ -83,11 +79,12 @@
                             </div>
                         </div>
                     {% endfor %}
+                    <a class="cart-clear" href="{{path('app_cart_remove')}}">
+                        <i class="bi bi-trash"></i>
+                        Vider le panier
+                    </a>
                 {% endif %}
-                <a class="cart-continue" href="{{path('app_cart_remove')}}">
-                    <i class="bi bi-trash"></i>
-                    Vider le panier
-                </a>
+                
             </div>
             
             {# RÉSUMÉ DU PANIER On l'affiche seulement si le panier contient des produits. #}
@@ -96,16 +93,24 @@
                     <h2>Résumé du panier</h2>
                     <div class="summary-line">
                         <span>Sous-total</span>
-                        <strong>25,00 €</strong>
+                        <strong>{{totalPrice| price}}</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Nombre articles</span>
+                        <strong>{{fullCartQuantity}}</strong>
                     </div>
                     <div class="summary-line">
                         <span>Livraison</span>
-                        <strong> 5,00 €</strong>
+                        {% if deliveryPrice == 0 %}
+                            <strong>Gratuite</strong>
+                        {% else %}
+                            <strong>{{deliveryPrice | price}}</strong>
+                        {% endif %}
                     </div>
                     <hr>
                     <div class="summary-total">
-                        <span>Total</span>
-                        <strong>30,00 €</strong>
+                        <span>Prix Total T.T.C</span>
+                        <strong>{{total | price}}</strong>
                     </div>
                     <a href="#"class="cart-order-btn">Passer la commande</a>
 

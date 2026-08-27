@@ -90,10 +90,6 @@
   gap: 15px;
 }
 
-// .link-reservation {
-//   padding-right: 25px;
-// }
-
 .nav-reservation>a {
   display: flex;
   align-items: center;
@@ -116,6 +112,60 @@
       transparent 15%);
 }
 
+/* PANIER*/
+
+.cart-icon {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0 !important;
+
+  background-color: transparent !important;
+  border-radius: 0 !important;
+
+  color: var(--nav-color) !important;
+
+  text-decoration: none;
+}
+
+.cart-icon:hover {
+  color: var(--nav-hover-color) !important;
+}
+
+.cart-icon i {
+  font-size: 22px;
+}
+
+/* PETIT CHIFFRE SUR LE PANIER */
+.cart-badge {
+  position: absolute;
+
+  top: -4px;
+  right: -4px;
+
+  min-width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2px 5px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: white;
+
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+
+  z-index: 10;
+}
 
 /*PROFIL DESKTOP */
 
@@ -309,8 +359,6 @@
   /* RESERVATION + panier */
 
   .nav-reservation {
-    // width: 100%;
-    // margin: 5px 0 0;
     width: fit-content;
     margin: 8px 0 0;
     display: flex;
@@ -325,9 +373,7 @@
     justify-content: center;
     min-height: 40px;
     padding: 9px 16px !important;
-    border-radius: 50px // justify-content: center;
-      // width: 100%;
-      // padding: 12px 15px !important;
+    border-radius: 50px
   }
 
   /* Panier */
