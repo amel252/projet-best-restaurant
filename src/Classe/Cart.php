@@ -42,7 +42,7 @@ class Cart
     //  function pour supp panier 
     public function removeCart()
     {
-        return $this->requestStack->getSession()->remove('cart',[]);
+        $this->requestStack->getSession()->set('cart',[]);
     }
 
     //  function pour diminuer qty panier 
@@ -67,8 +67,8 @@ class Cart
     {
         // récup le panier stocké depuis la session
         $cart = $this->requestStack->getSession()->get('cart',[]);
-        //  si qty est est égal ou + à 1 on diminue à travers l'id
-        if($cart[$id]['qty'] > 1 ) {
+        //  si produit existe
+        if($cart[$id]['qty'] ) {
             //  condition true on dimunue 
             $cart[$id]['qty']= $cart[$id]['qty'] + 1;
         }
@@ -123,5 +123,20 @@ class Cart
     public function getTotal()
     {
         return $this->getTotalPrice()+ $this->getDeliveryPrice();
+    }
+
+    //  fonction supprimer 1seul produit dans panier
+    public function remove($id)
+    {
+        //  récup le panier
+        $cart = $this->requestStack->getSession()->get('cart',[]);
+
+        // vérifier que le produit existe dans le panier 
+        if(isset($cart[$id])){
+            // supprimer completement le produit 
+            unset($cart[$id]);
+        }
+        
+        $this->requestStack->getSession()->set('cart',$cart);
     }
 }
