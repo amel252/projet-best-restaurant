@@ -60,10 +60,18 @@
 					{% endif %}
 
 					</li>
-					{# RESERVATION #}
+					{# RESERVATION &  panier #}
 					<li class="nav-reservation">
 						<a href="#book-a-table" class="link-reservation">Réserver</a>
-						<a href="{{path('app_cart')}}" ><i class="bi bi-cart"></i></a>
+						<a href="{{path('app_cart')}}"  class="cart-icon position-relative">
+							<i class="bi bi-cart"></i>
+							{% if fullCartQuantity > 0 %}
+        						<span class="cart-badge">
+           	 					{{ fullCartQuantity }}
+        						</span>
+    						{% endif %}
+						</a>
+						{# <span class="badge text-bg-light">{{fullCartQuantity}}</span> #}
 
 					</li>
 				</ul>

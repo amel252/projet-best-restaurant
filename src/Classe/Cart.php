@@ -61,4 +61,52 @@ class Cart
         $this->requestStack->getSession()->set('cart', $cart);
 
     } 
+    //  function pour calculer la qty global
+    public function fullQuantity()
+    {
+        // récup le panier stocké en session
+        $cart = $this->requestStack->getSession()->get('cart',[]);
+        // je commence le compteur à 0
+        $quantity= 0;
+        
+         // Je parcours tous les produits du panier
+        foreach($cart as $product){
+            // j'ajoute la qty du produit au total 
+            $quantity += $product['qty'];
+        }
+        //  je retourne le total de produits 
+        return $quantity;
+    }
+
+    // calculer le prix total du panier.
+    public function getTotalPrice()
+    {
+        // récup le panier en session
+        $cart = $this->requestStack->getSession()->get('cart',[]);
+        // je commence le prix total à 0 
+        $price= 0;
+        
+        //  je prends la variable vide de $price et je rajoute le priceAvecTaxe x le nombre de produits
+        foreach ($cart as $product) {
+             // Prix du produit × quantité
+            $price += ($product['object']->getPriceWithTaxe() * $product['qty']);
+        }
+         // Je retourne le prix total
+        return $price;
+    }
+    // fonction pour la livraison 
+    public function getDeliveryPrice()
+    {
+        // si le prix des articles est - de 50 e la livraison est gratuite
+        if($this->getTotalPrice()>= 50){
+            return 0;
+        }
+        return 5;
+    
+    }
+    //  fonction total final addition prix + livraison
+    public function getTotal()
+    {
+        return $this->getTotalPrice()+ $this->getDeliveryPrice();
+    }
 }

@@ -28,7 +28,7 @@
 .cart-header h1 {
     margin: 0 0 12px;
     color: #fff;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
 }
 
@@ -85,7 +85,8 @@
 .cart-product {
     display: flex;
     align-items: center;
-    gap: 20px;
+    // justify-content: center;
+    gap: 40px;
     padding: 20px 0;
     border-bottom: 1px solid rgba(128, 128, 128, 0.15);
 }
@@ -103,6 +104,7 @@
     overflow: hidden;
     border-radius: 10px;
     background: #f8f8f8;
+
 }
 
 .cart-product-image img {
@@ -120,13 +122,13 @@
 
 .cart-product-content h3 {
     margin: 0 0 8px;
-    font-size: 20px;
+    font-size: 16px;
     color: rgb(72, 30, 30);
 }
 
 .cart-product-price {
     margin: 0;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--accent-color);
 }
@@ -146,7 +148,7 @@
 .quantity {
     display: inline-flex;
     align-items: center;
-    height: 38px;
+    height: 28px;
     border: 1px solid #ddd;
     border-radius: 20px;
     overflow: hidden;
@@ -165,7 +167,7 @@
 
     color: #555;
     background: transparent;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     transition: all 0.2s ease;
 }
@@ -179,10 +181,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     min-width: 35px;
     height: 38px;
-
     color: #333;
     font-weight: 600;
     font-size: 15px;
@@ -191,19 +191,41 @@
 
 /* SUPPRIMER */
 
-.cart-remove {
+.cart-remove-product {
     display: flex;
     align-items: center;
     gap: 5px;
-    color: #777;
+    color: #e06c6c;
     font-size: 14px;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.cart-remove:hover {
-    color: #b00020;
+.cart-remove-product:hover {
+    color: #b80c2c;
 }
+
+/*vider le panier*/
+.cart-clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    margin-top: 15px;
+    padding: 8px 12px;
+
+    color: #de2020;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.cart-clear:hover {
+    color: #de6060;
+
+}
+
+//  faire les memes couleurs entre supprimer et vider le panier 
 
 /* PANIER VIDE*/
 
@@ -245,11 +267,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 12px 25px;
 
     border-radius: 50px;
-
     color: var(--contrast-color);
     background-color: var(--accent-color);
 
@@ -277,7 +297,7 @@
 
 .cart-summary {
     align-self: stretch;
-    padding: 30px;
+    padding: 25px;
     background: #dfcfcf;
     border: 1px solid rgba(72, 30, 30, 0.15);
     border-radius: 15px;
@@ -286,8 +306,9 @@
 
 .cart-summary h2 {
     margin: 0 0 25px;
-    font-size: 23px;
+    font-size: 20px;
     color: rgb(72, 30, 30);
+    margin-top: 30px;
 }
 
 
@@ -297,19 +318,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     color: #555;
+    font-size: 14px;
 }
 
 .summary-line strong {
     color: #333;
+    font-size: 14px;
 }
 
 
 /* TOTAL */
 
 .cart-summary hr {
-    margin: 20px 0;
+    margin: 18px 0;
     border: none;
     border-top: 1px solid rgba(72, 30, 30, 0.2);
 }
@@ -318,17 +341,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .summary-total span {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
     color: rgb(72, 30, 30);
 }
 
 .summary-total strong {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--accent-color);
 }
@@ -378,6 +401,8 @@
 .cart-continue:hover {
     color: var(--accent-color);
 }
+
+
 
 
 /* RESPONSIVE*/

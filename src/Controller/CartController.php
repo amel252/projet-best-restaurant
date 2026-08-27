@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
+// use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Classe\Cart;
 use App\Repository\ProductRepository;
@@ -18,7 +18,11 @@ final class CartController extends AbstractController
     {
         return $this->render('cart/index.html.twig', [
             //  on récupere ce qu'on a fait dans Cart.php
-            'cart' => $cart->getCart()
+            'cart' => $cart->getCart(),
+            'totalPrice'=>$cart->getTotalPrice(),
+            'fullCartQuantity' => $cart->fullQuantity(),
+            'deliveryPrice' => $cart->getDeliveryPrice(),
+            'total' => $cart->getTotal(),
             
         ]);
     }
@@ -26,17 +30,18 @@ final class CartController extends AbstractController
     #[Route('/panier-ajout/{id}', name: 'app_cart_add')]
     //  si user n'est pas connecté on le redirige vers login
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function add($id, Cart $cart, ProductRepository $productRepository, Request $request):response
+    public function add($id, Cart $cart, ProductRepository $productRepository):response
     {
         //  récup produit depuis BD 
         $product = $productRepository->findOneById($id);
 
         if(!$product){
-            return $this->readirectToRoute('app_home');
+            return $this->redirectToRoute('app_home');
         }
         // ajout dans le panier
         $cart->add($product);
         
+        //  return $this-> redirect($request->headers->get('referer'));
         return $this->redirectToRoute('app_cart');
         // Aller vers la page du panier
     }
@@ -56,4 +61,5 @@ final class CartController extends AbstractController
         $cart->decreaseCart($id);
         return $this->redirectToRoute('app_cart');
     }
+
 }
