@@ -6,6 +6,10 @@
     background-color: var(--background-color);
 }
 
+.profile-page .container {
+    width: 100%;
+}
+
 /* HEADER */
 
 .profile-header {
@@ -40,15 +44,22 @@
 
 .profile-content {
     display: grid;
-    grid-template-columns: 250px minmax(0, 1fr);
+    grid-template-columns: 290px minmax(0, 1fr);
     gap: 25px;
+    width: 100%;
     align-items: stretch;
 }
 
+.profile-content>.profile-card {
+    min-width: 0;
+}
 
 /* CARTES */
 
 .profile-card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     background-color: #fffdf8;
     border: 1px solid color-mix(in srgb,
             var(--default-color),
@@ -61,8 +72,11 @@
 /* BLOC GAUCHE : MON COMPTE */
 
 .profile-menu {
+    width: 100%;
+    min-width: 0;
     padding: 22px;
     color: rgb(72, 30, 30);
+    box-sizing: border-box;
 
 }
 
@@ -81,6 +95,7 @@
     flex-direction: column;
     padding-top: 34px;
     gap: 6px;
+    width: 100%;
 }
 
 .profile-menu-link {
@@ -88,6 +103,7 @@
     align-items: center;
     gap: 12px;
     width: 100%;
+    box-sizing: border-box;
     padding: 12px 13px;
     color: rgb(72, 30, 30);
     border-radius: 8px;
@@ -104,7 +120,7 @@
 }
 
 .profile-menu-link:hover {
-    // color: var(--heading-color);
+
     color: var(--accent-color);
     background-color: color-mix(in srgb,
             var(--accent-color),
@@ -115,8 +131,7 @@
 /*DÉCONNEXION */
 
 .profile-menu-link-danger {
-    // margin-top: 10px;
-    // padding-top: 18px;
+
     border-top: 1px solid color-mix(in srgb,
             var(--default-color),
             transparent 90%);
@@ -137,9 +152,12 @@
 /* BLOC DROIT : INFORMATIONS */
 
 .profile-information {
+    width: 100%;
+    min-width: 0;
     padding: 30px;
     color: rgb(72, 30, 30);
     text-align: center;
+    box-sizing: border-box;
 }
 
 
@@ -242,8 +260,7 @@
     background-color: #f8f5ed;
     border-radius: 8px;
 
-    border: none !important;
-    outline: none !important;
+    border: none;
 
 
 }
@@ -259,8 +276,28 @@
 }
 
 
-/* TABLETTE*/
 
+/* TABLETTE 991 px*/
+
+
+@media (max-width: 991px) {
+
+    .profile-content {
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .profile-menu {
+        padding: 18px;
+    }
+
+    .profile-menu-link {
+        padding: 11px 10px;
+        font-size: 13px;
+    }
+}
+
+/* TABLETTE  767px*/
 @media (max-width: 767px) {
 
     .profile-page {
@@ -269,9 +306,7 @@
 
     .profile-content {
         grid-template-columns: 1fr;
-
         gap: 20px;
-
         align-items: start;
     }
 
@@ -281,9 +316,7 @@
 
     .profile-menu-links {
         display: grid;
-
         grid-template-columns: repeat(2, 1fr);
-
         gap: 6px;
     }
 
@@ -301,9 +334,7 @@
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
+/* MOBILE*/
 
 @media (max-width: 575px) {
 
@@ -361,7 +392,7 @@
     }
 }
 
-/* ===================================================== NOTIFICATIONS / FLASH MESSAGE ===================================================== */
+/* NOTIFICATIONS / FLASH MESSAGE  */
 .flash-container {
     position: fixed;
     top: 90px;
@@ -374,8 +405,8 @@
 
 /* MESSAGE */
 .flash-container .alert {
-    width: 420px;
-    max-width: 320px;
+    width: 320px;
+    max-width: calc(100vw - 40px);
     min-height: 45px;
     margin: 0;
     padding: 10px 16px;
