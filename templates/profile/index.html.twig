@@ -27,7 +27,7 @@
                 <div class="profile-menu-links">
                     {# Informations personnelles #}
                     <a
-                        href="{{ path('app_profil_edit') }}"
+                        href="{{ path('app_profile_edit') }}"
                         class="profile-menu-link"
                     >
                         <i class="bi bi-person"></i>
@@ -46,9 +46,9 @@
                         </span>
                     </a>
 
-                    {# Mot de passe #}
+                    {# mot de passe #}
                     <a
-                        href="{{ path('app_profil_edit_password') }}"
+                        href="{{ path('app_account_edit_password') }}"
                         class="profile-menu-link"
                     ><i class="bi bi-lock"></i>
                         <span>Modifier mon mot de passe</span>
@@ -74,7 +74,7 @@
                 <form
                     id="avatarForm"
                     method="post"
-                    action="{{ path('app_profil') }}"
+                    action="{{ path('app_profile') }}"
                     enctype="multipart/form-data"
                 >
                     <div class="profile-user-header">

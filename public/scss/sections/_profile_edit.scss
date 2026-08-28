@@ -1,0 +1,169 @@
+/* MODIFICATION DES INFORMATIONS DU PROFIL */
+
+.profile-edit-card {
+    width: 100%;
+    padding: 35px;
+    background-color: #fffdf8;
+}
+
+
+/* HEADER */
+
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 88%);
+}
+
+.profile-card-subtitle {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--accent-color);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-card-header h2 {
+    margin: 0;
+
+    color: rgb(72, 30, 30);
+
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.profile-card-icon {
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+
+/* CHAMPS */
+
+.profile-edit-card .form-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: rgb(72, 30, 30);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.profile-edit-card .custom-input {
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    color: rgb(72, 30, 30);
+    background-color: #fff;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-edit-card .custom-input:focus {
+    border-color: var(--accent-color);
+
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px color-mix(in srgb,
+            var(--accent-color),
+            transparent 85%);
+}
+
+.profile-edit-card .custom-input::placeholder {
+    color: #999;
+}
+
+
+/* ACTIONS */
+
+.profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 30px;
+    padding-top: 20px;
+
+    border-top: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 88%);
+}
+
+.profile-button-primary,
+.profile-button-danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.profile-button-primary {
+    border: none;
+
+    color: #fff;
+    background-color: var(--accent-color);
+}
+
+.profile-button-primary:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.profile-button-danger {
+    border: 1px solid #ddd;
+
+    color: rgb(72, 30, 30);
+    background-color: #fff;
+}
+
+.profile-button-danger:hover {
+    color: #a00606;
+
+    border-color: #a00606;
+
+    background-color: #fff8f8;
+}
