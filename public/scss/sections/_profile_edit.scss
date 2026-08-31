@@ -24,23 +24,17 @@
 
 .profile-card-subtitle {
     display: block;
-
     margin-bottom: 6px;
-
     color: var(--accent-color);
-
     font-size: 13px;
     font-weight: 600;
-
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .profile-card-header h2 {
     margin: 0;
-
     color: rgb(72, 30, 30);
-
     font-size: 22px;
     font-weight: 600;
 }
@@ -108,12 +102,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
     gap: 12px;
-
     margin-top: 30px;
     padding-top: 20px;
-
     border-top: 1px solid color-mix(in srgb,
             var(--default-color),
             transparent 88%);
@@ -124,20 +115,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     gap: 7px;
-
     padding: 11px 18px;
-
     border-radius: 8px;
-
     font-size: 14px;
     font-weight: 600;
-
     text-decoration: none;
-
     cursor: pointer;
-
     transition: 0.25s ease;
 }
 

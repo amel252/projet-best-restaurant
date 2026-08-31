@@ -13,18 +13,18 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class AddressType extends AbstractType
+class AddressUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('firstname')
             ->add('lastname')
-            ->add('Address')
-            ->add('postaleCode')
+            ->add('address')
+            ->add('postalCode')
             ->add('city')
             ->add('country')
-            ->add('phoneNumer')
+            ->add('phoneNumber')
             // ->add('user', EntityType::class, [
             //     'class' => User::class,
             //     'choice_label' => 'id',

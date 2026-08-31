@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Ajouter une adresse - BestRestaurant
+{% endblock %}
+
+{% block body %}
+
+<section class="address-page">
+
+    <div class="container">
+        <div class="address-card">
+
+            <div class="address-card-header">
+                <div>
+                    <span class="address-card-subtitle">Adresse</span>
+                    <h2>Ajouter une adresse</h2>
+                </div>
+                <i class="bi bi-geo-alt address-card-icon"></i>
+            </div>
+
+         
+            {{ form_start(addressForm) }}
+
+                <div class="address-form">
+                    <div class="address-form-grid">
+                        <div class="address-field">{{ form_row(addressForm.firstname) }}</div>
+                        <div class="address-field">{{ form_row(addressForm.lastname) }}</div>
+                        <div class="address-field address-field-full">{{ form_row(addressForm.address) }}</div>
+                        <div class="address-field">{{ form_row(addressForm.postalCode) }}</div>
+                        <div class="address-field">{{ form_row(addressForm.city) }}</div>
+                        <div class="address-field">{{ form_row(addressForm.country) }}</div>
+                        <div class="address-field">{{ form_row(addressForm.phoneNumber) }}</div>
+                    </div>
+
+                </div>
+
+
+                {# BOUTONS #}
+                <div class="address-actions">
+                    <button type="submit"
+                        class="address-button-primary">
+                        <i class="bi bi-check"></i>
+                        Enregistrer
+                    </button>
+                    <a
+                        href="{{ path('app_account_addresses') }}"
+                        class="address-button-danger"
+                    >
+                        Retour
+                    </a>
+                </div>
+            {{ form_end(addressForm) }}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

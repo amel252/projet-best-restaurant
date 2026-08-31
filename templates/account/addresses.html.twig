@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Mes adresses - BestRestaurant
+{% endblock %}
+
+{% block body %}
+
+<section class="addresses-page">
+
+    <div class="container">
+
+        {# EN-TÊTE #}
+        <div class="addresses-header">
+            <span class="addresses-subtitle">Mon espace personnel</span>
+            <h1>Mes adresses</h1>
+            <p>Gérez vos informations de livraison.</p>
+
+        </div>
+
+        {# CONTENU #}
+        <div class="addresses-content">
+
+            {# TITRE + BOUTON #}
+            <div class="addresses-top">
+
+                <div>
+                    <span class="addresses-section-subtitle">
+                        Livraison
+                    </span>
+
+                    <h2>Mes adresses enregistrées</h2>
+                </div>
+                <a
+                    href="{{ path('app_account_address_form') }}"
+                    class="addresses-add-button"
+                >
+                    <i class="bi bi-plus-circle"></i>
+                    Ajouter une adresse
+                </a>
+
+            </div>
+
+
+            {# SI AUCUNE ADRESSE #}
+            {% if app.user.addresses|length == 0 %}
+
+                <div class="addresses-empty">
+                    <div class="addresses-empty-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+
+                    <h3>Aucune adresse enregistrée</h3>
+                    <p>
+                        Vous n'avez pas encore enregistré
+                        d'adresse sur le site.
+                    </p>
+
+                    <a
+                        href="{{ path('app_account_address_form') }}"
+                        class="addresses-empty-button"
+                    >
+                        <i class="bi bi-plus-circle"></i>
+                        Ajouter une adresse
+                    </a>
+
+                </div>
+
+            {# SI DES ADRESSES EXISTENT #}
+            {% else %}
+
+                <div class="addresses-grid">
+                    {% for address in app.user.addresses %}
+                        <div class="address-item">
+                            {# HEADER ADRESSE #}
+                            <div class="address-item-header">
+
+                                <div class="address-item-icon">
+                                    <i class="bi bi-house"></i>
+                                </div>
+
+                                <div>
+                                    <span class="address-item-label">
+                                        Adresse de livraison
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            {# INFORMATIONS #}
+                            <div class="address-details">
+                                <div class="address-detail">
+                                    <i class="bi bi-person"></i>
+                                    <span>
+                                        {{ address.firstname }}
+                                        {{ address.lastname }}
+                                    </span>
+                                </div>
+
+                                <div class="address-detail">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <span>{{ address.address }}</span>
+                                </div>
+
+                                <div class="address-detail">
+                                    <i class="bi bi-mailbox"></i>
+
+                                    <span>
+                                        {{ address.postalCode }}
+                                        {{ address.city }}
+                                    </span>
+                                </div>
+
+                                <div class="address-detail">
+                                    <i class="bi bi-globe"></i>
+                                    <span>{{ address.country }}</span>
+                                </div>
+
+                                <div class="address-detail">
+                                    <i class="bi bi-telephone"></i>
+                                    <span>{{ address.phoneNumber }}</span>
+                                </div>
+                            </div>
+
+
+                            {# ACTIONS #}
+                            <div class="address-item-actions">
+
+                                <a
+                                    href="{{ path('app_account_address_form', {id: address.id}) }}"
+                                    class="address-edit-button"
+                                >
+                                    <i class="bi bi-pencil"></i>
+                                    Modifier
+                                </a>
+
+                                <a
+                                    href="#"
+                                    class="address-delete-button"
+                                >
+                                    <i class="bi bi-trash"></i>
+                                    Supprimer
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
