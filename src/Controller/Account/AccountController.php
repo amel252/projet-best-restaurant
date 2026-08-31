@@ -68,4 +68,59 @@ final class AccountController extends AbstractController
             'modifyPwd'=> $form->createView()
         ]);
     }
+
+    //  Création de la route Affichage du template (adresse)
+    #[Route('/compte/addresses', name: 'app_account_addresses')]
+    public function addresses(): Response
+    {
+        return $this->render('account/addresses.html.twig');
+    }
+
+    /*Route création addresse */  
+    #[Route('/compte/addresses/ajout/{id}',name:'app_account_address_form', defaults:['id'=>null])]
+    public function addressForm(Request $request, ?int $id, AddressRepository $addressRepository):response
+    {
+         // Vérification utilisateur connecté
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        // si l'id est fourni , on récupere l'adresse 
+        if($id){
+            // addresse en BD on récup
+            $address = $addressRepository->findOneById($id);
+            
+                //  on compare addresse en BD et addres donné par user
+                if(!$address or $address->getUser() != $user){
+                    // si ne sont pas identique , redirige vers la page pour remmetre la bonne addresse 
+                    return $this->redirectToRoute('app_account_addresses');
+                }
+            }else{
+                //  j'instancié l'addresse 
+                $address = new Address();
+                //  je stocke
+                $address->setUser($user);
+            }
+            //  création de formulaire 
+            $form = $this->createForm(AddressUserType::class, $address);
+            //  écoute la requette si form est soumis
+            $form->handleRequest($request);
+            // si le form est soumis est valid 
+            if($form->isSubmitted()&& $form->isValid()){
+                $this->entityManager->persist($address);
+                $this->entityManager->flush();
+
+                $this->addFlash(
+                    type:'success',
+                    message:'Votre addresse a été ajoutée avec success! '
+                );
+                return $this->redirectToRoute('app_account_addresses');
+            }
+            return $this->render('account/addressForm.html.twig', [
+                'addressForm' => $form
+        ]);
+
+    }
 }

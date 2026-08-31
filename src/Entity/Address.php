@@ -20,10 +20,10 @@ class Address
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Address = null;
+    private ?string $address = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $postaleCode = null;
+    private ?string $postalCode = null;
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
@@ -32,7 +32,7 @@ class Address
     private ?string $country = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $phoneNumer = null;
+    private ?string $phoneNumber = null;
 
     /*chaque user peut avoir plusieurs address*/ 
     #[ORM\ManyToOne(inversedBy: 'addresses')]
@@ -71,24 +71,24 @@ class Address
 
     public function getAddress(): ?string
     {
-        return $this->Address;
+        return $this->address;
     }
 
-    public function setAddress(string $Address): static
+    public function setAddress(string $address): static
     {
-        $this->Address = $Address;
+        $this->address = $address;
 
         return $this;
     }
 
-    public function getPostaleCode(): ?string
+    public function getPostalCode(): ?string
     {
-        return $this->postaleCode;
+        return $this->postalCode;
     }
 
-    public function setPostaleCode(string $postaleCode): static
+    public function setPostalCode(string $postalCode): static
     {
-        $this->postaleCode = $postaleCode;
+        $this->postalCode = $postalCode;
 
         return $this;
     }
@@ -117,14 +117,14 @@ class Address
         return $this;
     }
 
-    public function getPhoneNumer(): ?string
+    public function getPhoneNumber(): ?string
     {
-        return $this->phoneNumer;
+        return $this->phoneNumber;
     }
 
-    public function setPhoneNumer(string $phoneNumer): static
+    public function setPhoneNumber(string $phoneNumber): static
     {
-        $this->phoneNumer = $phoneNumer;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
