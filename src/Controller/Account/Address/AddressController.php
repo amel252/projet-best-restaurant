@@ -32,7 +32,7 @@ final class AddressController extends AbstractController
     #[Route('/compte/addresses', name: 'app_account_addresses')]
     public function addresses(): Response
     {
-        return $this->render('address/index.html.twig');
+        return $this->render('account/address/index.html.twig');
     }
 
     /*Route création addresse */  
@@ -77,7 +77,7 @@ final class AddressController extends AbstractController
                 );
                 return $this->redirectToRoute('app_account_addresses');
             }
-            return $this->render('address/form.html.twig', [
+            return $this->render('account/address/form.html.twig', [
                 'addressForm' => $form
         ]);
 

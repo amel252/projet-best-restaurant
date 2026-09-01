@@ -29,7 +29,7 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-             TextField::new('name')->setLabel('Titre')->setHelp('Titre de la categorie'),
+            TextField::new('name')->setLabel('Titre')->setHelp('Titre de la categorie'),
             SlugField::new('slug')->setLabel('URL')->setTargetFieldName('name')->setHelp('URL de la categorie génerée'),
         ];
     }

@@ -59,7 +59,7 @@ final class ProfileController extends AbstractController
                 );
             }
         }
-        return $this->render('profile/index.html.twig',[
+        return $this->render('account/profile/index.html.twig',[
             'user'=> $user,
         ]);
     }
@@ -88,7 +88,7 @@ final class ProfileController extends AbstractController
         );
 
         }
-        return $this->render('profile/edit_profil.html.twig',[
+        return $this->render('account/profile/edit_profil.html.twig',[
             'profilModifForm'=>$form->createView(),
         ]);
     }
