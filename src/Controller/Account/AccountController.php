@@ -123,4 +123,35 @@ final class AccountController extends AbstractController
         ]);
 
     }
+    //  route de suppression l'adresse 
+   #[Route('/compte/adresses/suppression/{id}', name: 'app_account_address_delete', requirements:['id' => '\d+'])]
+    public function deleteForm(request $request, int $id, AddressRepository $addressRepository): Response
+    {
+         // Vérifier que l'utilisateur est connecté
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+        // récup l'addresse
+        $address = $addressRepository->findOneById($id);
+        //  vérif l'addresse si appartient a ce user 
+        if (!$address || $address->getUser() !== $user) {
+            //  si ne sont pas identique , redirige vers la page pour qu'il remet l'adresse correct
+            return $this->redirectToRoute('app_account_addresses');
+        }
+          // Supprimer
+        $this->entityManager->remove($address);
+        $this->entityManager->flush();
+
+        // message
+        $this->addFlash(
+            type:'success',
+            message:'Votre adresse a été supprimé avec success !'
+        );
+        
+        return $this->redirectToRoute('app_account_addresses');
+
+
+    }
 }
