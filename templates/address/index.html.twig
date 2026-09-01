@@ -23,12 +23,10 @@
 
             {# TITRE + BOUTON #}
             <div class="addresses-top">
-
                 <div>
                     <span class="addresses-section-subtitle">
                         Livraison
                     </span>
-
                     <h2>Mes adresses enregistrées</h2>
                 </div>
                 <a
@@ -74,11 +72,9 @@
                         <div class="address-item">
                             {# HEADER ADRESSE #}
                             <div class="address-item-header">
-
                                 <div class="address-item-icon">
                                     <i class="bi bi-house"></i>
                                 </div>
-
                                 <div>
                                     <span class="address-item-label">
                                         Adresse de livraison
@@ -122,10 +118,8 @@
                                 </div>
                             </div>
 
-
                             {# ACTIONS #}
                             <div class="address-item-actions">
-
                                 <a
                                     href="{{ path('app_account_address_form', {id: address.id}) }}"
                                     class="address-edit-button"
@@ -133,7 +127,6 @@
                                     <i class="bi bi-pencil"></i>
                                     Modifier
                                 </a>
-
                                 <a
                                     href="{{path('app_account_address_delete', {id:address.id})}}"
                                     class="address-delete-button"
@@ -141,21 +134,15 @@
                                     <i class="bi bi-trash"></i>
                                     Supprimer
                                 </a>
-
                             </div>
-
                         </div>
 
                     {% endfor %}
 
                 </div>
-
             {% endif %}
-
         </div>
-
     </div>
-
 </section>
 
 {% endblock %}
