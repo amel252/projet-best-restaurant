@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Profile;
+namespace App\Controller\Account\Profile;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
