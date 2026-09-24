@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="profile-page">
+    <div class="container">
+        <div class="profile-card profile-edit-card">
+            <div class="profile-card-header">
+                <div>
+                    <span class="profile-card-subtitle">
+                        Informations personnelles
+                    </span>
+                    <h2>
+                        Modifier mon profil
+                    </h2>
+                </div>
+                <i class="bi bi-pencil profile-card-icon"></i>
+            </div>
+            {{form_start(profilModifForm,{
+                attr:{
+                class: 'row g-4 needs-validation',
+                autocomplete: 'off'
+            }
+            })}}
+            <div class='row g-3'>
+                <div class='col-md-6'>
+                    {{form_label(profilModifForm.firstName,'Votre prénom',{
+                        'label_attr':{
+                        'class': 'form-label'
+                    }
+                    })}}
+                    {{ form_widget(profilModifForm.firstName, {
+                        'attr': {
+                        'class': 'form-control custom-input',
+                        'placeholder': 'Votre nom'
+                    }
+                    }) }}
+                    <div class='form-errors '>
+                        {{ form_errors(profilModifForm.firstName) }}
+                    </div>
+                </div>
+                <div class='col-md-6'>
+                    {{form_label(profilModifForm.lastName,'Votre nom',{
+                        'label_attr':{
+                        'class': 'form-label'
+                    }
+                    })}}
+                    {{ form_widget(profilModifForm.lastName, {
+                        'attr': {
+                        'class': 'form-control custom-input',
+                        'placeholder': 'Votre nom'
+                    }
+                    }) }}
+                    <div class='form-errors '>
+                        {{ form_errors(profilModifForm.lastName) }}
+                    </div>
+                </div>
+                
+                <div class='col-md-6'>
+                    {{form_label(profilModifForm.email,'Votre email',{
+                        'label_attr':{
+                        'class': 'form-label'
+                    }
+                    })}}
+                    {{ form_widget(profilModifForm.email, {
+                        'attr': {
+                        'class': 'form-control custom-input',
+                        'placeholder': 'Votre email'
+                    }
+                    }) }}
+                    <div class='form-errors '>
+                        {{ form_errors(profilModifForm.email) }}
+                    </div>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button type="submit"
+                    class="profile-button-primary">
+                    <i class="bi bi-check"></i>
+                    Enregistrer
+                </button>
+                <a href="{{ path('app_account') }}"
+                    class="profile-button-danger">
+                    Annuler
+                </a>
+                </div>
+
+            {{ form_end(profilModifForm) }}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
