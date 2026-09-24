@@ -90,23 +90,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   min-height: 40px;
-
   padding: 10px 20px !important;
-
   color: var(--contrast-color) !important;
-
   background-color: var(--accent-color);
-
   border-radius: 50px;
-
   transition: background-color 0.2s ease;
 }
 
 .nav-reservation>a:hover {
   color: var(--contrast-color) !important;
-
   background-color: color-mix(in srgb,
       var(--accent-color),
       transparent 15%);

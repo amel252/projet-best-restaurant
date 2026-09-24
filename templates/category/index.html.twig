@@ -1,0 +1,46 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="category-container">
+        <div class="container">
+            <div class="category-header">
+                <h2>{{ category.name }}</h2>
+                <p> Cette categorie contient {{ category.products|length }} produit(s)</p>
+            </div>
+            <div class="products-grid">
+                {% for product in category.products %}
+                    <article class="product-card">
+                        <div class="product-image">
+                            <img
+                                src="{{ asset('uploads/products/' ~ product.illustration) }}"
+                                alt="{{ product.name }}"
+                            >
+                        </div>
+
+                        <div class="product-content">
+                            <h3>{{ product.name }}</h3>
+                            <div class="product-footer">
+                                <span class="product-price">
+                                    {#  prendre 2 chiffre aprés , et arrondir le chiffre #}
+                                    {{product.getPriceWithTaxe|number_format(2, ',', '') }} €
+                                </span>
+                            </div>
+                            <div class="product-actions">
+                                <a href="#" class="product-btn product-btn-outline"> Voir le produit</a>
+                                <button type="button" class="product-btn product-btn-primary">
+                                    Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}
