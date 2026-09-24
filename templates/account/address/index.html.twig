@@ -29,13 +29,23 @@
                     </span>
                     <h2>Mes adresses enregistrées</h2>
                 </div>
-                <a
-                    href="{{ path('app_account_address_form') }}"
-                    class="addresses-add-button"
-                >
-                    <i class="bi bi-plus-circle"></i>
-                    Ajouter une adresse
-                </a>
+                <div>
+                    <a
+                        href="{{ path('app_profile') }}"
+                        class="address-delete-button"
+                    >
+                        <i class="bi bi-arrow-left"></i>
+                        Retour
+                    </a>
+                    <a
+                        href="{{ path('app_account_address_form') }}"
+                        class="addresses-add-button"
+                    >
+                        <i class="bi bi-plus-circle"></i>
+                        Ajouter une adresse
+                    </a>
+                    
+                </div>
 
             </div>
 

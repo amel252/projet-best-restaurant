@@ -75,7 +75,7 @@ final class AddressController extends AbstractController
                     type:'success',
                     message:'Votre addresse a été ajoutée avec success! '
                 );
-                return $this->redirectToRoute('app_account_addresses');
+                return $this->redirectToRoute('app_order');
             }
             return $this->render('account/address/form.html.twig', [
                 'addressForm' => $form

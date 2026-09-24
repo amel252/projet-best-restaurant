@@ -1,0 +1,54 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="order-page ">
+
+    <div class="container">
+        <div class="order-header">
+            <span class="order-subtitle">Commande</span>
+            <h1>Ma commande</h1>
+            <p>Choisissez votre adresse et votre mode de livraison.</p>
+        </div>
+        <div class="order-card">
+
+            {{ form_start(deliverForm, {'attr': {'class': 'delivery-form'}}) }}
+
+                <div class="delivery-section">
+
+                    <div class="delivery-section-header">
+                        <h2>Adresse de livraison</h2>
+                        <p>Sélectionnez l'adresse à laquelle vous souhaitez recevoir votre commande.</p>
+                    </div>
+
+                    <div class="delivery-addresses">
+                        {{ form_row(deliverForm.addresses) }}
+                    </div>
+
+                    <a href="{{ path('app_account_address_form') }}"
+                       class="add-address-link">
+                        <i class="bi bi-plus-circle"></i>
+                        Ajouter une nouvelle adresse de livraison
+                    </a>
+                </div>
+
+                <div class="delivery-separator"></div>
+                <div class="delivery-section">
+                    <div class="delivery-section-header">
+                        <h2>Mode de livraison</h2>
+                        <p>Choisissez votre transporteur.</p>
+                    </div>
+                    <div class="delivery-carriers">
+                        {{ form_row(deliverForm.carriers) }}
+                    </div>
+                </div>
+                <div class="delivery-submit">
+                    {{ form_widget(deliverForm.Submit) }}
+                </div>
+            {{ form_end(deliverForm) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -140,6 +140,12 @@ class Address
 
         return $this;
     }
+    
+    public function __tostring(): string 
+    // une fonction pour convertir un objet en string
+    {
+        return  $this->getFirstname().' '.$this->getLastname().'<br/>'.$this->getAddress().'<br/>'.$this->getCity().' - '.$this->getCountry();
+    }
 
     
 }
