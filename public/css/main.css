@@ -2559,29 +2559,31 @@ section,
 /* PAGE PROFIL */
 .profile-page {
   min-height: calc(100vh - 80px);
-  padding: 70px 0;
+  padding: 60px 0;
   background-color: var(--background-color);
 }
 
-/* =====================================================
-   HEADER PROFIL
-===================================================== */
+.profile-page .container {
+  width: 100%;
+}
+
+/* HEADER */
 .profile-header {
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .profile-subtitle {
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: var(--accent-color);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .profile-header h1 {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   color: var(--heading-color);
   font-size: 28px;
   font-weight: 600;
@@ -2590,53 +2592,130 @@ section,
 .profile-header p {
   margin: 0;
   color: var(--default-color);
-  font-size: 16px;
+  font-size: 15px;
 }
 
-/* =====================================================
-   CONTENU
-===================================================== */
+/* CONTENU : LES 2 BLOCS */
 .profile-content {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 290px minmax(0, 1fr);
   gap: 25px;
-  align-items: start;
+  width: 100%;
+  align-items: stretch;
 }
 
-/* =====================================================
-   CARTES
-===================================================== */
+.profile-content > .profile-card {
+  min-width: 0;
+}
+
+/* CARTES */
 .profile-card {
-  padding: 30px;
-  background-color: var(--background-color);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  background-color: #fffdf8;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   border-radius: 12px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
 }
 
-.profile-card-title {
-  text-align: center;
-  padding: 12px 0;
+/* BLOC GAUCHE : MON COMPTE */
+.profile-menu {
+  width: 100%;
+  min-width: 0;
+  padding: 22px;
+  color: rgb(72, 30, 30);
+  box-sizing: border-box;
 }
 
-.profile-email {
-  text-align: center;
-}
-
-/* =====================================================
-   CARTE UTILISATEUR
-===================================================== */
-/* =====================================================
-   AVATAR
-===================================================== */
-.profile-avatar-wrapper {
+.profile-menu-title {
+  padding-top: 22px;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 0 0 18px;
+  color: rgb(72, 30, 30);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.profile-menu-links {
+  display: flex;
+  flex-direction: column;
+  padding-top: 34px;
+  gap: 6px;
+  width: 100%;
+}
+
+.profile-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 13px;
+  color: rgb(72, 30, 30);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.profile-menu-link i {
+  width: 20px;
+  color: var(--accent-color);
+  font-size: 17px;
+  text-align: center;
+}
+
+.profile-menu-link:hover {
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 92%);
+}
+
+/*DÉCONNEXION */
+.profile-menu-link-danger {
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 0;
+}
+
+.profile-menu-link-danger i {
+  color: #a00606;
+}
+
+.profile-menu-link-danger:hover {
+  color: #a00606;
+  background-color: color-mix(in srgb, #a00606, transparent 94%);
+}
+
+/* BLOC DROIT : INFORMATIONS */
+.profile-information {
+  width: 100%;
+  min-width: 0;
+  padding: 30px;
+  color: rgb(72, 30, 30);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* PHOTO + IDENTITÉ*/
+.profile-user-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+/* AVATAR*/
+.profile-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-avatar {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2651,227 +2730,160 @@ section,
 }
 
 .profile-avatar:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
-/* Icône utilisateur */
 .profile-avatar > i {
   font-size: 42px;
 }
 
-/* Image */
 .profile-avatar img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* =====================================================
-   HEADER DE CARTE
-===================================================== */
-.profile-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+/* NOM + EMAIL */
+.profile-user-identity {
+  width: 100%;
+  color: rgb(72, 30, 30);
+  text-align: center;
 }
 
-.profile-card-subtitle {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--accent-color);
-  font-size: 13px;
+.profile-card-title {
+  margin: 0 0 6px;
+  color: rgb(72, 30, 30);
+  font-size: 22px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
-.profile-card-header h2 {
+/* TITRE INFORMATIONS */
+.profile-information-header {
+  margin: 25px 0 18px;
+  text-align: center;
+}
+
+.profile-information-header h2 {
   margin: 0;
-  color: var(--heading-color);
-  font-size: 24px;
+  color: rgb(72, 30, 30);
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.profile-card-icon {
-  font-size: 28px;
-  color: var(--accent-color);
-}
-
-/* =====================================================
-   INFORMATIONS
-===================================================== */
+/* INFORMATIONS */
 .profile-info {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
 }
 
 .profile-info-item {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 15px;
-  background-color: color-mix(in srgb, var(--default-color), transparent 96%);
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 14px 16px;
+  background-color: #f8f5ed;
   border-radius: 8px;
+  border: none;
 }
 
 .profile-info-label {
-  color: var(--default-color);
   font-size: 13px;
+  color: rgb(72, 30, 30);
 }
 
 .profile-info-value {
-  color: var(--heading-color);
-  font-size: 15px;
-  font-weight: 500;
-  word-break: break-word;
-}
-
-/* =====================================================
-   ACTIONS
-===================================================== */
-.profile-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.profile-button-primary,
-.profile-button-danger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 11px 18px;
-  border-radius: 50px;
-  text-decoration: none;
   font-size: 14px;
-  transition: 0.3s;
+  font-weight: 500;
 }
 
-.profile-button-primary {
-  text-align: center;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 75%);
-}
-
-.profile-button-primary:hover {
-  color: var(--contrast-color);
-  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
-}
-
-.profile-button-danger {
-  color: var(--default-color);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 75%);
-}
-
-.profile-button-danger:hover {
-  color: var(--contrast-color);
-  background: #a00606;
-}
-
-/* =====================================================
-   TABLETTE
-===================================================== */
+/* TABLETTE 991 px*/
 @media (max-width: 991px) {
+  .profile-content {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 20px;
+  }
+  .profile-menu {
+    padding: 18px;
+  }
+  .profile-menu-link {
+    padding: 11px 10px;
+    font-size: 13px;
+  }
+}
+/* TABLETTE  767px*/
+@media (max-width: 767px) {
   .profile-page {
-    padding: 50px 0;
+    padding: 45px 0;
+  }
+  .profile-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .profile-menu {
+    padding: 20px;
+  }
+  .profile-menu-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .profile-menu-link-danger {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 12px;
+  }
+  .profile-information {
+    padding: 25px;
+  }
+}
+/* MOBILE*/
+@media (max-width: 575px) {
+  .profile-page {
+    padding: 30px 0;
+  }
+  .profile-header {
+    margin-bottom: 25px;
+  }
+  .profile-header h1 {
+    font-size: 24px;
+  }
+  .profile-header p {
+    font-size: 14px;
   }
   .profile-content {
     grid-template-columns: 1fr;
   }
-  .profile-user-card {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .profile-avatar {
-    flex-shrink: 0;
-    width: 75px;
-    height: 75px;
-    margin: 0;
-  }
-  .profile-user-card h2 {
-    margin-bottom: 5px;
-  }
-}
-/* =====================================================
-   MOBILE
-===================================================== */
-@media (max-width: 575px) {
-  .profile-page {
-    padding: 35px 0;
-  }
-  .profile-header h1 {
-    font-size: 30px;
-  }
-  .profile-card {
-    padding: 20px;
-  }
-  .profile-user-card {
-    display: block;
-    text-align: center;
-  }
-  .profile-avatar {
-    margin: 0 auto 15px;
-  }
-  .profile-info {
+  .profile-menu-links {
     grid-template-columns: 1fr;
   }
-  .profile-actions {
+  .profile-information {
+    padding: 20px;
+  }
+  .profile-user-header {
+    gap: 12px;
+  }
+  .profile-avatar {
+    width: 85px;
+    height: 85px;
+  }
+  .profile-card-title {
+    font-size: 20px;
+  }
+  .profile-info-item {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: 5px;
   }
-  .profile-button-primary,
-  .profile-button-danger {
-    width: 100%;
+  .profile-info-value {
+    text-align: left;
   }
 }
-/* =====================================================
-   FORMULAIRE
-===================================================== */
-.profile-form {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.profile-form label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--heading-color);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.profile-form input {
-  width: 100%;
-  padding: 12px 16px;
-  color: var(--heading-color);
-  background-color: var(--background-color);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
-  border-radius: 8px;
-  font-size: 15px;
-  transition: 0.3s;
-}
-
-.profile-form input:focus {
-  outline: none;
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 80%);
-}
-
-.profile-form .form-error-message,
-.profile-form .invalid-feedback {
-  margin-top: 6px;
-  color: #c0392b;
-  font-size: 13px;
-}
-
+/* NOTIFICATIONS / FLASH MESSAGE  */
 .flash-container {
   position: fixed;
   top: 90px;
@@ -2879,18 +2891,826 @@ section,
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
+/* MESSAGE */
 .flash-container .alert {
-  width: 420px;
-  height: 55px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  min-height: 45px;
   margin: 0;
-  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
   align-items: center;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
   text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* MOBILE */
+@media (max-width: 575px) {
+  .flash-container {
+    top: 80px;
+    right: 15px;
+    left: 15px;
+  }
+  .flash-container .alert {
+    width: 100%;
+    max-width: none;
+    font-size: 13px;
+  }
+}
+/* MODIFICATION DES INFORMATIONS DU PROFIL */
+.profile-edit-card {
+  width: 100%;
+  padding: 35px;
+  background-color: #fffdf8;
+}
+
+/* HEADER */
+.profile-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.profile-card-subtitle {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-color);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.profile-card-header h2 {
+  margin: 0;
+  color: rgb(72, 30, 30);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.profile-card-icon {
+  font-size: 24px;
+  color: var(--accent-color);
+}
+
+/* CHAMPS */
+.profile-edit-card .form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.profile-edit-card .custom-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: rgb(72, 30, 30);
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-edit-card .custom-input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 85%);
+}
+
+.profile-edit-card .custom-input::placeholder {
+  color: #999;
+}
+
+/* ACTIONS */
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.profile-button-primary,
+.profile-button-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.profile-button-primary {
+  border: none;
+  color: #fff;
+  background-color: var(--accent-color);
+}
+
+.profile-button-primary:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.profile-button-danger {
+  border: 1px solid #ddd;
+  color: rgb(72, 30, 30);
+  background-color: #fff;
+}
+
+.profile-button-danger:hover {
+  color: #a00606;
+  border-color: #a00606;
+  background-color: #fff8f8;
+}
+
+/* MODIFICATION MOT DE PASSE */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* LABELS */
+.profile-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* INPUTS */
+.profile-form input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: rgb(72, 30, 30);
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-form input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 85%);
+}
+
+/* ERREURS */
+.profile-form ul {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #a00606;
+  font-size: 13px;
+}
+
+/* CARTE MOT DE PASSE */
+.profile-page .profile-card {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 35px;
+  box-sizing: border-box;
+}
+
+/* MOBILE*/
+@media (max-width: 575px) {
+  .profile-page .profile-card {
+    width: 100%;
+    max-width: none;
+    padding: 25px 20px;
+  }
+  .profile-form {
+    gap: 16px;
+  }
+}
+/* MES ADRESSES*/
+.addresses-page {
+  min-height: calc(100vh - 80px);
+  padding: 60px 0;
+  background-color: var(--background-color);
+}
+
+/* HEADER DE PAGE*/
+.addresses-header {
+  margin-bottom: 30px;
+}
+
+.addresses-subtitle {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-color);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.addresses-header h1 {
+  margin: 0 0 8px;
+  color: var(--heading-color);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.addresses-header p {
+  margin: 0;
+  color: var(--default-color);
+  font-size: 15px;
+}
+
+/* =========================================================
+   GRANDE CARTE PRINCIPALE
+   ========================================================= */
+.addresses-content {
+  width: 100%;
+  padding: 35px;
+  background-color: #fffdf8;
+  border-radius: 8px;
+}
+
+/* =========================================================
+   HEADER DE LA CARTE
+   ========================================================= */
+.addresses-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.addresses-section-subtitle {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-color);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.addresses-top h2 {
+  margin: 0;
+  color: rgb(72, 30, 30);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   BOUTON AJOUTER
+   ========================================================= */
+.addresses-add-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 8px;
+  color: #fff !important;
+  background-color: var(--accent-color);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: 0.25s ease;
+}
+
+.addresses-add-button:hover {
+  color: #fff !important;
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* =========================================================
+   GRILLE
+   ========================================================= */
+.addresses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* =========================================================
+   CARTE ADRESSE
+   ========================================================= */
+.address-item {
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.address-item:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================================================
+   HEADER ADRESSE
+   ========================================================= */
+.address-item-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eee;
+}
+
+.address-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  font-size: 18px;
+}
+
+.address-item-label {
+  color: rgb(72, 30, 30);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   INFORMATIONS
+   ========================================================= */
+.address-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.address-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.address-detail i {
+  width: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--accent-color);
+  font-size: 15px;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+.address-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid #eee;
+}
+
+.address-edit-button,
+.address-delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: 0.25s ease;
+}
+
+/* Modifier */
+.address-edit-button {
+  border: 1px solid #ddd;
+  color: rgb(72, 30, 30) !important;
+  background-color: #fff;
+}
+
+.address-edit-button:hover {
+  color: var(--accent-color) !important;
+  border-color: var(--accent-color);
+}
+
+/* Supprimer */
+.address-delete-button {
+  border: 1px solid #ddd;
+  color: rgb(72, 30, 30) !important;
+  background-color: #fff;
+}
+
+.address-delete-button:hover {
+  color: #a00606 !important;
+  border-color: #a00606;
+  background-color: #fff8f8;
+}
+
+/* =========================================================
+   AUCUNE ADRESSE
+   ========================================================= */
+.addresses-empty {
+  padding: 50px 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.addresses-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  font-size: 24px;
+}
+
+.addresses-empty h3 {
+  margin: 0 0 8px;
+  color: rgb(72, 30, 30);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.addresses-empty p {
+  margin: 0 0 22px;
+  color: #777;
+  font-size: 14px;
+}
+
+.addresses-empty-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 18px;
+  border-radius: 8px;
+  color: #fff !important;
+  background-color: var(--accent-color);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 768px) {
+  .addresses-page {
+    padding: 25px 0 40px;
+  }
+  .addresses-content {
+    padding: 25px;
+  }
+  .addresses-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .addresses-add-button {
+    width: 100%;
+  }
+  .addresses-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 576px) {
+  .addresses-content {
+    padding: 20px;
+  }
+  .addresses-header h1 {
+    font-size: 23px;
+  }
+  .addresses-top h2 {
+    font-size: 20px;
+  }
+  .address-item {
+    padding: 20px;
+  }
+  .address-item-actions {
+    flex-direction: column;
+  }
+  .address-edit-button,
+  .address-delete-button {
+    width: 100%;
+  }
+}
+/* PAGE ADRESSE */
+.address-page {
+  min-height: calc(100vh - 80px);
+  padding: 60px 0;
+  background-color: var(--background-color);
+}
+
+/* CONTENEUR */
+.address-page .container {
+  width: 100%;
+}
+
+/* EN-TÊTE */
+.address-header {
+  margin-bottom: 35px;
+}
+
+.address-subtitle {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--accent-color);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.address-header h1 {
+  margin: 0 0 8px;
+  color: var(--heading-color);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.address-header p {
+  margin: 0;
+  color: var(--default-color);
+  font-size: 15px;
+}
+
+/* CARTE */
+.address-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 35px;
+  box-sizing: border-box;
+  background-color: #fffdf8;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* EN-TÊTE DE LA CARTE */
+.address-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.address-card-subtitle {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-color);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.address-card-header h2 {
+  margin: 0;
+  color: rgb(72, 30, 30);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* ICÔNE */
+.address-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+/* FORMULAIRE */
+.address-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* CHAMP PLEINE LARGEUR */
+.address-field-full {
+  grid-column: 1/-1;
+}
+
+/*LABELS*/
+.address-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* INPUTS */
+.address-field input,
+.address-field select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  color: rgb(72, 30, 30);
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* INPUT FOCUS */
+.address-field input:focus,
+.address-field select:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 85%);
+}
+
+/* ERREURS */
+.address-field ul {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #a00606;
+  font-size: 13px;
+}
+
+/* BOUTONS*/
+.address-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+/* BOUTON PRINCIPAL */
+.address-button-primary,
+.address-button-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.address-button-primary {
+  border: none;
+  color: #fff;
+  background-color: var(--accent-color);
+}
+
+.address-button-primary:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* BOUTON RETOUR */
+.address-button-danger {
+  border: 1px solid #ddd;
+  color: rgb(72, 30, 30);
+  background-color: #fff;
+}
+
+.address-button-danger:hover {
+  color: #a00606;
+  border-color: #a00606;
+  background-color: #fff8f8;
+}
+
+/* TABLETTE 991px */
+@media (max-width: 991px) {
+  .address-page {
+    padding: 45px 0;
+  }
+  .address-card {
+    max-width: 850px;
+    padding: 30px;
+  }
+}
+/* =========================================================
+   TABLETTE 767px
+   ========================================================= */
+@media (max-width: 767px) {
+  .address-page {
+    padding: 40px 0;
+  }
+  .address-card {
+    padding: 25px;
+  }
+  .address-form-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .address-field-full {
+    grid-column: auto;
+  }
+}
+/* =========================================================
+   MOBILE 575px
+   ========================================================= */
+@media (max-width: 575px) {
+  .address-page {
+    padding: 30px 0;
+  }
+  .address-card {
+    padding: 20px 18px;
+    border-radius: 10px;
+  }
+  .address-header {
+    margin-bottom: 25px;
+  }
+  .address-header h1 {
+    font-size: 24px;
+  }
+  .address-header p {
+    font-size: 14px;
+  }
+  .address-card-header {
+    margin-bottom: 25px;
+    padding-bottom: 18px;
+  }
+  .address-card-header h2 {
+    font-size: 19px;
+  }
+  .address-card-subtitle {
+    font-size: 12px;
+  }
+  .address-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 19px;
+  }
+  .address-form-grid {
+    gap: 16px;
+  }
+  .address-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .address-btn-primary,
+  .address-btn-secondary {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 .category-container {
   padding: 50px 0;
 }
@@ -3178,6 +3998,7 @@ section,
 .cart-container {
   padding: 60px 0;
   min-height: 70vh;
+  background-color: var(--background-color);
 }
 
 .cart-container .container {
@@ -3198,14 +4019,14 @@ section,
 
 .cart-header h1 {
   margin: 0 0 12px;
-  color: #fff;
+  color: var(--heading-color);
   font-size: 28px;
   font-weight: 700;
 }
 
 .cart-header p {
   margin: 0;
-  color: #fff;
+  color: var(--default-color);
   font-size: 18px;
   opacity: 0.8;
 }
@@ -3230,7 +4051,7 @@ section,
 
 /* PRODUITS*/
 .cart-products {
-  background: #fff;
+  background: #fffdf8;
   padding: 30px;
   border: 1px solid rgba(72, 30, 30, 0.15);
   border-radius: 15px;
@@ -3245,7 +4066,7 @@ section,
   margin-bottom: 25px;
   font-size: 22px;
   font-weight: 700;
-  color: rgb(72, 30, 30);
+  color: #481e1e;
 }
 
 /* CARTE PRODUIT*/
@@ -3254,7 +4075,7 @@ section,
   align-items: center;
   gap: 40px;
   padding: 20px 0;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+  border-bottom: 1px solid rgba(72, 30, 30, 0.12);
 }
 
 .cart-product:last-child {
@@ -3268,7 +4089,7 @@ section,
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 10px;
-  background: #f8f8f8;
+  background-color: #f8f5ed;
 }
 
 .cart-product-image img {

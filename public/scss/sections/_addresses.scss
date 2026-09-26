@@ -1,0 +1,466 @@
+/* MES ADRESSES*/
+
+.addresses-page {
+    min-height: calc(100vh - 80px);
+    padding: 60px 0;
+    background-color: var(--background-color);
+}
+
+/* HEADER DE PAGE*/
+
+.addresses-header {
+    margin-bottom: 30px;
+}
+
+.addresses-subtitle {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--accent-color);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.addresses-header h1 {
+    margin: 0 0 8px;
+    color: var(--heading-color);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.addresses-header p {
+    margin: 0;
+    color: var(--default-color);
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   GRANDE CARTE PRINCIPALE
+   ========================================================= */
+
+.addresses-content {
+    width: 100%;
+
+    padding: 35px;
+
+    background-color: #fffdf8;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   HEADER DE LA CARTE
+   ========================================================= */
+
+.addresses-top {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 88%);
+}
+
+.addresses-section-subtitle {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--accent-color);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.addresses-top h2 {
+    margin: 0;
+
+    color: rgb(72, 30, 30);
+
+    font-size: 22px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BOUTON AJOUTER
+   ========================================================= */
+
+.addresses-add-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 11px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: #fff !important;
+    background-color: var(--accent-color);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none !important;
+
+    transition: 0.25s ease;
+}
+
+.addresses-add-button:hover {
+    color: #fff !important;
+
+    transform: translateY(-1px);
+
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   GRILLE
+   ========================================================= */
+
+.addresses-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   CARTE ADRESSE
+   ========================================================= */
+
+.address-item {
+    padding: 25px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    background-color: #fff;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.address-item:hover {
+    border-color: var(--accent-color);
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================================
+   HEADER ADRESSE
+   ========================================================= */
+
+.address-item-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.address-item-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    color: var(--accent-color);
+
+    background-color: color-mix(in srgb,
+            var(--accent-color),
+            transparent 90%);
+
+    font-size: 18px;
+}
+
+.address-item-label {
+    color: rgb(72, 30, 30);
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INFORMATIONS
+   ========================================================= */
+
+.address-details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+.address-detail {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    color: rgb(72, 30, 30);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.address-detail i {
+    width: 18px;
+
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    color: var(--accent-color);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.address-item-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eee;
+}
+
+.address-edit-button,
+.address-delete-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 9px 14px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none !important;
+
+    transition: 0.25s ease;
+}
+
+
+/* Modifier */
+
+.address-edit-button {
+    border: 1px solid #ddd;
+
+    color: rgb(72, 30, 30) !important;
+
+    background-color: #fff;
+}
+
+.address-edit-button:hover {
+    color: var(--accent-color) !important;
+
+    border-color: var(--accent-color);
+}
+
+
+/* Supprimer */
+
+.address-delete-button {
+    border: 1px solid #ddd;
+
+    color: rgb(72, 30, 30) !important;
+
+    background-color: #fff;
+}
+
+.address-delete-button:hover {
+    color: #a00606 !important;
+
+    border-color: #a00606;
+
+    background-color: #fff8f8;
+}
+
+
+/* =========================================================
+   AUCUNE ADRESSE
+   ========================================================= */
+
+.addresses-empty {
+    padding: 50px 20px;
+
+    text-align: center;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    background-color: #fff;
+}
+
+.addresses-empty-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    color: var(--accent-color);
+
+    background-color: color-mix(in srgb,
+            var(--accent-color),
+            transparent 90%);
+
+    font-size: 24px;
+}
+
+.addresses-empty h3 {
+    margin: 0 0 8px;
+
+    color: rgb(72, 30, 30);
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.addresses-empty p {
+    margin: 0 0 22px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+.addresses-empty-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    color: #fff !important;
+    background-color: var(--accent-color);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .addresses-page {
+        padding: 25px 0 40px;
+    }
+
+    .addresses-content {
+        padding: 25px;
+    }
+
+    .addresses-top {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+    .addresses-add-button {
+        width: 100%;
+    }
+
+    .addresses-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 576px) {
+
+    .addresses-content {
+        padding: 20px;
+    }
+
+    .addresses-header h1 {
+        font-size: 23px;
+    }
+
+    .addresses-top h2 {
+        font-size: 20px;
+    }
+
+    .address-item {
+        padding: 20px;
+    }
+
+    .address-item-actions {
+        flex-direction: column;
+    }
+
+    .address-edit-button,
+    .address-delete-button {
+        width: 100%;
+    }
+}
