@@ -1,0 +1,394 @@
+/* =====================================================
+   PAGE RÉSUMÉ COMMANDE
+===================================================== */
+
+.summary-page {
+    min-height: calc(100vh - 80px);
+    padding: 60px 0;
+    background-color: var(--background-color);
+}
+
+.summary-page .container {
+    width: 100%;
+}
+
+
+/* HEADER */
+
+.summary-header {
+    margin-bottom: 35px;
+}
+
+.summary-subtitle {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.summary-header h1 {
+    margin: 0 0 8px;
+    color: var(--heading-color);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.summary-header p {
+    margin: 0;
+    color: var(--default-color);
+    font-size: 15px;
+}
+
+
+/* CONTENU */
+
+.summary-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 25px;
+    align-items: start;
+}
+
+.summary-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* CARTES */
+
+.summary-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px;
+    background-color: #fffdf8;
+    border: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 85%);
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+
+/* TITRES */
+
+.summary-card-header {
+    margin-bottom: 20px;
+}
+
+.summary-card-header h2 {
+    margin: 0;
+    color: rgb(72, 30, 30);
+    font-size: 19px;
+    font-weight: 600;
+}
+
+
+/* PRODUITS */
+
+.summary-products {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-product {
+    display: grid;
+    grid-template-columns: 65px minmax(0, 1fr) 60px 100px;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 90%);
+}
+
+.summary-product:last-child {
+    border-bottom: none;
+}
+
+
+.summary-product-image {
+    width: 65px;
+    height: 65px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.summary-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.summary-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.summary-product-info strong {
+    color: rgb(72, 30, 30);
+    font-size: 14px;
+}
+
+.summary-product-info span {
+    color: var(--default-color);
+    font-size: 13px;
+}
+
+
+.summary-product-quantity {
+    color: rgb(72, 30, 30);
+    font-size: 14px;
+    text-align: center;
+}
+
+
+.summary-product-total {
+    color: rgb(72, 30, 30);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+}
+
+
+/* ADRESSE */
+
+.summary-address {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 17px;
+    background-color: #f8f5ed;
+    border-radius: 8px;
+    color: rgb(72, 30, 30);
+    font-size: 14px;
+}
+
+.summary-address strong {
+    margin-bottom: 4px;
+}
+
+
+/* TRANSPORTEUR */
+
+.summary-carrier {
+    position: relative;
+    padding: 17px;
+    background-color: #f8f5ed;
+    border-radius: 8px;
+}
+
+.summary-carrier strong {
+    display: block;
+    margin-bottom: 8px;
+    color: rgb(72, 30, 30);
+    font-size: 15px;
+}
+
+.summary-carrier p {
+    max-width: 80%;
+    margin: 0;
+    color: var(--default-color);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.summary-carrier-price {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    color: rgb(72, 30, 30);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* SIDEBAR */
+
+.summary-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+
+/* TOTAL */
+
+.summary-total-card {
+    padding: 25px;
+    background-color: #fffdf8;
+    border: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 85%);
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+.summary-total-card h2 {
+    margin: 0 0 25px;
+    color: rgb(72, 30, 30);
+    font-size: 19px;
+    font-weight: 600;
+}
+
+
+.summary-total-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: var(--default-color);
+    font-size: 14px;
+}
+
+.summary-total-line strong {
+    color: rgb(72, 30, 30);
+}
+
+
+.summary-total-separator {
+    height: 1px;
+    margin: 20px 0;
+    background-color: color-mix(in srgb,
+            var(--default-color),
+            transparent 88%);
+}
+
+
+.summary-total-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    color: rgb(72, 30, 30);
+    font-size: 16px;
+}
+
+.summary-total-final strong {
+    font-size: 20px;
+}
+
+
+/* BOUTON PAIEMENT */
+
+.summary-payment-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 20px;
+    color: var(--contrast-color);
+    background-color: var(--accent-color);
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.summary-payment-button:hover {
+    color: var(--contrast-color);
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+
+/* TABLETTE */
+
+@media (max-width: 991px) {
+
+    .summary-content {
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: 20px;
+    }
+
+    .summary-product {
+        grid-template-columns: 60px minmax(0, 1fr) 50px 85px;
+        gap: 12px;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+
+    .summary-page {
+        padding: 45px 0;
+    }
+
+    .summary-content {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-sidebar {
+        position: static;
+    }
+
+}
+
+
+/* PETIT MOBILE */
+
+@media (max-width: 575px) {
+
+    .summary-page {
+        padding: 30px 0;
+    }
+
+    .summary-header {
+        margin-bottom: 25px;
+    }
+
+    .summary-header h1 {
+        font-size: 24px;
+    }
+
+    .summary-header p {
+        font-size: 14px;
+    }
+
+    .summary-card,
+    .summary-total-card {
+        padding: 20px;
+    }
+
+    .summary-product {
+        grid-template-columns: 55px minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .summary-product-image {
+        width: 55px;
+        height: 55px;
+    }
+
+    .summary-product-quantity {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .summary-product-total {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .summary-carrier p {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .summary-carrier-price {
+        position: static;
+        display: block;
+    }
+
+}

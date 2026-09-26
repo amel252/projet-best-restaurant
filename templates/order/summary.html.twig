@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="summary-page">
+
+    <div class="container">
+
+        <div class="summary-header">
+            <span class="summary-subtitle">Commande</span>
+            <h1>Résumé de ma commande</h1>
+            <p>Vérifiez les informations avant de procéder au paiement.</p>
+        </div>
+
+        <div class="summary-content">
+
+            <div class="summary-main">
+
+                {# PANIER #}
+
+                <div class="summary-card">
+
+                    <div class="summary-card-header">
+                        <h2>Le contenu de mon panier</h2>
+                    </div>
+
+                    <div class="summary-products">
+
+                        {% for product in cart %}
+
+                            <div class="summary-product">
+
+                                <div class="summary-product-image">
+                                    <img
+                                        src="/uploads/{{ product.object.illustration }}"
+                                        alt="{{ product.object.name }}"
+                                    >
+                                </div>
+
+                                <div class="summary-product-info">
+                                    <strong>{{ product.object.name }}</strong>
+                                    <span>
+                                        {{ product.object.getPriceWithTaxe|price }}
+                                    </span>
+                                </div>
+
+                                <div class="summary-product-quantity">
+                                    × {{ product.qty }}
+                                </div>
+
+                                <div class="summary-product-total">
+                                    {{ product.qty * product.object.getPriceWithTaxe|price }}
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+                {# ADRESSE #}
+
+                <div class="summary-card">
+
+                    <div class="summary-card-header">
+                        <h2>Adresse de livraison</h2>
+                    </div>
+
+                    <div class="summary-address">
+
+                        <strong>
+                            {{ choices.addresses.firstName }}
+                            {{ choices.addresses.lastName }}
+                        </strong>
+
+                        <span>{{ choices.addresses.address }}</span>
+                        <span>
+                            {{ choices.addresses.city }},
+                            {{ choices.addresses.country }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                {# TRANSPORTEUR #}
+
+                <div class="summary-card">
+
+                    <div class="summary-card-header">
+                        <h2>Transporteur</h2>
+                    </div>
+
+                    <div class="summary-carrier">
+
+                        <strong>{{ choices.carriers.name }}</strong>
+
+                        <p>
+                            {{ choices.carriers.description }}
+                        </p>
+
+                        <span class="summary-carrier-price">
+                            {{ choices.carriers.price|price }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {# RÉCAPITULATIF #}
+
+            <aside class="summary-sidebar">
+
+                <div class="summary-total-card">
+
+                    <h2>Récapitulatif</h2>
+
+                    <div class="summary-total-line">
+                        <span>Total produits</span>
+                        <strong>{{ totalWt|price }}</strong>
+                    </div>
+
+                    <div class="summary-total-line">
+                        <span>Livraison</span>
+                        <strong>{{ choices.carriers.price|price }}</strong>
+                    </div>
+
+                    <div class="summary-total-separator"></div>
+
+                    <div class="summary-total-final">
+                        <span>Total commande</span>
+                        <strong>
+                            {{ (choices.carriers.price + totalWt)|price }}
+                        </strong>
+                    </div>
+
+                    <a
+                        href="{{ path('app_order_summary') }}"
+                        class="summary-payment-button"
+                    >
+                        Procéder au paiement
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
