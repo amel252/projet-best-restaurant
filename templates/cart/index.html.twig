@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="cart-container">
+    <div class="container">
+        {# TITRE DU PANIER : uniquement si le panier contient des produits #}
+        {% if cart is not empty %}
+
+            <div class="cart-header">
+                <h1>Mon panier</h1>
+
+                <p>
+                    Retrouvez les produits que vous avez ajoutés à votre panier.
+                </p>
+            </div>
+
+        {% endif %}
+        {# CONTENU DU PANIER#}
+        <div class="cart-layout {% if cart is empty %}cart-layout-empty{% endif %}">
+
+            {# PRODUITS ACHETÉS #}
+            <div class="cart-products">
+        
+                {# PANIER VIDE #}
+                {% if cart is empty %}
+
+                    <div class="cart-empty">
+                        <i class="bi bi-cart-x"></i>
+                        <h2>
+                            Votre panier est vide
+                        </h2>
+                        <p>
+                            Découvrez nos produits et ajoutez vos favoris à votre panier.
+                        </p>
+                        <a href="{{ path('app_home') }}" class="cart-empty-btn">
+                            Découvrir nos produits
+                        </a>
+                    </div>
+                {# 
+                   PANIER AVEC PRODUITS#}
+                {% else %}
+                    {# titre produits #}
+                    <div class="cart-section-title">
+                        <h2>Produits achetés</h2>
+                    </div>
+                    {% for product in cart %}
+                        <div class="cart-product">
+                            {# IMAGE DU PRODUIT #}
+                            <div class="cart-product-image">
+                                <img
+                                    src="{{ asset('uploads/products/' ~ product.object.illustration) }}"
+                                    alt="{{ product.object.name }}"
+                                >
+                            </div>
+
+                            {# INFORMATIONS DU PRODUIT #}
+                            <div class="cart-product-content">
+                                <h3>{{ product.object.name }}</h3>
+                                <p class="cart-product-price">
+                                    Prix : {{ product.object.getPricewithTaxe|price }}
+                                </p>
+
+                                {# ACTIONS #}
+                                <div class="cart-product-actions">
+                                    {# QUANTITÉ #}
+                                    <div class="quantity">
+                                        <a href="{{path('app_cart_decrease', {id:product.object.id})}}">−</a>
+                                        <span> {{ product.qty }}</span>
+                                        <a href="{{path('app_cart_increase', {id:product.object.id})}}">+</a>
+                                        
+                                    </div>
+
+                                    {# SUPPRIMER produit du panier #}
+                                    <a href="{{path('app_cart_remove_product', {id:product.object.id})}}" class="cart-remove-product">
+                                        <i class="bi bi-trash"></i>
+                                        Supprimer
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <a class="cart-clear" href="{{path('app_cart_remove')}}">
+                        <i class="bi bi-trash"></i>
+                        Vider le panier
+                    </a>
+                {% endif %}
+                
+            </div>
+            
+            {# RÉSUMÉ DU PANIER On l'affiche seulement si le panier contient des produits. #}
+            {% if cart is not empty %}
+                <div class="cart-summary">
+                    <h2>Résumé du panier</h2>
+                    <div class="summary-line">
+                        <span>Sous-total</span>
+                        <strong>{{totalPrice| price}}</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Nombre articles</span>
+                        <strong>{{fullCartQuantity}}</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Livraison</span>
+                        {% if deliveryPrice == 0 %}
+                            <strong>Gratuite</strong>
+                        {% else %}
+                            <strong>{{deliveryPrice | price}}</strong>
+                        {% endif %}
+                    </div>
+                    <hr>
+                    <div class="summary-total">
+                        <span>Prix Total T.T.C</span>
+                        <strong>{{total | price}}</strong>
+                    </div>
+                    <a href="#"class="cart-order-btn">Passer la commande</a>
+
+                    <a href="{{ path('app_home') }}"class="cart-continue">
+                        <i class="bi bi-arrow-left"></i>Continuer mes achats
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

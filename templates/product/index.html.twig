@@ -26,11 +26,11 @@
                         {{ product.description|raw }}
                     </div>
                     <div class="product-detail-price">
-                        {{ product.price|number_format(2, ',', ' ') }} €
+                        {{product.getPriceWithTaxe| price}}
                     </div>
 
                     <div class="product-detail-actions">
-                        <a href="#" class="product-cart-btn">
+                        <a href="{{path('app_cart_add', {id:product.id})}}" class="product-cart-btn">
                             Ajouter au panier
                         </a>
                     </div>
