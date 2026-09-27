@@ -40,32 +40,37 @@ final class OrderController extends AbstractController
     }
 
     //  route pour voir le panier pour que ca soit envoyer en BD 
-    #[Route('/commande/resume-panier', name:'app_order_summary')]
-    public function add(Request $request , Cart $cart, EntityManagerInterface $entityManager , CarrierRepository $carrierRepository):Response
+    #[Route('/commande/resume-panier', name:'app_order_summary', methods: ['POST'])]
+    public function add(Request $request , Cart $cart, CarrierRepository $carrierRepository):Response
     {
-        //  vérif si requet est en post, si qlq vient directement sur le lien je le redirige vers app_cart
-        if($request->getMethod() !== 'POST'){
-            return $this->redirectToRoute('app_cart');
-        }
-
+       
+        // récup des adresses 
+        $addresses = $this->getUser()->getAddresses();
         // récup le livreur 
           $carriers = $carrierRepository->findAll();
         //  on crée le form  et on met les données envoyé par le form  
         $form = $this->createForm(OrderType::class, null,[
-            'addresses' => $this->getUser()->getAddresses(),
+            'addresses' => $addresses,
             'carriers' => $carriers,
         ]);
 
-        // prends les données dans $request et mets-les dans mon formulaire
+        // récup les données envoyé par form 
         $form->handleRequest($request);
+        
         //  si form est envoyé et valide , redirige vers order
         if($form->isSubmitted() && $form->isValid()){
             //  return $this->redirectToRoute('app_order');
-        }
+            $choices = $form->getData();
          return $this->render('order/summary.html.twig',[
-            'choices'=> $form->getData(),
+            'choices'=> $choices,
             'cart'=>$cart->getCart(),
             'totalWt'=>$cart->getTotalPrice()
+            ]);
+        }
+        // Si le formulaire est invalide,
+        // on retourne sur la page de commande avec les erreurs
+        return $this->render('order/index.html.twig', [
+            'deliverForm' => $form->createView(),
         ]);
     }
 }

@@ -13,7 +13,11 @@
         </div>
         <div class="order-card">
 
-            {{ form_start(deliverForm, {'attr': {'class': 'delivery-form'}}) }}
+            {{ form_start(deliverForm, {
+                'attr': {
+                    'class': 'delivery-form',
+                    'novalidate': 'novalidate'
+                    }}) }}
 
                 <div class="delivery-section">
 
@@ -41,6 +45,7 @@
                     </div>
                     <div class="delivery-carriers">
                         {{ form_row(deliverForm.carriers) }}
+                        
                     </div>
                 </div>
                 <div class="delivery-submit">

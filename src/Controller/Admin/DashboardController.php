@@ -49,5 +49,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_category_index');
 
         yield MenuItem::linkToRoute('Produits', 'fas fa-tag', 'admin_product_index');
+        
+        yield MenuItem::linkToRoute('transporteurs', 'fas fa-truck', 'admin_carrier_index');
     }
 }

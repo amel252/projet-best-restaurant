@@ -25,33 +25,27 @@
                     </div>
 
                     <div class="summary-products">
-
                         {% for product in cart %}
-
                             <div class="summary-product">
-
                                 <div class="summary-product-image">
                                     <img
-                                        src="/uploads/{{ product.object.illustration }}"
+                                        src="/uploads/products/{{ product.object.illustration }}"
                                         alt="{{ product.object.name }}"
                                     >
                                 </div>
-
                                 <div class="summary-product-info">
-                                    <strong>{{ product.object.name }}</strong>
-                                    <span>
-                                        {{ product.object.getPriceWithTaxe|price }}
-                                    </span>
+                                    <strong>
+                                        {{ product.object.name }}
+                                    </strong>
+                                    <div class="summary-product-details">
+                                        <span>
+                                        {{ product.object.getPriceWithTaxe()|price }}
+                                        </span>
+                                        <p class="summary-product-quantity">× {{ product.qty }}</p>
+                                        <p class="summary-product-total"> = {{ (product.qty * product.object.getPriceWithTaxe())|price }}</p>
+                                    </div>
+                                    
                                 </div>
-
-                                <div class="summary-product-quantity">
-                                    × {{ product.qty }}
-                                </div>
-
-                                <div class="summary-product-total">
-                                    {{ product.qty * product.object.getPriceWithTaxe|price }}
-                                </div>
-
                             </div>
 
                         {% endfor %}
@@ -76,7 +70,10 @@
                             {{ choices.addresses.lastName }}
                         </strong>
 
-                        <span>{{ choices.addresses.address }}</span>
+                        <span>
+                            {{ choices.addresses.address }}
+                        </span>
+
                         <span>
                             {{ choices.addresses.city }},
                             {{ choices.addresses.country }}
@@ -97,7 +94,9 @@
 
                     <div class="summary-carrier">
 
-                        <strong>{{ choices.carriers.name }}</strong>
+                        <strong>
+                            {{ choices.carriers.name }}
+                        </strong>
 
                         <p>
                             {{ choices.carriers.description }}
@@ -124,25 +123,33 @@
 
                     <div class="summary-total-line">
                         <span>Total produits</span>
-                        <strong>{{ totalWt|price }}</strong>
+
+                        <strong>
+                            {{ totalWt|price }}
+                        </strong>
                     </div>
 
                     <div class="summary-total-line">
                         <span>Livraison</span>
-                        <strong>{{ choices.carriers.price|price }}</strong>
+
+                        <strong>
+                            {{ choices.carriers.price|price }}
+                        </strong>
                     </div>
 
                     <div class="summary-total-separator"></div>
 
                     <div class="summary-total-final">
                         <span>Total commande</span>
+                        
                         <strong>
                             {{ (choices.carriers.price + totalWt)|price }}
+                            
                         </strong>
                     </div>
 
                     <a
-                        href="{{ path('app_order_summary') }}"
+                        href="#"
                         class="summary-payment-button"
                     >
                         Procéder au paiement
