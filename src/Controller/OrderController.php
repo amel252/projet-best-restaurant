@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Form\OrderType;
 use App\Repository\CarrierRepository;
 use App\Classe\Cart;
+use App\Entity\Order;
+use App\Entity\OrderDetail;
 
 
 
@@ -27,6 +29,7 @@ final class OrderController extends AbstractController
         }
         //  récup le livreur 
         $carriers = $carrierRepository->findAll();
+        
         // je crée un form puis transmet l'adresse 
         $form = $this->createForm(OrderType::class, null,[
             "addresses" =>$addresses,
@@ -40,14 +43,16 @@ final class OrderController extends AbstractController
     }
 
     //  route pour voir le panier pour que ca soit envoyer en BD 
-    #[Route('/commande/resume-panier', name:'app_order_summary', methods: ['POST'])]
-    public function add(Request $request , Cart $cart, CarrierRepository $carrierRepository):Response
+    #[Route('/commande/recapitulatif', name:'app_order_summary', methods: ['POST'])]
+    public function add(Request $request , Cart $cart, CarrierRepository $carrierRepository , EntityManagerInterface $entityManager):Response
     {
        
         // récup des adresses 
         $addresses = $this->getUser()->getAddresses();
         // récup le livreur 
           $carriers = $carrierRepository->findAll();
+          //  récup les produits 
+        $products = $cart->getCart();
         //  on crée le form  et on met les données envoyé par le form  
         $form = $this->createForm(OrderType::class, null,[
             'addresses' => $addresses,
@@ -59,18 +64,47 @@ final class OrderController extends AbstractController
         
         //  si form est envoyé et valide , redirige vers order
         if($form->isSubmitted() && $form->isValid()){
-            //  return $this->redirectToRoute('app_order');
-            $choices = $form->getData();
+
+             $choices = $form->getData();
+
+            //  stcocker les infos  dans la BD ,  Création de la chaine d'addresse
+            $addressObj = $form->get('addresses')->getData();
+
+            $address = $addressObj->getFirstname() . ' ' . $addressObj->getLastname() . '<br/>';
+            $address .= $addressObj->getAddress() . '<br/>';
+            $address .= $addressObj->getPostalCode() . ' ' . $addressObj->getCity() . '<br/>';
+            $address .= $addressObj->getCountry() . '<br/>';
+            $address .= $addressObj->getPhoneNumber();
+
+            $order = new Order();
+            
+             $order->setCreatedAt(new \DateTime());
+             $order->setState(1);
+             $order->setCarrierName($form->get('carriers')->getData()->getName());
+             $order->setCarrierPrice($form->get('carriers')->getData()->getPrice());
+             $order->setDelivery($address); 
+
+                // Création d'un nouvel objet orderDetail
+                foreach ($products as $product) {
+                $orderDetail = new OrderDetail();
+                $orderDetail->setProductName($product['object']->getName());
+                $orderDetail->setProductIllustration($product['object']->getIllustration());
+                $orderDetail->setProductPrice($product['object']->getPrice());
+                $orderDetail->setProductTva($product['object']->getTva());
+                $orderDetail->setProductQuantity($product['qty']);
+                $order->addOrderDetail($orderDetail);
+
+                // Important
+                // $entityManager->persist($orderDetail);
+            }
+
+            $entityManager->persist($order);
+            $entityManager->flush();
+        } 
          return $this->render('order/summary.html.twig',[
             'choices'=> $choices,
-            'cart'=>$cart->getCart(),
+            'cart'=>$products,
             'totalWt'=>$cart->getTotalPrice()
-            ]);
-        }
-        // Si le formulaire est invalide,
-        // on retourne sur la page de commande avec les erreurs
-        return $this->render('order/index.html.twig', [
-            'deliverForm' => $form->createView(),
         ]);
     }
 }
