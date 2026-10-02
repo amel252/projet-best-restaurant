@@ -8,14 +8,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-// use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
-
-
-// #[ORM\Entity(repositoryClass: UserRepository::class)]
-// class User
-// {
-// Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.
+/*Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.*/ 
 #[ORM\Entity]
 #[UniqueEntity(
     fields: ['email'],
@@ -46,15 +42,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
+    #[ORM\Column(length: 20)] // Ajout ici : Le GSM exigé par le sujet
+    private ?string $gsm = null;
+
+    /*Avatar */ 
+    #[ORM\Column(name:'profile_image', length: 255, nullable: true)]
+    private ?string $profileImage = null;
+
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+    /*mapped fait refernce a user */ 
+    /*déclarer addresses :  sorte de liste d'objets address */ 
+    private Collection $addresses;
+
+    /**
+     * @var Collection<int, Order>
+     */
+    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
+    private Collection $orders;
+
     public function __construct()
     {
     $this->roles = ['ROLE_USER'];
+    /*initialiser liste adresses */ 
+    $this->addresses = new ArrayCollection();
+    $this->orders = new ArrayCollection();
     }
+     public function __toString()
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
+    }
+
     
     public function getId(): ?int
     {
         return $this->id;
     }
+
 
     public function getEmail(): ?string
     {
@@ -67,7 +91,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    // rajout 
+
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
@@ -76,13 +100,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         return $this->roles;
+        
     }
 
     public function setRoles(array $roles): static
     {
-        $roles = $this->roles;
-        // $roles[] = 'ROLE_USER';
-        // return array_unique($roles);
+        $this->roles = $roles ;
+       
         return $this;
 
     }
@@ -122,4 +146,93 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    /*Ajout */
+     public function getGsm(): ?string
+    {
+        return $this->gsm;
+    }
+
+    public function setGsm(string $gsm): static
+    {
+        $this->gsm = $gsm;
+        return $this;
+    }
+    // getter et seter avatar
+    public function getProfileImage(): ?string
+    {
+        return $this->profileImage;
+    }
+
+    public function setProfileImage(?string $profileImage): static
+    {
+        $this->profileImage = $profileImage;
+
+    return $this;
+    }
+
+    // récupérer la liste des adresses de l'utilisateur.
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    //  add address
+    public function addAddresse(Address $adress): static
+    {
+        //  vérif si l'addresse n'existe dans ma liste ?
+        if(!$this->address->contains($address)){
+            // ajoute l'addresse dans la collection
+            $this->addresses->add($address);
+            //  faire le lien avec user -> cette addresse appartient a ce user 
+            $address->setUser($this);
+        }
+        return $this;
+
+    }
+
+    //  remove addresse 
+    public function removeAddress(Address $address): static
+    {
+        //  si l'addresse est trouvé on la ca retire de la collection
+        if($this->addresses->removeElement($address)){
+            // Est-ce que l'utilisateur de cette adresse est bien l'utilisateur actuel ?
+            if($address->getUser()=== $this){
+                //  si oui je supprime aussi le lien vers cet utilisateur
+                $address->setUser(null);
+            }
+        }
+        // je retourne l'utilisateur.
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
