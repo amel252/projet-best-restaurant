@@ -184,5 +184,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // Si tu n'as pas de données sensibles temporaires à effacer,
         // cette méthode peut rester vide.
     }
+    //  fonction pour afficher nom prenom utilisateur dans dashboard admin 
+    public function __toString(): string
+{
+    return trim($this->firstName . ' ' . $this->lastName);
+}
 }
 
