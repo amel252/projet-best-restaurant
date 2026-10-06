@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Order;
 
 /*Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.*/ 
 #[ORM\Entity]
@@ -52,11 +53,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /*déclarer addresses :  sorte de liste d'objets address */ 
     private Collection $addresses;
 
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
+    private Collection $orders;     
+
+
+
     public function __construct()
     {
     $this->roles = ['ROLE_USER'];
     /*initialiser liste adresses */ 
     $this->addresses = new ArrayCollection();
+     $this->orders = new ArrayCollection();
+
     }
 
     
@@ -179,5 +188,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // je retourne l'utilisateur.
         return $this;
     }
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+        return $this;
+    }   
 
 }

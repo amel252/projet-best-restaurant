@@ -58,6 +58,7 @@ final class OrderController extends AbstractController
             'addresses' => $addresses,
             'carriers' => $carriers,
         ]);
+        $choices= null;
 
         // récup les données envoyé par form 
         $form->handleRequest($request);
@@ -77,6 +78,7 @@ final class OrderController extends AbstractController
             $address .= $addressObj->getPhoneNumber();
 
             $order = new Order();
+            $order->setUser($this->getUser());
             
              $order->setCreatedAt(new \DateTime());
              $order->setState(1);
