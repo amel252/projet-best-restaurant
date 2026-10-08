@@ -4,6 +4,7 @@ namespace App\Twig;
 
 // Classe de base permettant de créer une extension Twig
 use Twig\Extension\AbstractExtension;
+<<<<<<< HEAD
 use App\Repository\CategoryRepository;
 use Twig\Extension\GlobalsInterface;
 // Permet de créer un filtre personnalisé Twig
@@ -23,6 +24,15 @@ class Extensions extends AbstractExtension implements GlobalsInterface
         $this->categoryRepository = $categoryRepository;
         $this->cart = $cart;
     }
+=======
+// Permet de créer un filtre personnalisé Twig
+use Twig\TwigFilter;
+
+
+// Notre classe est une extension Twig , Elle implémente GlobalsInterface pour pouvoir créer des variables globales
+class Extensions extends AbstractExtension 
+{
+>>>>>>> feature/admin
 
     // Cette méthode permet de créer des filtres Twig personnalisés
     public function getFilters(): array
@@ -35,11 +45,16 @@ class Extensions extends AbstractExtension implements GlobalsInterface
         ];
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/admin
     // Fonction pour formater le prix avec 2 décimales et le symbole €
     public function formatPrice($num): string
     {
         return number_format($num, 2, ',', ' ') . ' €';
     }
+<<<<<<< HEAD
 
      //  function permettant d'afficher toutes les categories
     public function getGlobals(): array
@@ -51,4 +66,6 @@ class Extensions extends AbstractExtension implements GlobalsInterface
          'fullCartQuantity' => $this->cart->fullQuantity(),
         ];
     }
+=======
+>>>>>>> feature/admin
 }

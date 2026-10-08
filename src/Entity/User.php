@@ -1,24 +1,20 @@
 <?php
 
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-// interface de sécurity 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-
-/*Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.*/ 
+/* Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email. */
 #[ORM\Entity]
 #[UniqueEntity(
     fields: ['email'],
     message: 'Cette adresse email est déjà utilisée.'
 )]
-
-// #[ORM\Entity]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -26,8 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    //  on met email a unique 
-    #[ORM\Column(length: 255, unique:true)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
@@ -42,7 +37,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
-
     #[ORM\Column(length: 20)] // Ajout ici : Le GSM exigé par le sujet
     private ?string $gsm = null;
 
@@ -51,35 +45,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(name:'profile_image', length: 255, nullable: true)]
     private ?string $profileImage = null;
 
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
-    /*mapped fait refernce a user */ 
-    /*déclarer addresses :  sorte de liste d'objets address */ 
-    private Collection $addresses;
-
-
     /**
      * @var Collection<int, Order>
      */
-    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private Collection $orders;
+
+    /**
+    * @var Collection<int, Address>
+    */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+    private Collection $addresses;
 
 
     public function __construct()
     {
+
     $this->roles = ['ROLE_USER'];
     /*initialiser liste adresses */ 
     $this->addresses = new ArrayCollection();
-
     $this->orders = new ArrayCollection();
     }
-     public function __toString()
-    {
-        return $this->getFirstname() . ' ' . $this->getLastname();
-    }
-
-
     
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,19 +90,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return (string) $this->email;
     }
-    
+
     public function getRoles(): array
     {
         return $this->roles;
-        
     }
 
     public function setRoles(array $roles): static
     {
-        $this->roles = $roles ;
-       
-        return $this;
+        $this->roles = $roles;
 
+        return $this;
     }
 
     public function getPassword(): ?string
@@ -153,8 +139,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
     /*Ajout */
-     public function getGsm(): ?string
+    public function getGsm(): ?string
+
     {
         return $this->gsm;
     }
@@ -164,7 +152,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->gsm = $gsm;
         return $this;
     }
-    // getter et seter avatar
     public function getProfileImage(): ?string
     {
         return $this->profileImage;
@@ -174,7 +161,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->profileImage = $profileImage;
 
-    return $this;
+        return $this;
     }
 
     // récupérer la liste des adresses de l'utilisateur.
@@ -184,7 +171,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     //  add address
-    public function addAddresse(Address $adress): static
+    public function addAddresse(Address $address): static
     {
         //  vérif si l'addresse n'existe dans ma liste ?
         if(!$this->addresses->contains($address)){
@@ -212,7 +199,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
     /**
      * @return Collection<int, Order>
      */
@@ -234,7 +220,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeOrder(Order $order): static
     {
         if ($this->orders->removeElement($order)) {
+
             // set the owning side to null (unless already changed)
+
             if ($order->getUser() === $this) {
                 $order->setUser(null);
             }
@@ -242,4 +230,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function eraseCredentials(): void
+    {
+        // Si tu n'as pas de données sensibles temporaires à effacer,
+        // cette méthode peut rester vide.
+    }
+    //  fonction pour afficher nom prenom utilisateur dans dashboard admin 
+    public function __toString(): string
+{
+    return trim($this->firstName . ' ' . $this->lastName);
+
 }
+}
+

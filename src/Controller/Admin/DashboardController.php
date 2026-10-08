@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 use App\Entity\User;
 use App\Entity\Category;
+use App\Entity\Order;
+use App\Entity\Carrier;
+
 use App\Controller\Admin\UserCrudController;
 use App\Controller\Admin\CategoryCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -49,5 +52,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_category_index');
 
         yield MenuItem::linkToRoute('Produits', 'fas fa-tag', 'admin_product_index');
+
+        yield MenuItem::linkToRoute('Transporteurs', 'fas fa-truck', 'admin_carrier_index');
+
+
+        yield MenuItem::linkToRoute('commandes', 'fas fa-sort', 'admin_order_index');
     }
 }

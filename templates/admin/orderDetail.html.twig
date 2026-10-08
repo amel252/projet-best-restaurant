@@ -1,0 +1,82 @@
+{% extends "@!EasyAdmin/layout.html.twig" %}
+{#  ca veut dire que je veux garder le header menu , structure de easy admin #}
+
+{% block main %}
+
+	<h3>Commande n°{{order.id}}</h3>
+	<p>
+    
+	{#  je vais chercher la valeur dans le state et je l'inclus   #}
+	{{include('admin/state.html.twig', {field : {'value':order.state}})}}
+	<br/><br/>
+	<span>Passée le :
+		
+		{{order.createdAt|date('d/m/Y')}}</span><br/>
+	<strong>Client :</strong>
+    	{{ order.user.firstname }} {{ order.user.lastname }}
+	</p>
+
+	<div class="row g-3 my-4">
+		<div class="col-12 col-md-6">
+			<strong>Adresse de livraison :</strong><br/>
+			{{order.delivery|raw}}
+		</div>
+		<div class="col-12 col-md-6">
+			<strong>Transporteur :</strong><br/>
+			{{order.carrierName}}
+		</div>
+	</div>
+	<strong>Contenu de la commande :</strong><br/>
+	<div class="table-responsive"> 
+		<table class="table table-sm align-middle">
+			<thead>
+				<tr>
+					<th scope="col">Image</th>
+					<th scope="col">Produit</th>
+					<th scope="col">Qté</th>
+					<th scope="col">Prix H.T</th>
+					<th scope="col">TVA</th>
+					<th scope="col">Total T.T.C</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in order.orderDetails %}
+					<tr>
+						<td class="pe-1">
+							<img src="/uploads/products/{{product.productIllustration}}" class="img-fluid" width="100px" alt="{{product.productName}}">
+						</td>
+						<td>{{product.productName}}</td>
+						<td>{{product.productQuantity}}</td>
+						<td>{{product.productPrice|price}}</td>
+						<td>{{product.productTva}}%</td>
+						{% set coeff = 1 + (product.productTva / 100) %}
+						<td>{{((product.productPrice * coeff) * product.productQuantity)|price}}</td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<td></td>
+					<td>{{order.carrierName}}</td>
+					<td>1</td>
+					<td></td>
+					<td></td>
+					<td>{{order.carrierPrice|price}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="text-end mt-4">
+		<div>
+			<strong>Total H.T :</strong>
+			<span class="ms-4">{{ (order.totalTtc - order.totalTva)|price }}</span>
+    	</div>
+    	<div>
+			<strong>Total TVA :</strong>
+			<span class="ms-4">{{ order.totalTva|price }}</span>
+    	</div>
+    	<div class="mt-2">
+			<strong>Total T.T.C :</strong>
+			<strong class="ms-4">{{ order.totalTtc|price }}</strong>
+    	</div>
+	</div>
+
+{% endblock %}
