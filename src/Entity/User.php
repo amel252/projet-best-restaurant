@@ -42,6 +42,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
+
+    #[ORM\Column(length: 20)] // Ajout ici : Le GSM exigé par le sujet
+    private ?string $gsm = null;
+
+
     /*Avatar */ 
     #[ORM\Column(name:'profile_image', length: 255, nullable: true)]
     private ?string $profileImage = null;
@@ -52,12 +57,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /*déclarer addresses :  sorte de liste d'objets address */ 
     private Collection $addresses;
 
+
+    /**
+     * @var Collection<int, Order>
+     */
+    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
+    private Collection $orders;
+
+
     public function __construct()
     {
     $this->roles = ['ROLE_USER'];
     /*initialiser liste adresses */ 
     $this->addresses = new ArrayCollection();
+
+    $this->orders = new ArrayCollection();
     }
+     public function __toString()
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
+    }
+
 
     
     public function getId(): ?int
@@ -132,6 +152,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /*Ajout */
+     public function getGsm(): ?string
+    {
+        return $this->gsm;
+    }
+
+    public function setGsm(string $gsm): static
+    {
+        $this->gsm = $gsm;
+        return $this;
+    }
     // getter et seter avatar
     public function getProfileImage(): ?string
     {
@@ -155,7 +187,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function addAddresse(Address $adress): static
     {
         //  vérif si l'addresse n'existe dans ma liste ?
-        if(!$this->address->contains($address)){
+        if(!$this->addresses->contains($address)){
             // ajoute l'addresse dans la collection
             $this->addresses->add($address);
             //  faire le lien avec user -> cette addresse appartient a ce user 
@@ -180,4 +212,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }
