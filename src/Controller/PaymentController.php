@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use App\Repository\OrderRepository;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,32 +15,65 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class PaymentController extends AbstractController
 {
-    #[Route('/commande/paiement', name: 'app_payment')]
-    public function index(): Response
+    //  je peux voir quelle commande doit etre payé a l'aide de {id}
+    #[Route('/commande/paiement/{id_order}', name: 'app_payment')]
+    public function index($id_order , OrderRepository $orderRepository): Response
     {
         // la clé secrete pour authentifier les appels à l'api stripe
-        Stripe::setApikey($_ENV['STRIPE_SECRET_KEY']);
+        Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
-        $YOUR_DOMAIN = 'https://127.0.0.1:8000';
+        // permet de chercher la commande correspond a l'id et appartient a l'user connecté 
+        $order = $orderRepository->findOneBy([
+            'id'=> $id_order,
+            'user'=> $this->getUser()
+        ]);
+
+        //  on vérifie que la commande existe ? sinon retour a l'acceuil
+        if(!$order){
+            return $this->redirectToRoute('app_home');
+        }
+        $products_for_stripe= [];
+        //  je parcours les produits dans la commande 
+        foreach($order->getOrderDetails()as $product){
+            $products_for_stripe[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    //  on récup le vrai prix , stripe attend le prix en centime par defaut 
+                    'unit_amount' => number_format($product->getProductPriceWt() * 100, 0, '', ''),
+                    'product_data' => [
+                        //  je récupere le vrai nom du produit 
+                        'name' => $product->getProductName(),
+                        'images' => [
+                        $_ENV['DOMAIN'] . '/uploads/products/' . $product->getProductIllustration()
+                        ]
+                    ]
+                ],
+                //  on récup la vraie quantity 
+                'quantity' => $product->getProductQuantity(),
+                ];
+            }
+            //  on ajoute les frais de livraison 
+            $products_for_stripe[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'unit_amount' => number_format($order->getCarrierPrice() * 100, 0, '', ''),
+                    'product_data' => [
+                    'name' => 'Transporteur: ' . $order->getCarrierName(),
+                    ]
+                ],
+                'quantity' => 1,
+            ];
 
         //  creation de la session stripe 
         $checkout_session = Session::create([
             //  il va me fournir une url comme 'https://checkout.stripe.com/...'
-            'line_items' =>[[
-                'price_data'=>[
-                    'currency'=> 'eur',
-                    'unit_amount'=>1500,
-                    'product_data'=>[
-                        'name'=> 'Produit de test'
-                    ]
-                ],
-                'quantity'=> 1,
-            ]],
+            'customer_email' => $this->getUser()->getEmail(),
+            'line_items' => $products_for_stripe ,
             'mode'=> 'payment',
             //  stripe va te contruire sur url /success.html si paeiment ok 
-            'success_url'=> $YOUR_DOMAIN .'/success.html',
+            'success_url'=> $_ENV['DOMAIN'] .'/success.html',
             // et cancel si pas bon 
-            'cancel_url'=> $YOUR_DOMAIN .'/cancel.html'
+            'cancel_url'=> $_ENV['DOMAIN'] .'/cancel.html'
         ]);
 
 

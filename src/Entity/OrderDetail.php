@@ -83,6 +83,12 @@ class OrderDetail
 
         return $this;
     }
+    //  ajout fonction pour calcul exacte du prix TTC 
+    public function getProductPriceWt()
+    {
+        $coeff = 1 + ($this->productTva / 100);
+        return $coeff * $this->productPrice;
+    }
 
     public function getProductTva(): ?float
     {
