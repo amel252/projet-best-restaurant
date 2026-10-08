@@ -46,16 +46,11 @@ class DashboardController extends AbstractDashboardController
          // Les éléments qui s'affcihent dans le menu vertical à gauche
     
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        
         yield MenuItem::linkToRoute('Utilisateurs', 'fas fa-user','admin_user_index');
-            
         yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_category_index');
-
         yield MenuItem::linkToRoute('Produits', 'fas fa-tag', 'admin_product_index');
-
         yield MenuItem::linkToRoute('Transporteurs', 'fas fa-truck', 'admin_carrier_index');
+        yield MenuItem::linkToRoute('Commandes', 'fas fa-sort', 'admin_order_index');
 
-
-        yield MenuItem::linkToRoute('commandes', 'fas fa-sort', 'admin_order_index');
     }
 }

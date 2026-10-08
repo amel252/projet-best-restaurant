@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+
+
+
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
 class Order
@@ -43,6 +46,18 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+        return $this;
+    }
+
 
     public function __construct()
     {
@@ -145,19 +160,7 @@ class Order
 
         return $this;
     }
-
-     public function getUser(): ?User
-     {
-         return $this->user;
-     }
-
-     public function setUser(?User $user): static
-     {
-         $this->user = $user;
-
-         return $this;
-     }
-
+     
     //  rajout fonctions 
     public function getTotalTva(): float
     {
@@ -192,6 +195,5 @@ class Order
 
     return $totalTtc + ($this->carrierPrice ?? 0);
     }
-
      
 }

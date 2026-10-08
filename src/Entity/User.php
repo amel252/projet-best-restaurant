@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-/* Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email. */
+/*Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.*/ 
 #[ORM\Entity]
 #[UniqueEntity(
     fields: ['email'],
@@ -57,7 +57,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
     private Collection $addresses;
 
-
     public function __construct()
     {
 
@@ -65,14 +64,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /*initialiser liste adresses */ 
     $this->addresses = new ArrayCollection();
     $this->orders = new ArrayCollection();
+
     }
     
-
     public function getId(): ?int
     {
         return $this->id;
     }
-
 
     public function getEmail(): ?string
     {
@@ -82,7 +80,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -142,11 +139,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /*Ajout */
     public function getGsm(): ?string
-
     {
         return $this->gsm;
     }
-
     public function setGsm(string $gsm): static
     {
         $this->gsm = $gsm;
@@ -199,14 +194,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
-    }
-
     public function addOrder(Order $order): static
     {
         if (!$this->orders->contains($order)) {
@@ -220,15 +207,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeOrder(Order $order): static
     {
         if ($this->orders->removeElement($order)) {
-
-            // set the owning side to null (unless already changed)
-
             if ($order->getUser() === $this) {
                 $order->setUser(null);
             }
         }
-
         return $this;
+    }   
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
     }
 
     public function eraseCredentials(): void
