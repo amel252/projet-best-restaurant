@@ -78,7 +78,7 @@ final class PaymentController extends AbstractController
             'cancel_url'=> $_ENV['DOMAIN'] .'/mon-panier/annulation'
         ]);
 
-        $order->setStripeSessionId($checkout_session_id);
+        $order->setStripeSessionId($checkout_session->id);
             $entityManager->flush();
         // ton site-> creation session stripe-> URL stripe -> Stripe checkout
         return $this->redirect($checkout_session->url);
