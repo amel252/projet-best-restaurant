@@ -37,12 +37,15 @@ class Order
      * @var Collection<int, OrderDetail>
      */
     #[ORM\OneToMany(targetEntity: OrderDetail::class, mappedBy: 'myOrder', cascade:['persist'])]
-    
+
     private Collection $orderDetails;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $stripe_session_id = null;
 
     public function __construct()
     {
@@ -115,7 +118,7 @@ class Order
 
         return $this;
     }
-   
+
     /**
      * @return Collection<int, OrderDetail>
      */
@@ -133,7 +136,7 @@ class Order
 
         return $this;
     }
-    /* supprimer orderDetail*/ 
+    /* supprimer orderDetail*/
      public function removeOrderDetail(OrderDetail $orderDetail): static
     {
         if ($this->orderDetails->removeElement($orderDetail)) {
@@ -158,7 +161,7 @@ class Order
          return $this;
      }
 
-    //  rajout fonctions 
+    //  rajout fonctions
     public function getTotalTva(): float
     {
     $totalTva = 0;
@@ -193,5 +196,18 @@ class Order
     return $totalTtc + ($this->carrierPrice ?? 0);
     }
 
-     
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripe_session_id;
+    }
+
+    public function setStripeSessionId(?string $stripe_session_id): static
+    {
+        $this->stripe_session_id = $stripe_session_id;
+
+        return $this;
+    }
+
+
 }

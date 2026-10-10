@@ -50,10 +50,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private Collection $orders;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+    private Collection $addresses;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
         $this->orders = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,13 +182,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    /**
+     * @return Collection<int, Address>
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    public function addAddress(Address $address): static
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses->add($address);
+            $address->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): static
+    {
+        if ($this->addresses->removeElement($address)) {
+            // Address exige un utilisateur : on ne met donc pas user à null ici.
+            // La suppression éventuelle doit être gérée explicitement.
+        }
+
+        return $this;
+    }
 
     public function eraseCredentials(): void
     {
         // Si tu n'as pas de données sensibles temporaires à effacer,
         // cette méthode peut rester vide.
     }
-    //  fonction pour afficher nom prenom utilisateur dans dashboard admin 
+    //  fonction pour afficher nom prenom utilisateur dans dashboard admin
     public function __toString(): string
 {
     return trim($this->firstName . ' ' . $this->lastName);
