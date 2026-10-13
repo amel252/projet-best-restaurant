@@ -4747,9 +4747,10 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
+  width: 60%;
+  min-height: 38px;
+  padding: 8px 16px;
+  margin: 0 auto;
   border-radius: 50px;
   color: var(--contrast-color);
   background-color: var(--accent-color);
@@ -4763,6 +4764,40 @@ section,
   color: var(--contrast-color);
   background-color: color-mix(in srgb, var(--accent-color), black 10%);
   transform: translateY(-2px);
+}
+
+/* Régime alimentaire et allergènes */
+.product-detail-extra {
+  grid-column: 1/-1;
+  width: 100%;
+  padding: 20px 0 0;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 5px;
+}
+
+.product-detail-extra-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(72, 30, 30);
+}
+
+.product-diet,
+.product-allergens {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #555;
+  font-size: 14px;
+}
+
+.product-diet strong,
+.product-allergens strong {
+  margin-right: 8px;
+  color: rgb(72, 30, 30);
+}
+
+.product-allergens span {
+  display: inline-block;
 }
 
 /*RESPONSIVE */
