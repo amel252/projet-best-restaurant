@@ -6,6 +6,10 @@ use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Entity\Allergen;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -35,8 +39,17 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
+    #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'products')]
+    private Collection $allergens;
+
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $diet = null;
+
+    public function __construct()
+    {
+        $this->allergens = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -141,6 +154,31 @@ class Product
     public function setDiet(?string $diet): static
     {
         $this->diet = $diet;
+        return $this;
+    }
+        /**
+     * @return Collection<int, Allergen>
+     */
+    public function getAllergens(): Collection
+    {
+        return $this->allergens;
+    }
+
+    public function addAllergen(Allergen $allergen): static
+    {
+        if (!$this->allergens->contains($allergen)) {
+            $this->allergens->add($allergen);
+            $allergen->addProduct($this);
+    }
+
+        return $this;
+    }
+
+    public function removeAllergen(Allergen $allergen): static
+    {
+        if ($this->allergens->removeElement($allergen)) {
+            $allergen->removeProduct($this);
+    }
         return $this;
     }
 }

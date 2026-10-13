@@ -48,21 +48,27 @@ class ProductCrudController extends AbstractCrudController
 
             NumberField::new('price')->setLabel('Prix H.T')->setHelp('Le prix H.T du produit'),
             ChoiceField::new('tva')
-                ->setLabel('Taux de TVA')
+                ->setLabel('Taux TVA')
                 ->setChoices([
                 '5%' => 5,
                 '10%' => 10,
                 '20%' => 20
             ]),
-            AssociationField::new('category', 'Categorie associée'),
+            AssociationField::new('category', 'Categorie'),
             ChoiceField::new('diet') 
-                ->setLabel('Régime alimentaire') 
+                ->setLabel('Régime') 
                 ->setChoices([ 
                     'Classique' => 'classic', 
                     'Végétarien' => 'vegetarian', 
                     'Végétalien' => 'vegan', 
                 ]) ->setRequired(false),
-
+            AssociationField::new('allergens')
+                ->setLabel('Allergènes')
+                ->setHelp('Sélectionnez les allergènes présents dans ce plat.')
+                // ->setFormTypeOptions([
+                //     'choice_label'=> 'name'
+                // ])
+                ->autocomplete(),
 
 
         ];
