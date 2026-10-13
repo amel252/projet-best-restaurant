@@ -54,7 +54,14 @@ class ProductCrudController extends AbstractCrudController
                 '10%' => 10,
                 '20%' => 20
             ]),
-            AssociationField::new('category', 'Categorie associée')
+            AssociationField::new('category', 'Categorie associée'),
+            ChoiceField::new('diet') 
+                ->setLabel('Régime alimentaire') 
+                ->setChoices([ 
+                    'Classique' => 'classic', 
+                    'Végétarien' => 'vegetarian', 
+                    'Végétalien' => 'vegan', 
+                ]) ->setRequired(false),
 
 
 

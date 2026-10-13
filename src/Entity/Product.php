@@ -35,6 +35,10 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $diet = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +131,16 @@ class Product
     {
         $this->category = $category;
 
+        return $this;
+    }
+    public function getDiet(): ?string
+    {
+        return $this->diet;
+    }
+
+    public function setDiet(?string $diet): static
+    {
+        $this->diet = $diet;
         return $this;
     }
 }
