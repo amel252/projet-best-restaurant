@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block body %}
 
@@ -10,4 +10,36 @@
 
 	</div>
 
+{% endblock %} #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande confirmée{% endblock %}
+
+{% block body %}
+    <div class="payment-success-wrapper">
+        <section class="payment-success">
+            <div class="payment-success__card">
+                <div class="payment-success__icon">✓</div>
+
+                <h1>Merci pour votre commande !</h1>
+
+                <p class="payment-success__message">
+                    Votre paiement a été pris en compte.
+                    Merci de votre confiance et à très bientôt !
+                </p>
+
+                {% if order is defined and order %}
+                    <p class="payment-success__number">
+                        Commande n° {{ order.id }}
+                    </p>
+                {% endif %}
+
+                <a href="{{ path('app_home') }}" class="payment-success__button">
+                    Retour à l'accueil
+                </a>
+            </div>
+        </section>
+    </div>
 {% endblock %}
+

@@ -2831,4 +2831,101 @@ section,
   border-radius: 10px;
   align-items: center;
   text-align: center;
+}
+
+/* CONFIRMATION DE COMMANDE — STYLE ASSORTI AU PROFIL*/
+.payment-success-wrapper {
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+.payment-success-wrapper .payment-success {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-success-wrapper .payment-success__card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 650px;
+  padding: 45px 30px;
+  text-align: center;
+  color: rgb(72, 30, 30);
+  background-color: #fffdf8;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(72, 30, 30, 0.06);
+}
+
+.payment-success-wrapper .payment-success__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 88%);
+  font-size: 42px;
+  font-weight: 600;
+}
+
+.payment-success-wrapper .payment-success h1 {
+  margin: 0 0 18px;
+  color: black;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.payment-success-wrapper .payment-success__message {
+  margin: 0 0 24px;
+  color: rgb(72, 30, 30);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.payment-success-wrapper .payment-success__number {
+  margin: 0 0 25px;
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+/* Bouton assorti à l'identité visuelle du profil */
+.payment-success-wrapper .payment-success__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 12px 20px;
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 50px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.payment-success-wrapper .payment-success__button:hover {
+  color: var(--contrast-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+@media (max-width: 575px) {
+  .payment-success-wrapper .payment-success {
+    padding: 35px 15px;
+  }
+  .payment-success-wrapper .payment-success__card {
+    padding: 30px 20px;
+  }
+  .payment-success-wrapper .payment-success h1 {
+    font-size: 24px;
+  }
 }/*# sourceMappingURL=main.css.map */
