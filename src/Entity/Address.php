@@ -140,6 +140,15 @@ class Address
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return sprintf(
+            '%s, %s %s',
+            $this->address ?? '',
+            $this->postalCode ?? '',
+            $this->city ?? ''
+        );
+    }
 
 
 }
