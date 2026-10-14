@@ -98,7 +98,7 @@ final class PaymentController extends AbstractController
 
     if ($order->getState() == 1) {
       $order->setState(2);
-      $cart->remove();
+      $cart->removeCart();
       $entityManager->flush();
     }
 
