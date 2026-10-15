@@ -45,9 +45,6 @@ final class PaymentController extends AbstractController
                     'product_data' => [
                         //  je récupere le vrai nom du produit
                         'name' => $product->getProductName(),
-                        'images' => [
-                        $_ENV['DOMAIN'] . '/uploads/products/' . $product->getProductIllustration()
-                        ]
                     ]
                 ],
                 //  on récup la vraie quantity
@@ -68,6 +65,8 @@ final class PaymentController extends AbstractController
 
         //  creation de la session stripe
         $checkout_session = Session::create([
+            //  préciser que la carte 
+            'payment_method_types' => ['card'],
             //  il va me fournir une url comme 'https://checkout.stripe.com/...'
             'customer_email' => $this->getUser()->getEmail(),
             'line_items' => $products_for_stripe ,
