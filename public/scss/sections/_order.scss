@@ -1,0 +1,791 @@
+// /* PAGE COMMANDE - LIVRAISON */
+
+// .order-page {
+//     width: 100%;
+//     padding: 35px;
+//     background-color: var(--background-color);
+//     position: relative;
+//     z-index: 1;
+
+// }
+
+// .order-page .container {
+//     width: 100%;
+
+// }
+
+
+// /* HEADER */
+
+// .order-header {
+//     margin-bottom: 35px;
+//     padding-bottom: 20px;
+
+//     border-bottom: 1px solid color-mix(in srgb,
+//             var(--default-color),
+//             transparent 88%);
+// }
+
+// .order-subtitle {
+//     display: inline-block;
+//     margin-bottom: 8px;
+//     color: var(--accent-color);
+//     font-size: 13px;
+//     font-weight: 600;
+//     text-transform: uppercase;
+//     letter-spacing: 1px;
+// }
+
+// .order-header h1 {
+//     margin: 0 0 8px;
+//     color: var(--heading-color);
+//     font-size: 28px;
+//     font-weight: 600;
+// }
+
+// .order-header p {
+//     margin: 0;
+//     color: var(--default-color);
+//     font-size: 15px;
+// }
+
+
+// /* CARTE PRINCIPALE */
+
+// .order-card {
+//     width: 100%;
+//     padding: 35px;
+//     box-sizing: border-box;
+//     background-color: #fffdf8;
+//     border: 1px solid color-mix(in srgb,
+//             var(--default-color),
+//             transparent 85%);
+//     border-radius: 12px;
+//     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+// }
+
+
+// /* SECTIONS */
+
+// .delivery-section {
+//     width: 100%;
+// }
+
+// .delivery-section-header {
+//     margin-bottom: 22px;
+// }
+
+// .delivery-section-header h2 {
+//     margin: 0 0 7px;
+//     color: rgb(72, 30, 30);
+//     font-size: 20px;
+//     font-weight: 600;
+// }
+
+// .delivery-section-header p {
+//     margin: 0;
+//     color: black;
+//     font-size: 14px;
+// }
+
+
+// /* ADRESSES */
+
+// .delivery-addresses {
+//     margin-bottom: 18px;
+// }
+
+// .delivery-addresses fieldset {
+//     border: none;
+//     padding: 0;
+//     margin: 0;
+// }
+
+// .delivery-addresses legend {
+//     display: none;
+// }
+
+// .delivery-addresses>div {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 10px;
+// }
+
+// .delivery-addresses input[type="radio"] {
+//     accent-color: var(--accent-color);
+// }
+
+// .delivery-addresses label {
+//     display: flex;
+//     align-items: center;
+//     gap: 10px;
+//     padding: 15px 16px;
+//     color: rgb(72, 30, 30);
+//     background-color: #f8f5ed;
+//     border: 1px solid transparent;
+//     border-radius: 8px;
+//     cursor: pointer;
+//     transition: 0.25s ease;
+// }
+
+// .delivery-addresses label:hover {
+//     border-color: var(--accent-color);
+//     background-color: color-mix(in srgb,
+//             var(--accent-color),
+//             transparent 94%);
+// }
+
+
+// /* AJOUT ADRESSE */
+
+// .add-address-link {
+//     display: inline-flex;
+//     align-items: center;
+//     gap: 7px;
+//     color: var(--accent-color);
+//     font-size: 14px;
+//     font-weight: 500;
+//     text-decoration: none;
+//     transition: 0.25s ease;
+// }
+
+// .add-address-link:hover {
+//     color: rgb(72, 30, 30);
+// }
+
+// .add-address-link i {
+//     font-size: 16px;
+// }
+
+
+// /* SEPARATION */
+
+// .delivery-separator {
+//     width: 100%;
+//     height: 1px;
+//     margin: 30px 0;
+//     background-color: color-mix(in srgb,
+//             var(--default-color),
+//             transparent 88%);
+// }
+
+
+// /* TRANSPORTEURS */
+
+// .delivery-carriers fieldset {
+//     border: none;
+//     padding: 0;
+//     margin: 0;
+// }
+
+// .delivery-carriers legend {
+//     display: none;
+// }
+
+// .delivery-carriers>div {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 10px;
+// }
+
+// .delivery-carriers label {
+//     display: flex;
+//     align-items: center;
+//     gap: 10px;
+//     padding: 15px 16px;
+//     color: rgb(72, 30, 30);
+//     background-color: #f8f5ed;
+//     border: 1px solid transparent;
+//     border-radius: 8px;
+//     cursor: pointer;
+//     transition: 0.25s ease;
+// }
+
+// .delivery-carriers label:hover {
+//     border-color: var(--accent-color);
+//     background-color: color-mix(in srgb,
+//             var(--accent-color),
+//             transparent 94%);
+// }
+
+// .delivery-carriers input[type="radio"] {
+//     accent-color: var(--accent-color);
+// }
+
+
+// /* BOUTON */
+
+// .delivery-submit {
+//     display: flex;
+//     justify-content: flex-end;
+//     margin-top: 30px;
+// }
+
+// .delivery-submit button {
+//     min-width: 150px;
+//     padding: 12px 25px;
+//     color: var(--contrast-color);
+//     background-color: var(--accent-color);
+//     border: none;
+//     border-radius: 8px;
+//     font-size: 14px;
+//     font-weight: 600;
+//     cursor: pointer;
+//     transition: 0.25s ease;
+// }
+
+// .delivery-submit button:hover {
+//     transform: translateY(-1px);
+//     opacity: 0.9;
+// }
+
+
+// /* TABLETTE */
+
+// @media (max-width: 767px) {
+
+//     .order-page {
+//         padding: 45px 0;
+//     }
+
+//     .order-card {
+//         padding: 25px;
+//     }
+
+// }
+
+
+// /* MOBILE */
+
+// @media (max-width: 575px) {
+
+//     .order-page {
+//         padding: 30px 0;
+//     }
+
+//     .order-header {
+//         margin-bottom: 25px;
+//     }
+
+//     .order-header h1 {
+//         font-size: 24px;
+//     }
+
+//     .order-header p {
+//         font-size: 14px;
+//     }
+
+//     .order-card {
+//         padding: 20px;
+//     }
+
+//     .delivery-section-header h2 {
+//         font-size: 18px;
+//     }
+
+//     .delivery-submit {
+//         justify-content: stretch;
+//     }
+
+//     .delivery-submit button {
+//         width: 100%;
+//     }
+
+// }
+
+/* PAGE COMMANDE - LIVRAISON */
+
+.order-page {
+    width: 100%;
+    padding: 35px;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    position: relative;
+    z-index: 1;
+}
+
+.order-page .container {
+    width: 100%;
+}
+
+/* HEADER */
+
+.order-header {
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 88%);
+}
+
+.order-subtitle {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.order-header h1 {
+    margin: 0 0 8px;
+    color: var(--heading-color);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.order-header p {
+    margin: 0;
+    color: var(--default-color);
+    font-size: 15px;
+}
+
+
+/* CARTE PRINCIPALE */
+
+.order-card {
+    width: 100%;
+    padding: 35px;
+    box-sizing: border-box;
+    background-color: #fffdf8;
+    border: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 85%);
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+.delivery-form {
+    width: 100%;
+}
+
+
+/* SECTIONS */
+
+.delivery-section {
+    width: 100%;
+}
+
+.delivery-section-header {
+    margin-bottom: 22px;
+}
+
+.delivery-section-header h2 {
+    margin: 0 0 7px;
+    color: rgb(72, 30, 30);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.delivery-section-header p {
+    margin: 0;
+    color: black;
+    font-size: 14px;
+}
+
+
+/* ADRESSES */
+
+.delivery-addresses {
+    margin-bottom: 18px;
+}
+
+
+.delivery-addresses>div {
+    display: block;
+}
+
+.delivery-addresses>div>label {
+    display: block;
+    margin: 0 0 12px;
+    padding: 0;
+    color: rgb(72, 30, 30);
+    background: none;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: default;
+}
+
+.delivery-addresses>div>label:hover {
+    background: none;
+    border: none;
+}
+
+
+/* Conteneur des adresses */
+
+#order_addresses {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* On cache le radio HTML classique */
+
+#order_addresses input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/*Carte d'adresse*/
+
+#order_addresses label {
+    position: relative;
+
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 15px 16px 15px 48px;
+    color: rgb(72, 30, 30);
+    background-color: #f8f5ed;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+
+    line-height: 1.5;
+
+    transition: border-color 0.2s ease;
+}
+
+
+/* Cercle radio */
+
+#order_addresses label::before {
+    content: '';
+
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 17px;
+    height: 17px;
+    box-sizing: border-box;
+    border: 2px solid #b9a9a0;
+    border-radius: 50%;
+    background-color: #fffdf8;
+}
+
+
+/*Adresse sélectionnée */
+
+#order_addresses input[type="radio"]:checked+label {
+    border-color: var(--accent-color);
+    background-color: #f8f5ed;
+}
+
+
+/* Cercle de l'adresse sélectionnée */
+
+#order_addresses input[type="radio"]:checked+label::before {
+    border-color: var(--accent-color);
+
+    background:
+        radial-gradient(circle,
+            var(--accent-color) 0,
+            var(--accent-color) 5px,
+            transparent 6px);
+}
+
+
+/* Hover très discret uniquement sur une adresse */
+
+#order_addresses label:hover {
+    border-color: rgba(72, 30, 30, 0.18);
+    background-color: #f8f5ed;
+}
+
+
+/* AJOUT ADRESSE */
+
+.add-address-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 4px;
+    color: var(--accent-color);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.add-address-link:hover {
+    color: rgb(72, 30, 30);
+}
+
+.add-address-link i {
+    font-size: 16px;
+}
+
+
+/*  SEPARATION */
+
+.delivery-separator {
+    width: 100%;
+    height: 1px;
+    margin: 30px 0;
+    background-color: color-mix(in srgb,
+            var(--default-color),
+            transparent 88%);
+}
+
+
+/* TRANSPORTEURS */
+
+.delivery-carriers {
+    width: 100%;
+}
+
+.delivery-carriers>div {
+    display: block;
+}
+
+
+/*
+ * Titre "Choisissez votre transporteur"
+ *
+ * Aucun hover. */
+
+.delivery-carriers>div>label {
+    display: block;
+    margin: 0 0 12px;
+    padding: 0;
+    color: rgb(72, 30, 30);
+    background: none;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: default;
+}
+
+.delivery-carriers>div>label:hover {
+    background: none;
+    border: none;
+}
+
+
+/* IMPORTANT : 2 transporteurs par ligne */
+
+#order_carriers {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+
+/* On cache les radios classiques */
+
+#order_carriers input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/*Carte transporteur*/
+
+#order_carriers label {
+    position: relative;
+
+    display: block;
+    width: 100%;
+    min-height: 140px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 18px 18px 18px 48px;
+    color: rgb(72, 30, 30);
+    background-color: #f8f5ed;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    line-height: 1.5;
+
+    transition: border-color 0.2s ease;
+}
+
+
+/*Cercle radio transporteur*/
+
+#order_carriers label::before {
+    content: '';
+
+    position: absolute;
+    left: 17px;
+    top: 20px;
+    width: 17px;
+    height: 17px;
+    box-sizing: border-box;
+    border: 2px solid #b9a9a0;
+    border-radius: 50%;
+    background-color: #fffdf8;
+}
+
+
+/*Transporteur sélectionné */
+
+#order_carriers input[type="radio"]:checked+label {
+    border-color: var(--accent-color);
+    background-color: #f8f5ed;
+}
+
+
+/* Cercle sélectionné */
+
+#order_carriers input[type="radio"]:checked+label::before {
+    border-color: var(--accent-color);
+
+    background:
+        radial-gradient(circle,
+            var(--accent-color) 0,
+            var(--accent-color) 5px,
+            transparent 6px);
+}
+
+
+/* Hover très discret*/
+
+#order_carriers label:hover {
+    border-color: rgba(72, 30, 30, 0.18);
+    background-color: #f8f5ed;
+}
+
+
+/* BOUTON*/
+
+.delivery-submit {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 30px;
+}
+
+.delivery-submit button {
+    min-width: 120px;
+    padding: 12px 25px;
+    color: var(--contrast-color);
+    background-color: var(--accent-color);
+
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.delivery-submit button:hover {
+    color: var(--contrast-color);
+    background-color: color-mix(in srgb,
+            var(--accent-color),
+            black 10%);
+
+    transform: translateY(-2px);
+
+}
+
+// rajout msg d'erreur 
+/* =========================================================
+   ERREURS FORMULAIRE
+========================================================= */
+
+.delivery-addresses ul,
+.delivery-carriers ul {
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.delivery-addresses li,
+.delivery-carriers li {
+    color: #b42318;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* TABLETTE */
+
+@media (max-width: 767px) {
+
+    .order-page {
+        padding: 45px 0;
+    }
+
+    .order-card {
+        padding: 25px;
+    }
+
+    /*
+     * On garde 2 transporteurs par ligne
+     * sur tablette.
+     */
+
+    #order_carriers {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 575px) {
+
+    .order-page {
+        padding: 30px 0;
+    }
+
+    .order-header {
+        margin-bottom: 25px;
+    }
+
+    .order-header h1 {
+        font-size: 24px;
+    }
+
+    .order-header p {
+        font-size: 14px;
+    }
+
+    .order-card {
+        padding: 20px;
+    }
+
+    .delivery-section-header h2 {
+        font-size: 18px;
+    }
+
+    /*
+     * Sur petit téléphone :
+     * 1 transporteur par ligne pour éviter
+     * des cartes trop étroites.
+     */
+
+    #order_carriers {
+        grid-template-columns: 1fr;
+    }
+
+    .delivery-submit {
+        justify-content: stretch;
+    }
+
+    .delivery-submit button {
+        width: 100%;
+    }
+}

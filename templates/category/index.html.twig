@@ -1,0 +1,46 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="category-container">
+        <div class="container">
+            <div class="category-header">
+                <h2>{{ category.name }}</h2>
+                <p> Cette categorie contient {{ category.products|length }} produit(s)</p>
+            </div>
+            <div class="products-grid">
+                {% for product in category.products %}
+                    <article class="product-card">
+                        <div class="product-image">
+                            <img
+                                src="{{ asset('uploads/products/' ~ product.illustration) }}"
+                                alt="{{ product.name }}"
+                            >
+                        </div>
+
+                        <div class="product-content">
+                            <h3>{{ product.name }}</h3>
+                            <div class="product-footer">
+                                <span class="product-price">
+                                    {#  on utilise la fonction ici #}
+                                    {{product.getPriceWithTaxe| price}}
+                                </span>
+                            </div>
+                            <div class="product-actions">
+                                <a href="{{path('app_product', {slug: product.slug})}}" class="product-btn product-btn-outline"> Voir le produit</a>
+                                <a  href="{{path('app_cart')}}" class="product-btn product-btn-primary">
+                                    Ajouter au panier</a>
+                            </div>
+                        </div>
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

@@ -12,6 +12,7 @@ use App\Entity\User;
 use App\Entity\Category;
 use App\Entity\Order;
 use App\Entity\Carrier;
+use App\Entity\Allergen;
 
 use App\Controller\Admin\UserCrudController;
 use App\Controller\Admin\CategoryCrudController;
@@ -46,16 +47,12 @@ class DashboardController extends AbstractDashboardController
          // Les éléments qui s'affcihent dans le menu vertical à gauche
     
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        
         yield MenuItem::linkToRoute('Utilisateurs', 'fas fa-user','admin_user_index');
-            
         yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_category_index');
-
         yield MenuItem::linkToRoute('Produits', 'fas fa-tag', 'admin_product_index');
-
         yield MenuItem::linkToRoute('Transporteurs', 'fas fa-truck', 'admin_carrier_index');
+        yield MenuItem::linkToRoute('Commandes', 'fas fa-sort', 'admin_order_index');
+        yield MenuItem::linkToRoute('Allergènes', 'fas fa-leaf', 'admin_allergen_index');
 
-
-        yield MenuItem::linkToRoute('commandes', 'fas fa-sort', 'admin_order_index');
     }
 }

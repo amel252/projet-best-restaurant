@@ -63,8 +63,11 @@ class Carrier
 
         return $this;
     }
+    //  fonction de format prix (price) et affichage le name 
     public function __toString(): string
-    {
-        return $this->name ?? '';
+     { 
+        $price = number_format($this->getPrice() ?? 0, 2, ',', ' ') . ' €'; 
+        return ($this->getName() ?? '') . ' — ' . $price; 
     }
+
 }

@@ -32,12 +32,14 @@ class Order
     #[ORM\Column(type: Types::TEXT)]
     private ?string $delivery = null;
 
-
     /**
      * @var Collection<int, OrderDetail>
      */
-    #[ORM\OneToMany(targetEntity: OrderDetail::class, mappedBy: 'myOrder', cascade:['persist'])]
-
+    #[ORM\OneToMany(
+        targetEntity: OrderDetail::class,
+        mappedBy: 'myOrder',
+        cascade: ['persist']
+    )]
     private Collection $orderDetails;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
@@ -51,8 +53,6 @@ class Order
     {
         $this->orderDetails = new ArrayCollection();
     }
-
-
 
     public function getId(): ?int
     {
@@ -136,11 +136,10 @@ class Order
 
         return $this;
     }
-    /* supprimer orderDetail*/
-     public function removeOrderDetail(OrderDetail $orderDetail): static
+
+    public function removeOrderDetail(OrderDetail $orderDetail): static
     {
         if ($this->orderDetails->removeElement($orderDetail)) {
-            // set the owning side to null (unless already changed)
             if ($orderDetail->getMyOrder() === $this) {
                 $orderDetail->setMyOrder(null);
             }
@@ -149,53 +148,51 @@ class Order
         return $this;
     }
 
-     public function getUser(): ?User
-     {
-         return $this->user;
-     }
-
-     public function setUser(?User $user): static
-     {
-         $this->user = $user;
-
-         return $this;
-     }
-
-    //  rajout fonctions
-    public function getTotalTva(): float
+    public function getUser(): ?User
     {
-    $totalTva = 0;
-
-    foreach ($this->orderDetails as $orderDetail) {
-        $price = $orderDetail->getProductPrice();
-        $quantity = $orderDetail->getProductQuantity();
-        $tva = $orderDetail->getProductTva();
-
-        if ($price !== null && $quantity !== null && $tva !== null) {
-            $totalTva += ($price * $quantity) * ($tva / 100);
-        }
+        return $this->user;
     }
 
-    return $totalTva;
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTotalTva(): float
+    {
+        $totalTva = 0.0;
+
+        foreach ($this->orderDetails as $orderDetail) {
+            $price = $orderDetail->getProductPrice();
+            $quantity = $orderDetail->getProductQuantity();
+            $tva = $orderDetail->getProductTva();
+
+            if ($price !== null && $quantity !== null && $tva !== null) {
+                $totalTva += ($price * $quantity) * ($tva / 100);
+            }
+        }
+
+        return $totalTva;
     }
 
     public function getTotalTtc(): float
     {
-    $totalTtc = 0;
+        $totalTtc = 0.0;
 
-    foreach ($this->orderDetails as $orderDetail) {
-        $price = $orderDetail->getProductPrice();
-        $quantity = $orderDetail->getProductQuantity();
-        $tva = $orderDetail->getProductTva();
+        foreach ($this->orderDetails as $orderDetail) {
+            $price = $orderDetail->getProductPrice();
+            $quantity = $orderDetail->getProductQuantity();
+            $tva = $orderDetail->getProductTva();
 
-        if ($price !== null && $quantity !== null && $tva !== null) {
-            $totalTtc += ($price * $quantity) * (1 + $tva / 100);
+            if ($price !== null && $quantity !== null && $tva !== null) {
+                $totalTtc += ($price * $quantity) * (1 + $tva / 100);
+            }
         }
-    }
 
-    return $totalTtc + ($this->carrierPrice ?? 0);
+        return $totalTtc + ($this->carrierPrice ?? 0);
     }
-
 
     public function getStripeSessionId(): ?string
     {
@@ -208,6 +205,4 @@ class Order
 
         return $this;
     }
-
-
 }

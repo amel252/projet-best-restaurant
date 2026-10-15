@@ -1,0 +1,501 @@
+/* PAGE RÉSUMÉ COMMANDE */
+
+.summary-page {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    padding: 35px 0;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    color: rgb(72, 30, 30);
+
+    position: relative;
+    z-index: 1;
+}
+
+
+/* HEADER*/
+
+.summary-header {
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 88%);
+}
+
+.summary-subtitle {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.summary-header h1 {
+    margin: 0 0 8px;
+    color: var(--heading-color);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.summary-header p {
+    margin: 0;
+    color: var(--default-color);
+    font-size: 15px;
+}
+
+
+/* CONTENU PRINCIPAL*/
+
+.summary-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 25px;
+    align-items: start;
+}
+
+.summary-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* CARTES */
+
+.summary-card,
+.summary-total-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px;
+    background-color: #fffdf8;
+    border: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 85%);
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+
+/* TITRES DES CARTES */
+
+.summary-card-header {
+    margin-bottom: 20px;
+}
+
+.summary-card-header h2,
+.summary-total-card h2 {
+    margin: 0;
+    color: rgb(72, 30, 30);
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.summary-total-card h2 {
+    margin-bottom: 25px;
+}
+
+
+/* PRODUITS*/
+
+.summary-products {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-product {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    align-items: center;
+    gap: 18px;
+    padding: 15px 0;
+    border-bottom: 1px solid color-mix(in srgb,
+            var(--default-color),
+            transparent 90%);
+}
+
+.summary-product:first-child {
+    padding-top: 0;
+}
+
+.summary-product:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+
+/* IMAGE */
+
+.summary-product-image {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f8f5ed;
+}
+
+.summary-product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* INFORMATIONS */
+
+.summary-product-info {
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    gap: 16px;
+    min-width: 0;
+}
+
+.summary-product-info strong {
+    margin-top: 20px;
+    color: rgb(72, 30, 30);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.summary-product-details {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 25px;
+}
+
+.summary-product-details span,
+.summary-product-quantity,
+.summary-product-total {
+    margin: 0;
+    color: rgb(72, 30, 30);
+}
+
+.summary-product-details span {
+    font-size: 16px;
+}
+
+/* QUANTITÉ */
+.summary-product-quantity {
+    font-size: 16px;
+
+}
+
+/* PRIX PRODUIT */
+
+.summary-product-total {
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+
+/* ADRESSE */
+
+.summary-address {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 17px;
+    color: rgb(72, 30, 30);
+    background-color: #f8f5ed;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.summary-address strong {
+    margin-bottom: 4px;
+    color: rgb(72, 30, 30);
+    font-weight: 600;
+}
+
+
+/* TRANSPORTEUR */
+
+.summary-carrier {
+    position: relative;
+    padding: 17px;
+    background-color: #f8f5ed;
+    border-radius: 8px;
+    color: rgb(72, 30, 30);
+}
+
+.summary-carrier strong {
+    display: block;
+    margin-bottom: 8px;
+    color: rgb(72, 30, 30);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.summary-carrier p {
+    max-width: 80%;
+    margin-bottom: 10px;
+    color: rgb(72, 30, 30);
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+.summary-carrier-price {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    color: rgb(72, 30, 30);
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* SIDEBAR */
+
+.summary-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+
+/* TOTAL */
+
+.summary-total-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: rgb(72, 30, 30);
+    font-size: 14px;
+}
+
+.summary-total-line strong {
+    color: rgb(72, 30, 30);
+    font-weight: 600;
+}
+
+.summary-total-separator {
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+    background-color: color-mix(in srgb,
+            var(--default-color),
+            transparent 88%);
+}
+
+.summary-total-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    color: rgb(72, 30, 30);
+    font-size: 16px;
+}
+
+.summary-total-final strong {
+    color: rgb(72, 30, 30);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+/* BOUTON PAIEMENT */
+
+.summary-payment-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 20px;
+
+    color: var(--contrast-color);
+    background-color: var(--accent-color);
+
+    border: none;
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.summary-payment-button:hover {
+    color: var(--contrast-color);
+    background-color: color-mix(in srgb,
+            var(--accent-color),
+            black 10%);
+    transform: translateY(-2px);
+}
+
+
+/* TABLETTE */
+
+@media (max-width: 991px) {
+
+    .summary-page {
+        padding: 35px 0;
+    }
+
+    .summary-content {
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: 20px;
+    }
+
+    .summary-product {
+        grid-template-columns: 80px minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .summary-product-image {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+
+/* PETITE TABLETTE / MOBILE */
+
+@media (max-width: 767px) {
+
+    .summary-page {
+        padding: 35px 0;
+    }
+
+    .summary-content {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-sidebar {
+        position: static;
+    }
+
+    .summary-card,
+    .summary-total-card {
+        padding: 25px;
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 575px) {
+
+    .summary-page {
+        padding: 30px 0;
+    }
+
+    .summary-header {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+    }
+
+    .summary-header h1 {
+        font-size: 24px;
+    }
+
+    .summary-header p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .summary-card,
+    .summary-total-card {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .summary-card-header {
+        margin-bottom: 18px;
+    }
+
+    .summary-card-header h2,
+    .summary-total-card h2 {
+        font-size: 18px;
+    }
+
+
+    /* PRODUITS */
+
+    .summary-product {
+        grid-template-columns: 70px minmax(0, 1fr);
+        gap: 12px;
+        padding: 15px 0;
+    }
+
+    .summary-product-image {
+        width: 70px;
+        height: 70px;
+    }
+
+
+    /* TRANSPORTEUR */
+
+    .summary-carrier p {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .summary-carrier-price {
+        position: static;
+        display: block;
+    }
+
+
+    /* TOTAL */
+
+    .summary-total-final strong {
+        font-size: 19px;
+    }
+}
+
+
+/* TRÈS PETIT MOBILE */
+
+@media (max-width: 399px) {
+
+    .summary-page {
+        padding: 25px 0;
+    }
+
+    .summary-card,
+    .summary-total-card {
+        padding: 16px;
+    }
+
+    .summary-header h1 {
+        font-size: 22px;
+    }
+
+    .summary-header p {
+        font-size: 13px;
+    }
+
+    .summary-product {
+        gap: 10px;
+    }
+
+    .summary-product-info strong {
+        font-size: 13px;
+    }
+
+    .summary-product-info span,
+    .summary-product-quantity,
+    .summary-product-total {
+        font-size: 13px;
+    }
+}

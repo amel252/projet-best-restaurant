@@ -34,12 +34,9 @@ class Address
     #[ORM\Column(length: 255)]
     private ?string $phoneNumber = null;
 
-    /*chaque user peut avoir plusieurs address*/
     #[ORM\ManyToOne(inversedBy: 'addresses')]
-
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
-
 
     public function getId(): ?int
     {
@@ -57,6 +54,7 @@ class Address
 
         return $this;
     }
+
     public function getLastname(): ?string
     {
         return $this->lastname;
@@ -140,15 +138,18 @@ class Address
 
         return $this;
     }
+
     public function __toString(): string
     {
         return sprintf(
-            '%s, %s %s',
+            '%s %s — %s, %s %s, %s',
+            $this->firstname ?? '',
+            $this->lastname ?? '',
             $this->address ?? '',
             $this->postalCode ?? '',
-            $this->city ?? ''
+            $this->city ?? '',
+            $this->country ?? ''
         );
     }
-
-
 }
+

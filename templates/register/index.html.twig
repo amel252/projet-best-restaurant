@@ -1,18 +1,11 @@
-
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription | Mon Restaurant{% endblock %}
-
 {% block body %}
 
 <section class="register min-vh-100 d-flex align-items-center justify-content-center py-5">
-
-
 <div class="container">
-
     <div class="row justify-content-center">
-
         <div class="col-xl-6 col-lg-7 col-md-9">
 
             <div class="card register-card shadow-lg border-0">
@@ -28,119 +21,151 @@
                             Rejoignez notre restaurant et profitez pleinement de votre expérience.
                         </p>
                     </div>
-                    {#  mon formulaire #}
 
-                    {{form_start(registerForm,{
-                        attr:{
+                    {{ form_start(registerForm, {
+                        attr: {
                             class: 'row g-4 needs-validation',
                             autocomplete: 'off'
                         }
-                    })}}
+                    }) }}
 
                     <div class="row g-3">
+
                         <div class="col-md-6">
-                            {{form_label(registerForm.lastName,'Votre nom',{
-                                'label_attr':{
+                            {{ form_label(registerForm.lastName, 'Votre nom', {
+                                'label_attr': {
                                     'class': 'form-label'
                                 }
-                            })}}
+                            }) }}
+
                             {{ form_widget(registerForm.lastName, {
-                                        'attr': {
-                                            'class': 'form-control custom-input',
-                                            'placeholder': 'Votre nom'
-                                        }
-                                    }) }}
-                            <div class='form-errors '>
+                                'attr': {
+                                    'class': 'form-control custom-input',
+                                    'placeholder': 'Votre nom'
+                                }
+                            }) }}
+
+                            <div class="form-errors">
                                 {{ form_errors(registerForm.lastName) }}
                             </div>
                         </div>
+
                         <div class="col-md-6">
-                            {{form_label(registerForm.firstName, 'Votre prénom',{
+                            {{ form_label(registerForm.firstName, 'Votre prénom', {
                                 'label_attr': {
-                                            'class': 'form-label'
-                                        }
-                            })}}
+                                    'class': 'form-label'
+                                }
+                            }) }}
+
                             {{ form_widget(registerForm.firstName, {
-                                        'attr': {
-                                            'class': 'form-control custom-input',
-                                            'placeholder': 'Votre prénom'
-                                        }
-                                    }) }}
-                            <div class='form-errors '>
+                                'attr': {
+                                    'class': 'form-control custom-input',
+                                    'placeholder': 'Votre prénom'
+                                }
+                            }) }}
+
+                            <div class="form-errors">
                                 {{ form_errors(registerForm.firstName) }}
                             </div>
                         </div>
+
                     </div>
+
                     <div class="col-12">
-                        {{form_label(registerForm.email,'Votre adresse mail',{
+                        {{ form_label(registerForm.email, 'Votre adresse mail', {
                             'label_attr': {
-                            'class':'form-label'
-                        }
-                        })}}
+                                'class': 'form-label'
+                            }
+                        }) }}
+
                         {{ form_widget(registerForm.email, {
                             'attr': {
-                            'class': 'form-control custom-input',
-                            'placeholder': 'exemple@email.com'
-                        }
+                                'class': 'form-control custom-input',
+                                'placeholder': 'exemple@email.com'
+                            }
                         }) }}
+
                         <div class="form-errors">
                             {{ form_errors(registerForm.email) }}
-                        </div>  
+                        </div>
                     </div>
+
+                    {# Champ GSM #}
                     <div class="col-12">
-                            {{form_label(registerForm.plainPassword,'Mot de passe',{
-                                'label_attr': {
-                                            'class': 'form-label'
-                                        }
-                            })}}
-                            {{ form_widget(registerForm.plainPassword, {
-                                'attr': {
-                                    'class': 'form-control custom-input',
-                                    'placeholder': 'Votre mot de passe',
-                                    'autocomplete' : 'new-password'
-                                }
-                            }) }}
-                            <div class='form-errors '>
-                                {{ form_errors(registerForm.plainPassword) }}
-                            </div>
+                        {{ form_label(registerForm.gsm, 'Votre numéro de GSM', {
+                            'label_attr': {
+                                'class': 'form-label'
+                            }
+                        }) }}
+
+                        {{ form_widget(registerForm.gsm, {
+                            'attr': {
+                                'class': 'form-control custom-input',
+                                'placeholder': '0612345678'
+                            }
+                        }) }}
+
+                        <div class="form-errors">
+                            {{ form_errors(registerForm.gsm) }}
+                        </div>
                     </div>
 
-                    <div class="col-12 ">
-                            <div class="form-check">
-                                <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    required
-                                >
+                    <div class="col-12">
+                        {{ form_label(registerForm.plainPassword, 'Mot de passe', {
+                            'label_attr': {
+                                'class': 'form-label'
+                            }
+                        }) }}
 
-                                <label class="form-check-label" for="acceptTerms">
-                                    J'accepte les
-                                    <a href="#" class="terms-link">
-                                        termes et conditions
-                                    </a>
-                                </label>
-                            </div>
+                        {{ form_widget(registerForm.plainPassword, {
+                            'attr': {
+                                'class': 'form-control custom-input',
+                                'placeholder': 'Votre mot de passe',
+                                'autocomplete': 'new-password'
+                            }
+                        }) }}
+
+                        <div class="form-errors">
+                            {{ form_errors(registerForm.plainPassword) }}
                         </div>
+                    </div>
 
-                        <div class="col-12 ">
-                            <button
-                                class="btn register-button w-100"
-                                type="submit"
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                required
                             >
-                                Créer mon compte
-                            </button>
-                        </div>
 
-                        <div class="col-12 text-center">
-                            <p class="small paragraphe mb-0">
-                                Vous avez déjà un compte ?
-                                <a href={{path('app_login')}} class="login-link">
-                                    Se connecter
+                            <label class="form-check-label" for="acceptTerms">
+                                J'accepte les
+                                <a href="#" class="terms-link">
+                                    termes et conditions
                                 </a>
-                            </p>
+                            </label>
                         </div>
+                    </div>
 
-                    {{form_end(registerForm)}}
+                    <div class="col-12">
+                        <button
+                            class="btn register-button w-100"
+                            type="submit"
+                        >
+                            Créer mon compte
+                        </button>
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <p class="small paragraphe mb-0">
+                            Vous avez déjà un compte ?
+                            <a href="{{ path('app_login') }}" class="login-link">
+                                Se connecter
+                            </a>
+                        </p>
+                    </div>
+
+                    {{ form_end(registerForm) }}
 
                 </div>
 

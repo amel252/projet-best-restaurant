@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use App\Entity\Address;
 use App\Entity\Carrier;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class OrderType extends AbstractType
 {
@@ -17,49 +17,53 @@ class OrderType extends AbstractType
     {
         $builder
             ->add('addresses', EntityType::class, [
-                'label'=> "Choisissez votre adresse de livraison",
-                'required'=> true,
-                'class'=> Address::class,
-                //  pour le radios "expanded"
-                'expanded'=> true,
+                'label' => 'Choisissez votre adresse de livraison',
+                'required' => true,
+                'class' => Address::class,
+                'expanded' => true,
                 'choices' => $options['addresses'],
-                'label_html'=> true,
+                'choice_label' => static function (Address $address): string {
+                    return (string) $address;
+                },
+                'label_html' => false,
                 'constraints' => [
-                    new NotBlank(message: 'Veuillez choisir une adresse de livraison.'),
+                    new NotBlank(
+                        message: 'Veuillez choisir une adresse de livraison.'
+                    ),
                 ],
             ])
             ->add('carriers', EntityType::class, [
-                'label'=> "Choisissez votre transporteur",
-                'required'=> true,
-                'class'=> Carrier::class,
-                'expanded'=> true,
+                'label' => 'Choisissez votre transporteur',
+                'required' => true,
+                'class' => Carrier::class,
+                'expanded' => true,
                 'choices' => $options['carriers'],
-                
-                'choice_label' => function (Carrier $carrier): string { 
-                    return sprintf( 
-                        '%s — %s €', 
-                        $carrier->getName(), 
-                        number_format($carrier->getPrice() ?? 0, 2, ',', ' ') 
+                'choice_label' => static function (Carrier $carrier): string {
+                    return sprintf(
+                        '%s — %s €',
+                        $carrier->getName() ?? '',
+                        number_format($carrier->getPrice() ?? 0, 2, ',', ' ')
                     );
                 },
-                'label_html'=> false,
+                'label_html' => false,
                 'constraints' => [
-                    new NotBlank(message: 'Veuillez choisir un transporteur.'),
+                    new NotBlank(
+                        message: 'Veuillez choisir un transporteur.'
+                    ),
                 ],
             ])
-             // j'ai ajouté le btn submit avec add puis j'ai importé en haut sur la doc 
-            ->add('Submit', SubmitType::class,[
-                'label'=> "Valider",
-            ])
-        ;
+            ->add('Submit', SubmitType::class, [
+                'label' => 'Valider',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => null,
-            'addresses' =>[],
-            'carriers'=>[],
+            'addresses' => [],
+            'carriers' => [],
         ]);
     }
 }
+

@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-/* Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email. */
 #[ORM\Entity]
 #[UniqueEntity(
     fields: ['email'],
@@ -40,16 +39,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 20)]
     private ?string $gsm = null;
 
-    /* Avatar */
     #[ORM\Column(name: 'profile_image', length: 255, nullable: true)]
     private ?string $profileImage = null;
 
-    /**
-     * @var Collection<int, Order>
-     */
+    /** @var Collection<int, Order> */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private Collection $orders;
 
+    /** @var Collection<int, Address> */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
     private Collection $addresses;
 
@@ -154,12 +151,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
+    /** @return Collection<int, Address> */
+    public function getAddresses(): Collection
     {
-        return $this->orders;
+        return $this->addresses;
+    }
+
+    public function addAddress(Address $address): static
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses->add($address);
+            $address->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function addAddresse(Address $address): static
+    {
+        return $this->addAddress($address);
+    }
+
+    public function removeAddress(Address $address): static
+    {
+        if ($this->addresses->removeElement($address)) {
+            if ($address->getUser() === $this) {
+                $address->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
     public function addOrder(Order $order): static
@@ -182,43 +203,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    /**
-     * @return Collection<int, Address>
-     */
-    public function getAddresses(): Collection
+
+    /** @return Collection<int, Order> */
+    public function getOrders(): Collection
     {
-        return $this->addresses;
-    }
-
-    public function addAddress(Address $address): static
-    {
-        if (!$this->addresses->contains($address)) {
-            $this->addresses->add($address);
-            $address->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAddress(Address $address): static
-    {
-        if ($this->addresses->removeElement($address)) {
-            // Address exige un utilisateur : on ne met donc pas user à null ici.
-            // La suppression éventuelle doit être gérée explicitement.
-        }
-
-        return $this;
+        return $this->orders;
     }
 
     public function eraseCredentials(): void
     {
-        // Si tu n'as pas de données sensibles temporaires à effacer,
-        // cette méthode peut rester vide.
     }
-    //  fonction pour afficher nom prenom utilisateur dans dashboard admin
+
     public function __toString(): string
-{
-    return trim($this->firstName . ' ' . $this->lastName);
-}
+    {
+        return trim(($this->firstName ?? '') . ' ' . ($this->lastName ?? ''));
+    }
 }
 
