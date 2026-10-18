@@ -1,0 +1,103 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Mes commandes - BestRestaurant
+{% endblock %}
+
+{% block body %}
+<section class="profile-page">
+    <div class="container">
+
+        {# EN-TÊTE #}
+        <div class="profile-header">
+            <span class="profile-subtitle">Mon espace personnel</span>
+            <h1>Mes commandes</h1>
+            <p>Retrouvez l'historique de vos commandes.</p>
+        </div>
+
+        {# LISTE DES COMMANDES : UNE SEULE COLONNE #}
+        <div class="profile-card profile-information profile-orders">
+
+            <div class="profile-information-header">
+                <h2>Historique de mes commandes</h2>
+            </div>
+
+            {% if orders is not empty %}
+                <div class="profile-orders-list">
+                    {% for order in orders %}
+                        <article class="profile-order-item">
+
+                            <div class="profile-order-details">
+                                <h3>Commande n° {{ order.id }}</h3>
+
+                                <p>
+                                    <span class="profile-info-label">Date :</span>
+                                    <span class="profile-info-value">
+                                        {{ order.createdAt|date('d/m/Y') }}
+                                    </span>
+                                </p>
+
+                                <p>
+                                    <span class="profile-info-label">Statut :</span>
+                                    <span class="profile-info-value">
+                                        {% if order.state == 1 %}
+                                            Accepté
+                                        {% elseif order.state == 2 %}
+                                            En préparation
+                                        {% elseif order.state == 3 %}
+                                            En cours de livraison
+                                        {% elseif order.state == 4 %}
+                                            Livré
+                                        {% elseif order.state == 5 %}
+                                            En attente du retour de matériel
+                                        {% elseif order.state == 6 %}
+                                            Terminée
+                                        {% else %}
+                                            Statut inconnu
+                                        {% endif %}
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="profile-info-label">Paiement :</span>
+                                    <span class="profile-info-value">
+                                        {% if paymentStatuses[order.id] is defined and paymentStatuses[order.id] == 'paid' %}
+                                            Payé
+                                        {% elseif paymentStatuses[order.id] is defined and paymentStatuses[order.id] == 'unpaid' %}
+                                            Non payé
+                                        {% else %}
+                                            En attente de confirmation
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+
+                            <a
+                                href="{{ path('app_account_order', {
+                                    id_order: order.id
+                                }) }}"
+                                class="profile-menu-link profile-order-link"
+                            >
+                                <i class="bi bi-eye"></i>
+                                <span>Voir le détail</span>
+                            </a>
+
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="profile-orders-empty">
+                    Vous n'avez pas encore passé de commande.
+                </p>
+            {% endif %}
+
+            {# RETOUR AU PROFIL #}
+            <a href="{{ path('app_profile') }}"
+            class="profile-menu-link profile-orders-back">
+                <i class="bi bi-arrow-left"></i>
+                <span>Retour à mon profil</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

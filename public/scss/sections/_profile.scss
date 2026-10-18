@@ -10,8 +10,6 @@
     width: 100%;
 }
 
-/* HEADER */
-
 .profile-header {
     margin-bottom: 35px;
 }
@@ -39,8 +37,7 @@
     font-size: 15px;
 }
 
-
-/* CONTENU : LES 2 BLOCS */
+/*  DU PROFIL */
 
 .profile-content {
     display: grid;
@@ -68,8 +65,7 @@
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
 }
 
-
-/* BLOC GAUCHE : MON COMPTE */
+/* MENU MON COMPTE */
 
 .profile-menu {
     width: 100%;
@@ -77,13 +73,12 @@
     padding: 22px;
     color: rgb(72, 30, 30);
     box-sizing: border-box;
-
 }
 
 .profile-menu-title {
-    padding-top: 22px;
     display: flex;
     justify-content: center;
+    padding-top: 22px;
     margin: 0 0 18px;
     color: rgb(72, 30, 30);
     font-size: 17px;
@@ -93,9 +88,9 @@
 .profile-menu-links {
     display: flex;
     flex-direction: column;
-    padding-top: 34px;
     gap: 6px;
     width: 100%;
+    padding-top: 34px;
 }
 
 .profile-menu-link {
@@ -120,18 +115,15 @@
 }
 
 .profile-menu-link:hover {
-
     color: var(--accent-color);
     background-color: color-mix(in srgb,
             var(--accent-color),
             transparent 92%);
 }
 
-
-/*DÉCONNEXION */
+/* Déconnexion */
 
 .profile-menu-link-danger {
-
     border-top: 1px solid color-mix(in srgb,
             var(--default-color),
             transparent 90%);
@@ -149,7 +141,7 @@
             transparent 94%);
 }
 
-/* BLOC DROIT : INFORMATIONS */
+/* BLOC INFORMATIONS DU PROFIL */
 
 .profile-information {
     width: 100%;
@@ -160,8 +152,7 @@
     box-sizing: border-box;
 }
 
-
-/* PHOTO + IDENTITÉ*/
+/* Photo et identité */
 
 .profile-user-header {
     display: flex;
@@ -175,8 +166,6 @@
             transparent 88%);
 }
 
-
-/* AVATAR*/
 .profile-avatar-wrapper {
     display: flex;
     align-items: center;
@@ -212,7 +201,8 @@
     object-fit: cover;
 }
 
-/* NOM + EMAIL */
+/* Nom et email */
+
 .profile-user-identity {
     width: 100%;
     color: rgb(72, 30, 30);
@@ -226,8 +216,7 @@
     font-weight: 600;
 }
 
-
-/* TITRE INFORMATIONS */
+/* Titres des informations */
 
 .profile-information-header {
     margin: 25px 0 18px;
@@ -241,8 +230,7 @@
     font-weight: 600;
 }
 
-
-/* INFORMATIONS */
+/* Informations */
 
 .profile-info {
     display: flex;
@@ -258,16 +246,14 @@
     gap: 20px;
     padding: 14px 16px;
     background-color: #f8f5ed;
-    border-radius: 8px;
-
     border: none;
-
-
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
 .profile-info-label {
-    font-size: 13px;
     color: rgb(72, 30, 30);
+    font-size: 13px;
 }
 
 .profile-info-value {
@@ -275,13 +261,158 @@
     font-weight: 500;
 }
 
+/* PAGE MES COMMANDES */
 
+.profile-orders {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: left;
+}
 
-/* TABLETTE 991 px*/
+.profile-orders .profile-information-header {
+    margin: 0 0 25px;
+    text-align: left;
+}
 
+.profile-orders .profile-information-header h2 {
+    text-align: left;
+}
+
+/* Liste des commandes */
+
+.profile-orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Carte de chaque commande */
+
+.profile-orders .profile-order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f8f5ed;
+    border: 1px solid #e5dfd3;
+    border-radius: 8px;
+}
+
+/* Détails de la commande */
+
+.profile-order-details {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+    color: rgb(72, 30, 30);
+    text-align: left;
+}
+
+.profile-order-details h3 {
+    margin: 0 0 5px;
+    color: rgb(72, 30, 30);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.profile-order-details p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+.profile-order-details .profile-info-label {
+    color: #795548;
+    font-weight: 500;
+}
+
+.profile-order-details .profile-info-value {
+    color: rgb(72, 30, 30);
+    font-weight: 600;
+}
+
+/* Bouton Voir le détail */
+
+.profile-orders .profile-order-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    gap: 8px;
+    width: auto;
+    white-space: nowrap;
+}
+
+/* Bouton Retour à mon profil */
+
+.profile-orders .profile-orders-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    margin-top: 25px;
+}
+
+/* Aucune commande */
+
+.profile-orders-empty {
+    margin: 0;
+    padding: 15px 0;
+    color: rgb(72, 30, 30);
+    text-align: left;
+}
+
+/* ========================================
+   NOTIFICATIONS / FLASH MESSAGES
+======================================== */
+
+.flash-container {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Message */
+
+.flash-container .alert {
+    display: flex;
+    align-items: center;
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    min-height: 45px;
+    margin: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+    box-sizing: border-box;
+}
+
+/* ========================================
+   TABLETTES : 991 PX
+======================================== */
 
 @media (max-width: 991px) {
-
     .profile-content {
         grid-template-columns: 240px minmax(0, 1fr);
         gap: 20px;
@@ -297,9 +428,11 @@
     }
 }
 
-/* TABLETTE  767px*/
-@media (max-width: 767px) {
+/* ========================================
+   TABLETTES ET MOBILES : 767 PX
+======================================== */
 
+@media (max-width: 767px) {
     .profile-page {
         padding: 45px 0;
     }
@@ -316,28 +449,43 @@
 
     .profile-menu-links {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 6px;
     }
 
     .profile-menu-link-danger {
         margin-top: 0;
-
-        border-top: none;
-
         padding-top: 12px;
+        border-top: none;
     }
 
     .profile-information {
         padding: 25px;
     }
+
+    /* Commandes sur petits écrans */
+
+    .profile-orders {
+        padding: 20px;
+    }
+
+    .profile-orders .profile-order-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 16px;
+    }
+
+    .profile-orders .profile-order-link {
+        width: 100%;
+    }
 }
 
-
-/* MOBILE*/
+/* ========================================
+   MOBILES : 575 PX
+======================================== */
 
 @media (max-width: 575px) {
-
     .profile-page {
         padding: 30px 0;
     }
@@ -381,46 +529,34 @@
 
     .profile-info-item {
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 5px;
     }
 
     .profile-info-value {
         text-align: left;
     }
-}
 
-/* NOTIFICATIONS / FLASH MESSAGE  */
-.flash-container {
-    position: fixed;
-    top: 90px;
-    right: 20px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+    /* Commandes sur téléphone */
 
-/* MESSAGE */
-.flash-container .alert {
-    width: 320px;
-    max-width: calc(100vw - 40px);
-    min-height: 45px;
-    margin: 0;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    border-radius: 8px;
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
-}
+    .profile-orders {
+        padding: 16px;
+    }
 
-/* MOBILE */
-@media (max-width: 575px) {
+    .profile-orders .profile-information-header h2 {
+        font-size: 18px;
+    }
+
+    .profile-order-details h3 {
+        font-size: 17px;
+    }
+
+    .profile-order-details p {
+        font-size: 13px;
+    }
+
+    /* Notifications sur téléphone */
+
     .flash-container {
         top: 80px;
         right: 15px;

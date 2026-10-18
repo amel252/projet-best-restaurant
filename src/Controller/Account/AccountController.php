@@ -19,6 +19,13 @@ use App\Entity\Address;
 use App\Repository\AddressRepository;
 use App\Form\AddressUserType;
 
+
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
+use App\Repository\OrderRepository;
+
+
+
 final class AccountController extends AbstractController
 {
 
@@ -68,5 +75,56 @@ final class AccountController extends AbstractController
             'modifyPwd'=> $form->createView()
         ]);
     }
+    
+    // Afficher la liste des commandes de l'utilisateur connecté
+    #[Route('/compte/commandes', name: 'app_account_orders')]
+    public function orders(OrderRepository $orderRepository): Response
+    {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+        $orders = $orderRepository->findBy(
+            ['user' => $user],
+            ['id' => 'DESC']
+        );
+        $paymentStatuses = [];
+
+        foreach ($orders as $order) {
+            $sessionId = $order->getStripeSessionId();
+
+            if ($sessionId) {
+                $session = Session::retrieve($sessionId);
+                $paymentStatuses[$order->getId()] = $session->payment_status;
+            } else {
+                $paymentStatuses[$order->getId()] = 'unpaid';
+            }
+        }
+        return $this->render('account/orders.html.twig', [
+            'orders' => $orders,
+            'paymentStatuses' => $paymentStatuses,
+        ]);
+    }
+    //  afficher la commande seule 
+    #[Route('/compte/commande/{id_order}', name: 'app_account_order')]
+    public function index($id_order, OrderRepository $orderRepository): Response
+    {
+        $order = $orderRepository->findOneBy([
+            'id' => $id_order,
+            'user' => $this->getUser()
+        ]);
+
+        if (!$order) {
+            return $this->redirectToRoute('app_home');
+        }
+        return $this->render('account/order/index.html.twig', [
+            'order' => $order,
+        ]);
+    }
+
+    
 
 }
