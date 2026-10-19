@@ -70,6 +70,16 @@
                                         {% endif %}
                                     </span>
                                 </p>
+                                <p>
+                                    <span class="profile-info-label">Prix total :</span>
+                                    <span class="profile-info-value">
+                                        {{ (
+                                            order.orderDetails|reduce((total, detail) =>
+                                                total + (detail.productPriceWt * detail.productQuantity), 0
+                                            ) + order.carrierPrice
+                                        )|price }} 
+                                    </span>
+                                </p>
                             </div>
 
                             <a
