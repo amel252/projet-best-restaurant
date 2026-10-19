@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('IS_AUTHENTICATED_FULLY')]
 final class OrderController extends AbstractController
 {
-    #[Route('/compte/commande/livraison', name: 'app_order')]
+    #[Route('/commande/livraison', name: 'app_order')]
     public function index(CarrierRepository $carrierRepository): Response
     {
         $addresses = $this->getUser()->getAddresses();

@@ -66,31 +66,71 @@
     font-weight: 600;
 }
 
-/* Bouton assorti à l'identité visuelle du profil */
-.payment-success-wrapper .payment-success__button {
+/* BOUTONS DE CONFIRMATION DE COMMANDE */
+
+.payment-success-wrapper .payment-success-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 25px;
+}
+
+/* Style commun */
+.payment-success-wrapper .payment-success__button,
+.payment-success-wrapper .btn-success {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-top: 10px;
     padding: 12px 20px;
-    color: var(--contrast-color);
-    background-color: var(--accent-color);
-    border: 1px solid var(--accent-color);
     border-radius: 50px;
     font-size: 14px;
+    font-weight: 600;
     text-decoration: none;
-    transition: 0.3s;
+    transition: all 0.25s ease;
+}
+
+/* Retour à l'accueil : beige clair */
+.payment-success-wrapper .payment-success__button {
+    color: rgb(72, 30, 30);
+    background-color: #e3d8bb;
+    border: 1px solid #e3d8bb;
 }
 
 .payment-success-wrapper .payment-success__button:hover {
+    color: var(--accent-color);
+    background-color: #fffdf8;
+    border-color: var(--accent-color);
+}
+
+/* Consulter ma commande : couleur d'accent */
+.payment-success-wrapper .btn-success {
+    color: var(--contrast-color);
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+.payment-success-wrapper .btn-success:hover {
     color: var(--contrast-color);
     background-color: color-mix(in srgb,
             var(--accent-color),
             transparent 15%);
 }
 
+/* Responsive mobile */
 @media (max-width: 575px) {
+    .payment-success-wrapper .payment-success-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .payment-success-wrapper .payment-success-actions a {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     .payment-success-wrapper .payment-success {
         padding: 35px 15px;
     }
