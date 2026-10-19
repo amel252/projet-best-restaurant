@@ -47,6 +47,11 @@
                     ><i class="bi bi-lock"></i>
                         <span>Modifier mon mot de passe</span>
                     </a>
+                    {# commandes #}
+                    <a href="{{ path('app_account_orders') }}" class="profile-menu-link">
+                        <i class="bi bi-bag"></i>
+                        <span>Mes commandes</span>
+                    </a>
 
                     {# Déconnexion #}
 
@@ -147,6 +152,9 @@
         </div>
     </div>
 </section>
+
+
+
 
 {% endblock %}
 
