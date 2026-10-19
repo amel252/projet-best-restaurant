@@ -1,0 +1,127 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de ma commande - BestRestaurant{% endblock %}
+
+{% block body %}
+<section class="profile-page">
+    <div class="container">
+
+        <div class="profile-header">
+            <span class="profile-subtitle">Mon espace personnel</span>
+            <h1>Détail de ma commande</h1>
+            <p>Retrouvez les informations et le récapitulatif de votre commande.</p>
+        </div>
+
+        <div class="profile-card profile-information order-detail-card">
+
+            <div class="order-detail-header">
+                <div>
+                    <h2>Commande n° {{ order.id }}</h2>
+                    <p class="order-detail-date">
+                        Passée le {{ order.createdAt|date('d/m/Y') }}
+                    </p>
+                </div>
+
+                <div class="order-detail-status">
+                    {{ include('admin/state.html.twig', {
+                        field: {'value': order.state}
+                    }) }}
+                </div>
+            </div>
+
+            <hr class="order-detail-divider">
+
+            <div class="order-detail-addresses">
+                <div class="order-detail-info">
+                    <h3><i class="bi bi-geo-alt"></i> Adresse de livraison</h3>
+                    <div>{{ order.delivery|raw }}</div>
+                </div>
+
+                <div class="order-detail-info">
+                    <h3><i class="bi bi-truck"></i> Transporteur</h3>
+                    <p>{{ order.carrierName }}</p>
+                </div>
+            </div>
+
+            <hr class="order-detail-divider">
+
+            <h3 class="order-detail-section-title">Contenu de la commande</h3>
+
+            <div class="order-detail-table-wrapper">
+                <table class="table order-detail-table">
+                    <thead>
+                        <tr>
+                            <th>Illustration</th>
+                            <th>Produit</th>
+                            <th>Quantité</th>
+                            <th>Prix unitaire H.T.</th>
+                            <th>TVA</th>
+                            <th>Total T.T.C.</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for product in order.orderDetails %}
+                            {% set coeff = 1 + (product.productTva / 100) %}
+
+                            <tr>
+                                <td>
+                                    <img
+                                        src="/uploads/products/{{ product.productIllustration }}"
+                                        class="order-detail-product-image"
+                                        alt="{{ product.productName }}"
+                                    >
+                                </td>
+
+                                <td>{{ product.productName }}</td>
+                                <td>{{ product.productQuantity }}</td>
+                                <td>{{ product.productPrice|price }}</td>
+                                <td>{{ product.productTva }} %</td>
+                                <td>
+                                    {{ ((product.productPrice * coeff) * product.productQuantity)|price }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        <tr class="order-detail-carrier-row">
+                            <td></td>
+                            <td>{{ order.carrierName }}</td>
+                            <td>1</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>{{ order.carrierPrice|price }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="order-detail-totals">
+                <p>
+                    <span>Total H.T. :</span>
+                    <strong>{{ (order.totalTtc - order.totalTva)|price }}</strong>
+                </p>
+
+                <p>
+                    <span>Total TVA :</span>
+                    <strong>{{ order.totalTva|price }}</strong>
+                </p>
+
+                <p class="order-detail-grand-total">
+                    <span>Total T.T.C. :</span>
+                    <strong>{{ order.totalTtc|price }}</strong>
+                </p>
+            </div>
+
+            <div class="order-detail-footer">
+                <a href="{{ path('app_account_orders') }}"
+                   class="profile-menu-link order-detail-back">
+                    <i class="bi bi-arrow-left"></i>
+                    <span>Retour à mes commandes</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
