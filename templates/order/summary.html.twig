@@ -122,26 +122,30 @@
                     <h2>Récapitulatif</h2>
 
                     <div class="summary-total-line">
-                        <span>Total produits</span>
-
-                        <strong>
-                            {{ totalWt|price }}
-                        </strong>
+                        <span>Numéro de la commande</span>
+                        <strong># {{ order.id }}</strong>
                     </div>
-
+                    <div class="summary-total-line">
+                        <span>Date de commande</span>
+                        <strong>{{ order.createdAt|date('d/m/Y') }}</strong>
+                    </div>
+                    <div class="summary-total-line">
+                        <span>Prix des produits</span>
+                        <strong>{{ totalWt|price }}</strong>
+                    </div>
                     <div class="summary-total-line">
                         <span>Livraison</span>
-
-                        <strong>
-                            {{ choices.carriers.price|price }}
-                        </strong>
+                        <strong>{{ choices.carriers.price|price }}</strong>
+                    </div>
+                    <div class="summary-total-line">
+                        <span>Réduction</span>
+                        <strong>0,00 €</strong>
                     </div>
 
                     <div class="summary-total-separator"></div>
 
                     <div class="summary-total-final">
                         <span>Total commande</span>
-                        
                         <strong>
                             {{ (choices.carriers.price + totalWt)|price }}
                             
