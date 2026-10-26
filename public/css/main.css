@@ -134,28 +134,28 @@ h6 {
     transform: rotate(360deg);
   }
 }
-/* ------------------
-  Stylisation du HEADER
-*/
+/* ==================================================
+   NAVBAR — STYLE GÉNÉRAL
+================================================== */
 .header {
   position: sticky;
   top: 0;
   width: 100%;
-  padding: 15px 0;
+  padding: 12px 0;
   background-color: var(--background-color);
   color: var(--default-color);
   z-index: 1000;
 }
 
-/*CONTENEUR HEADER*/
 .header-container {
   display: flex;
   align-items: center;
   width: 100%;
+  gap: 16px;
 }
 
-/*LOGO*/
-.logo {
+/* Logo */
+.header .logo {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -163,18 +163,20 @@ h6 {
   flex-shrink: 0;
 }
 
-.logo i {
+.header .logo i {
   font-size: 20px;
   color: var(--accent-color);
 }
 
-.logo h1 {
+.header .logo h1 {
   margin: 0;
   font-size: 20px;
+  font-weight: 600;
   color: var(--heading-color);
+  white-space: nowrap;
 }
 
-/*NAVIGATION DESKTOP*/
+/* Menu desktop */
 .navmenu {
   margin-left: auto;
 }
@@ -182,115 +184,49 @@ h6 {
 .navmenu > ul {
   display: flex;
   align-items: center;
+  gap: 5px;
   margin: 0;
   padding: 0;
   list-style: none;
-  gap: 8px;
 }
 
 .navmenu > ul > li {
   display: flex;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-/*LIENS DU MENU*/
 .navmenu > ul > li > a {
   display: flex;
   align-items: center;
-  padding: 8px 7px;
+  padding: 8px 5px;
   color: var(--nav-color);
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 
 .navmenu > ul > li > a:hover,
 .navmenu > ul > li > a.active {
-  color: var(--nav-hover-color);
+  color: var(--accent-color);
 }
 
-/* BOUTON RESERVER*/
-.nav-reservation {
-  margin-left: 5px;
-  padding-right: 25px;
+/* Connexion et panier */
+.navmenu > ul > li.nav-actions {
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-
-.nav-reservation > a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 10px 20px !important;
-  color: var(--contrast-color) !important;
-  background-color: var(--accent-color);
-  border-radius: 50px;
-  transition: background-color 0.2s ease;
-}
-
-.nav-reservation > a:hover {
-  color: var(--contrast-color) !important;
-  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
-}
-
-/* PANIER*/
-.cart-icon {
-  position: relative;
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0 !important;
-  background-color: transparent !important;
-  border-radius: 0 !important;
-  color: var(--nav-color) !important;
-  text-decoration: none;
-}
-
-.cart-icon:hover {
-  color: var(--nav-hover-color) !important;
-}
-
-.cart-icon i {
-  font-size: 22px;
-}
-
-/* PETIT CHIFFRE SUR LE PANIER */
-.cart-badge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  min-width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 5px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-  z-index: 10;
-}
-
-/*PROFIL DESKTOP */
-.nav-login {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
+  gap: 8px;
+  margin-left: 22px;
+  flex-shrink: 0;
 }
 
 .nav-login a {
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 8px 7px;
+  padding: 7px 3px;
   color: var(--nav-color);
   text-decoration: none;
   font-size: 14px;
@@ -299,164 +235,547 @@ h6 {
 }
 
 .nav-login a:hover {
-  color: var(--nav-hover-color);
-}
-
-.nav-login a i {
-  font-size: 20px;
   color: var(--accent-color);
 }
 
-/* =====================================================
-   BURGER
-===================================================== */
+.nav-login a i {
+  font-size: 21px;
+  color: var(--accent-color);
+}
+
+.cart-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--nav-color);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.cart-icon i {
+  font-size: 21px;
+}
+
+.cart-icon:hover {
+  color: var(--accent-color);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -3px;
+  right: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Bouton réservation */
+.navmenu > ul > li.nav-reservation {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.navmenu > ul > li.nav-reservation > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 18px;
+  border-radius: 50px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 14px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.navmenu > ul > li.nav-reservation > a:hover {
+  background-color: color-mix(in srgb, var(--accent-color), black 10%);
+  color: var(--contrast-color);
+}
+
+/* Icône burger */
 .mobile-nav-toggle {
   display: none;
   margin-left: auto;
   font-size: 28px;
   color: var(--default-color);
   cursor: pointer;
-  transition: color 0.2s ease;
 }
 
-.mobile-nav-toggle:hover {
-  color: var(--accent-color);
-}
-
-/* =====================================================
-   TABLETTE
-   992px à 1199px
-===================================================== */
-@media (max-width: 1199px) {
+/* ==================================================
+   NAVBAR — ÉCRANS ENTRE 992 PX ET 1199 PX
+================================================== */
+@media (min-width: 992px) and (max-width: 1199px) {
   .header-container {
-    gap: 15px;
+    gap: 10px;
+  }
+  .header .logo h1 {
+    font-size: 18px;
+  }
+  .header .logo i {
+    font-size: 18px;
   }
   .navmenu > ul {
-    gap: 4px;
+    gap: 2px;
   }
   .navmenu > ul > li > a {
-    padding: 7px 5px;
-    font-size: 14px;
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+  .navmenu > ul > li.nav-actions {
+    gap: 4px;
+    margin-left: 10px;
   }
   .nav-login a {
-    padding: 7px 5px;
-    font-size: 14px;
+    font-size: 13px;
   }
-  .nav-reservation {
-    margin-left: 3px;
+  .cart-icon {
+    width: 30px;
   }
-  .nav-reservation > a {
-    padding: 9px 15px !important;
+  .navmenu > ul > li.nav-reservation {
+    margin-left: 6px;
+  }
+  .navmenu > ul > li.nav-reservation > a {
+    padding: 8px 12px;
+    font-size: 13px;
   }
 }
-/* MOBILE 991px et moins */
+/* ==================================================
+   NAVBAR — TABLETTES ET MOBILES : 991 PX MAXIMUM
+================================================== */
 @media (max-width: 991px) {
   .header {
-    padding: 15px 0;
+    padding: 12px 0;
   }
-  /* LOGO */
-  .logo {
-    margin-right: auto;
+  .header-container {
+    position: relative;
+    gap: 10px;
   }
-  /* BURGER */
+  .header .logo h1 {
+    font-size: 20px;
+  }
   .mobile-nav-toggle {
     display: block;
+    position: relative;
+    z-index: 1002;
   }
-  /* NAVIGATION FERMÉE */
+  /* Menu déroulant mobile */
   .navmenu {
     position: absolute;
-    top: 100%;
-    left: 15px;
-    right: 15px;
-    display: none;
+    top: calc(100% + 12px);
+    left: 12px;
+    right: 12px;
     margin: 0;
-    padding: 15px;
+    padding: 12px;
     background-color: var(--background-color);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    z-index: 9999;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    z-index: 1001;
   }
-  /* NAVIGATION OUVERTE */
-  .mobile-nav-active .navmenu {
-    display: block;
-  }
-  /* LISTE MOBILE */
   .navmenu > ul {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     width: 100%;
   }
-  /* LI */
+  /* À afficher lorsque ton JavaScript ajoute .active */
+  .navmenu.active > ul {
+    display: flex;
+  }
   .navmenu > ul > li {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     width: 100%;
   }
-  /* LIENS */
   .navmenu > ul > li > a {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    padding: 8px 15px;
+    width: 100%;
+    padding: 12px 10px;
     font-size: 15px;
+    white-space: normal;
   }
-  /* PROFIL / CONNEXION */
-  .nav-login {
-    width: fit-content;
-    margin-top: 5px;
-    border-top: none;
+  .navmenu > ul > li.nav-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    margin: 4px 0;
+    padding: 8px 10px;
   }
   .nav-login a {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    padding: 8px 15px;
-    font-size: 15px;
+    padding: 5px 0;
   }
-  /* RESERVATION + panier */
-  .nav-reservation {
-    width: fit-content;
-    margin: 8px 0 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .cart-icon {
+    width: 36px;
   }
-  .nav-reservation > a {
-    width: fit-content;
-    display: flex;
-    align-items: center;
+  .navmenu > ul > li.nav-reservation {
+    margin: 6px 0 0;
+  }
+  .navmenu > ul > li.nav-reservation > a {
     justify-content: center;
-    min-height: 40px;
-    padding: 9px 16px !important;
-    border-radius: 50px;
-  }
-  /* Panier */
-  .nav-reservation > a:last-child {
-    padding: 9px 12px !important;
-  }
-  .nav-reservation > a:last-child i {
-    font-size: 18px;
+    width: 100%;
+    padding: 11px 18px;
   }
 }
-/* =====================================================
-   PETIT MOBILE
-   575px et moins
-===================================================== */
+/* ==================================================
+   NAVBAR — PETITS MOBILES : 575 PX MAXIMUM
+================================================== */
 @media (max-width: 575px) {
   .header {
-    padding: 12px 0;
+    padding: 10px 0;
   }
-  .logo {
-    gap: 3px;
+  .header-container {
+    gap: 8px;
   }
-  .logo h1 {
+  .header .logo {
+    gap: 5px;
+  }
+  .header .logo h1 {
     font-size: 18px;
   }
-  .logo i {
+  .header .logo i {
     font-size: 19px;
   }
   .mobile-nav-toggle {
     font-size: 26px;
+  }
+  .navmenu {
+    left: 8px;
+    right: 8px;
+  }
+}
+/* ==================================================
+   FOOTER — STYLE GÉNÉRAL
+================================================== */
+#footer {
+  color: var(--default-color);
+}
+
+#footer .footer-top {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+#footer .footer-about .logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+#footer .footer-about .sitename {
+  color: var(--heading-color);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+#footer .footer-about p {
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+#footer .social-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+  border-radius: 50%;
+  color: var(--default-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+#footer .social-links a:hover {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+#footer h4 {
+  margin-bottom: 15px;
+  color: var(--heading-color);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#footer .footer-links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#footer .footer-links ul li {
+  padding: 7px 0;
+}
+
+#footer .footer-links ul a {
+  color: var(--default-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#footer .footer-links ul a:hover {
+  color: var(--accent-color);
+}
+
+/* Horaires */
+#footer .footer-location {
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#footer .opening-hours {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#footer .opening-hours li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+  font-size: 14px;
+}
+
+#footer .opening-hours li span:last-child {
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* Contact */
+#footer .footer-contact p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+#footer .footer-contact strong {
+  margin-right: 5px;
+}
+
+#footer .footer-contact p span {
+  overflow-wrap: anywhere;
+}
+
+/* Copyright */
+#footer .copyright {
+  margin-top: 20px;
+  padding: 20px 15px;
+  border-top: 1px solid rgba(127, 127, 127, 0.2);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#footer .copyright p {
+  margin-bottom: 0;
+}
+
+/* ==================================================
+   FOOTER — TABLETTES ET MOBILES : 991 PX MAXIMUM
+   Horaires et contact sur la même ligne
+================================================== */
+@media (max-width: 991px) {
+  #footer .footer-top {
+    padding-top: 35px;
+    padding-bottom: 20px;
+  }
+  #footer .footer-top > .row {
+    --bs-gutter-y: 1.5rem;
+  }
+  /* Présentation */
+  #footer .footer-about {
+    text-align: center;
+  }
+  #footer .footer-about .logo {
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  #footer .footer-about .sitename {
+    font-size: 25px;
+  }
+  #footer .footer-about p {
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  #footer .social-links {
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  /* Horaires */
+  #footer .footer-links-hour h4 {
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  #footer .footer-location {
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+  #footer .opening-hours li {
+    gap: 5px;
+    padding: 7px 0;
+    font-size: 13px;
+  }
+  #footer .opening-hours li span:last-child {
+    white-space: nowrap;
+  }
+  /* Contact */
+  #footer .footer-contact {
+    text-align: left !important;
+  }
+  #footer .footer-contact h4 {
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  #footer .footer-contact p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  #footer .copyright {
+    margin-top: 15px;
+    padding: 20px 15px;
+    font-size: 13px;
+  }
+}
+/* ==================================================
+   FOOTER — MOBILES : 720 PX MAXIMUM
+   Masquer uniquement les liens utiles
+================================================== */
+@media (max-width: 720px) {
+  #footer .footer-links {
+    display: none;
+  }
+}
+/* ==================================================
+   GRANDS ÉCRANS : 1800 PX ET PLUS
+================================================== */
+@media (min-width: 1800px) {
+  .container {
+    max-width: 1650px;
+  }
+  .container-fluid {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  section,
+  .section {
+    padding: 90px 0;
+  }
+  /* Navbar */
+  .header {
+    padding: 16px 0;
+  }
+  .header-container {
+    max-width: 1750px;
+    margin: 0 auto;
+  }
+  .header .logo h1 {
+    font-size: 25px;
+  }
+  .header .logo i {
+    font-size: 24px;
+  }
+  .navmenu > ul {
+    gap: 10px;
+  }
+  .navmenu > ul > li > a {
+    padding: 10px 8px;
+    font-size: 17px;
+  }
+  .nav-login a {
+    font-size: 16px;
+  }
+  .nav-login a i {
+    font-size: 24px;
+  }
+  .cart-icon {
+    width: 42px;
+    height: 42px;
+  }
+  .cart-icon i {
+    font-size: 24px;
+  }
+  .navmenu > ul > li.nav-reservation > a {
+    padding: 12px 22px;
+    font-size: 16px;
+  }
+  /* Footer */
+  #footer .container {
+    max-width: 1650px;
+  }
+  #footer .footer-top {
+    padding: 65px 35px 40px;
+  }
+  #footer .footer-top > .row {
+    --bs-gutter-x: 3.5rem;
+  }
+  #footer .footer-about .sitename {
+    font-size: 32px;
+  }
+  #footer .footer-about p {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  #footer .social-links {
+    gap: 14px;
+  }
+  #footer .social-links a {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+  #footer h4 {
+    margin-bottom: 20px;
+    font-size: 21px;
+  }
+  #footer .footer-links ul li {
+    padding: 9px 0;
+    font-size: 16px;
+  }
+  #footer .footer-location,
+  #footer .opening-hours li {
+    font-size: 16px;
+  }
+  #footer .footer-contact p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  #footer .copyright {
+    margin-top: 25px;
+    padding: 25px 15px;
+    font-size: 15px;
   }
 }
 /*--------------------------------------------------------------
@@ -554,109 +873,283 @@ h6 {
     font-size: 32px;
   }
 }
-/*--------------------------------------------------------------
-# Global Footer
---------------------------------------------------------------*/
+/*-----Global Footer------*/
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
   font-size: 14px;
-  padding-bottom: 50px;
+  padding-bottom: 0;
   position: relative;
 }
 .footer .footer-top {
   padding-top: 50px;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
-.footer .footer-about .logo {
-  line-height: 1;
-  margin-bottom: 25px;
-}
-.footer .footer-about .logo img {
-  max-height: 40px;
-  margin-right: 6px;
-}
-.footer .footer-about .logo span {
-  color: var(--heading-color);
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  font-family: var(--heading-font);
-}
-.footer .footer-about p {
-  font-size: 14px;
-  font-family: var(--heading-font);
-}
-.footer .social-links a {
+.footer .footer-top .row {
   display: flex;
+  align-items: flex-start;
+}
+.footer {
+  /* footer about */
+}
+.footer .footer-about .logo {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
-  font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-  margin-right: 10px;
-  transition: 0.3s;
+  margin-bottom: 18px;
+  text-decoration: none;
 }
-.footer .social-links a:hover {
+.footer .footer-about .logo .sitename {
+  color: var(--heading-color);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-family: var(--heading-font);
+}
+.footer .footer-about .footer-about,
+.footer .footer-about .footer-links,
+.footer .footer-about .footer-hours,
+.footer .footer-about .footer-links-hour {
+  margin-top: 0;
+  padding-top: 0;
+}
+.footer .footer-about .footer-description {
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.footer .footer-about {
+  /* Alignement des titres */
+}
+.footer .footer-about .footer-about > .logo,
+.footer .footer-about .footer-links > h4,
+.footer .footer-about .footer-links > h6,
+.footer .footer-about .footer-hours h4,
+.footer .footer-about .footer-hours h6,
+.footer .footer-about .footer-links-hour h4,
+.footer .footer-about .footer-links-hour h6 {
+  margin-top: 0;
+}
+.footer .footer-about .footer-contact-info {
+  margin-top: 0;
+}
+.footer .footer-about .footer-contact-info p {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.footer .footer-about .footer-contact-info i {
+  color: #d4a056;
+  font-size: 17px;
+  width: 20px;
+  min-width: 20px;
+  text-align: center;
+  margin-top: 2px;
+}
+.footer .footer-about .footer-contact-info a {
+  color: var(--default-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer .footer-about .footer-contact-info a:hover {
   color: var(--accent-color);
-  border-color: var(--accent-color);
 }
-.footer h4 {
-  font-size: 16px;
-  font-weight: bold;
-  position: relative;
-  padding-bottom: 12px;
+.footer {
+  /* Liens utiles : colonne indépendante */
 }
 .footer .footer-links {
-  margin-bottom: 30px;
+  margin-bottom: 4px;
+}
+.footer .footer-links h6 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding-bottom: 12px;
+  position: relative;
 }
 .footer .footer-links ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.footer .footer-links ul i {
-  padding-right: 2px;
-  font-size: 12px;
-  line-height: 0;
-}
-.footer .footer-links ul li {
-  padding: 10px 0;
-}
-.footer .footer-links ul li:first-child {
-  padding-top: 0;
-}
 .footer .footer-links ul li {
   display: flex;
   align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+}
+.footer .footer-links ul i {
+  color: var(--accent-color);
+  font-size: 12px;
+  flex-shrink: 0;
 }
 .footer .footer-links ul a {
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   display: inline-block;
-  line-height: 1;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
 }
 .footer .footer-links ul a:hover {
   color: var(--accent-color);
+  transform: translateX(3px);
+}
+.footer {
+  /* Horaires d'ouverture dans le footer */
+}
+.footer .footer-links-hour .opening-hours {
+  list-style: none;
+  padding-top: 6px;
+  margin: 0;
+}
+.footer .footer-links-hour .opening-hours li {
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 0.9;
+  border: none !important;
+  border-bottom: none !important;
+}
+.footer .footer-links-hour .opening-hours-day {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border: none !important;
+  border-bottom: none !important;
+}
+.footer .footer-links-hour .opening-hours-time {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  white-space: nowrap;
+  border: none !important;
+  border-bottom: none !important;
+}
+.footer .footer-links-hour h6 {
+  margin-bottom: 12px;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .footer .footer-contact p {
   margin-bottom: 5px;
 }
 .footer .copyright {
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding: 25px;
+  padding-bottom: 0;
   background-color: color-mix(in srgb, var(--default-color), transparent 95%);
 }
 .footer .copyright p {
-  margin-bottom: 0;
+  margin: 0;
 }
 .footer .credits {
   margin-top: 6px;
   font-size: 13px;
 }
 
+/*----- Footer responsive -----*/
+/* Tablettes */
+@media (max-width: 999px) {
+  .footer .footer-about {
+    margin-bottom: 25px;
+  }
+  .footer .footer-links {
+    margin-bottom: 25px;
+  }
+  .footer .footer-hours,
+  .footer .footer-links-hour {
+    margin-bottom: 20px;
+  }
+}
+/* Mobiles */
+@media (max-width: 767px) {
+  .footer .footer-top {
+    padding-top: 25px;
+  }
+  .footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .footer {
+    /* Présentation plus compacte */
+  }
+  .footer .footer-about {
+    width: 58.333%;
+    flex: 0 0 58.333%;
+    margin: 0;
+    padding-right: 10px;
+  }
+  .footer .footer-about .logo {
+    margin-bottom: 10px;
+  }
+  .footer .footer-about .logo .sitename {
+    font-size: 12px;
+  }
+  .footer .footer-about .footer-description {
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+  .footer .footer-about .footer-contact-info p {
+    font-size: 12px;
+    gap: 6px;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+  }
+  .footer .footer-about .footer-contact-info i {
+    font-size: 14px;
+    width: 16px;
+    min-width: 16px;
+  }
+  .footer {
+    /* Horaires à droite */
+  }
+  .footer .footer-hours,
+  .footer .footer-links-hour {
+    width: 41.667%;
+    flex: 0 0 41.667%;
+    margin: 0;
+    padding-left: 5px;
+  }
+  .footer .footer-hours h4,
+  .footer .footer-hours h6,
+  .footer .footer-links-hour h4,
+  .footer .footer-links-hour h6 {
+    font-size: 14px;
+    white-space: normal;
+    margin-bottom: 10px;
+  }
+  .footer .footer-hours .opening-hours li,
+  .footer .footer-links-hour .opening-hours li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 3px;
+    font-size: 11px;
+    line-height: 1.4;
+    padding: 4px 0;
+  }
+  .footer .footer-hours .opening-hours-day,
+  .footer .footer-hours .opening-hours-time,
+  .footer .footer-links-hour .opening-hours-day,
+  .footer .footer-links-hour .opening-hours-time {
+    white-space: normal;
+  }
+  .footer {
+    /* Masquer les liens utiles */
+  }
+  .footer .footer-links {
+    display: none !important;
+  }
+}
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/

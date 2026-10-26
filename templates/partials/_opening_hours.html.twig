@@ -1,0 +1,25 @@
+
+<div class="col-lg-3 col-md-6 col-12 footer-links-hour">
+    <h6>Horaires d'ouverture</h6>
+
+    <ul class="opening-hours">
+        {% for hour in openingHours %}
+            <li>
+                <span class="opening-hours-day"> {{ hour.dayOfWeek }}</span>
+                <span class="opening-hours-time">
+                    : {% if hour.isClosed %}
+                        Fermé
+                    {% elseif hour.openTime and hour.closeTime %}
+                        {{ hour.openTime|date('H\\hi') }}
+                        – {{ hour.closeTime|date('H\\hi') }}
+                    {% else %}
+                        Horaires non renseignés
+                    {% endif %}
+                </span>
+            </li>
+        {% else %}
+            <li><span>Horaires indisponibles</span></li>
+        {% endfor %}
+    </ul>
+</div>
+
