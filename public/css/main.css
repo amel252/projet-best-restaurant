@@ -890,6 +890,16 @@ h6 {
   align-items: flex-start;
 }
 .footer {
+  /* Alignement général des colonnes */
+}
+.footer .footer-about,
+.footer .footer-links,
+.footer .footer-hours,
+.footer .footer-links-hour {
+  margin-top: 0;
+  padding-top: 0;
+}
+.footer {
   /* footer about */
 }
 .footer .footer-about .logo {
@@ -904,13 +914,6 @@ h6 {
   font-weight: 700;
   letter-spacing: 0.5px;
   font-family: var(--heading-font);
-}
-.footer .footer-about .footer-about,
-.footer .footer-about .footer-links,
-.footer .footer-about .footer-hours,
-.footer .footer-about .footer-links-hour {
-  margin-top: 0;
-  padding-top: 0;
 }
 .footer .footer-about .footer-description {
   max-width: 420px;

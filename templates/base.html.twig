@@ -116,55 +116,12 @@
         <footer id="footer" class="footer">
             <div class="container footer-top">
                 <div class="row gy-4 align-items-start">
-
-                    {# BLOC 1 : IDENTITÉ ET CONTACT #}
+                    {# BLOC  : info site  #}
                     <div class="col-lg-5 col-md-6 footer-about ps-2">
-                        <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
-                            <span class="sitename">Vite&Gourmand</span>
-                        </a>
-
-                        <p class="footer-description">
-                            Bienvenue chez Vite&Gourmand, où saveurs,
-                            qualité et convivialité se rencontrent pour vous
-                            offrir une expérience culinaire inoubliable.
-                        </p>
-
-                        <div class="footer-contact-info">
-                            <p>
-                                <i class="bi bi-geo-alt-fill"></i>
-                                <span>108 Avenue des Belges, Paris, 93000 France</span>
-                            </p>
-
-                            <p>
-                                <i class="bi bi-telephone-fill"></i>
-                                <a href="tel:+33624097625">06 24 09 76 25</a>
-                            </p>
-
-                            <p>
-                                <i class="bi bi-envelope-fill"></i>
-                                <a href="mailto:best@live.fr">best@live.fr</a>
-                            </p>
-                        </div>
-
-                        <div class="social-links d-flex mt-4">
-                            <a href="#" aria-label="Twitter">
-                                <i class="bi bi-twitter-x"></i>
-                            </a>
-                            <a href="#" aria-label="Facebook">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                            <a href="#" aria-label="Instagram">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="#" aria-label="LinkedIn">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                        </div>
+                        {% include 'partials/_site_info.html.twig' %}
                     </div>
-
                     {# BLOC 2 : LIENS UTILES #}
 					<div class="col-lg-3 col-md-5 d-none d-md-block footer-links">
-                    {# <div class="col-lg-3 col-md-6 footer-links ps-5"> #}
                         <h6>Liens utiles</h6>
                         <ul>
                             <li>

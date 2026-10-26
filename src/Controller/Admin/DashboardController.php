@@ -14,10 +14,12 @@ use App\Entity\Order;
 use App\Entity\Carrier;
 use App\Entity\Allergen;
 use App\Entity\OpeningHour;
+use App\Entity\SiteInformation;
 
 use App\Controller\Admin\UserCrudController;
 use App\Controller\Admin\CategoryCrudController;
 use App\Controller\Admin\OpeningHurCrudController;
+use App\Controller\Admin\SiteInformationCrudController;
 
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 // Cette classe permet de fabriquer des URLs vers une page EasyAdmin.
@@ -56,7 +58,14 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Transporteurs', 'fas fa-truck', 'admin_carrier_index');
         yield MenuItem::linkToRoute('Commandes', 'fas fa-sort', 'admin_order_index');
         yield MenuItem::linkToRoute('Allergènes', 'fas fa-leaf', 'admin_allergen_index');
-        yield MenuItem::linkToRoute("Horaires d'ouvertures", 'fas fa-clock', 'admin_opening_hour_index');
-
+    
+        // Gestion du contenu du site
+        yield MenuItem::subMenu('Footer', 'fas fa-shoe-prints')
+            ->setSubItems([
+                MenuItem::linkToRoute("Horaires d'ouvertures", 'fas fa-clock', 'admin_opening_hour_index'),
+                MenuItem::linkToRoute("Information du site", 'fas fa-info-circle', 'admin_site_information_index'),
+                MenuItem::linkToRoute('Liens utiles','fas fa-link','NOM_DE_TA_ROUTE'
+                ),
+            ]);
     }
 }

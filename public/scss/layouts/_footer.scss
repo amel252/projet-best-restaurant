@@ -16,6 +16,14 @@
     }
   }
 
+  /* Alignement général des colonnes */
+  .footer-about,
+  .footer-links,
+  .footer-hours,
+  .footer-links-hour {
+    margin-top: 0;
+    padding-top: 0;
+  }
 
 
   /* footer about */
@@ -33,14 +41,6 @@
         letter-spacing: 0.5px;
         font-family: var(--heading-font);
       }
-    }
-
-    .footer-about,
-    .footer-links,
-    .footer-hours,
-    .footer-links-hour {
-      margin-top: 0;
-      padding-top: 0;
     }
 
     .footer-description {
@@ -312,39 +312,5 @@
       display: none !important;
     }
 
-    // .footer-about,
-    // .footer-links,
-    // .footer-hours,
-    // .footer-links-hour {
-    //   width: 100%;
-    //   margin-left: 0;
-    //   padding-top: 0;
-    //   margin-bottom: 25px;
-    //   left: 0;
-    // }
-
-    // .footer-links>h4,
-    // .footer-links>h6,
-    // .footer-hours h4,
-    // .footer-hours h6,
-    // .footer-links-hour h4,
-    // .footer-links-hour h6 {
-    //   font-size: 17px;
-    //   white-space: normal;
-    // }
-
-    // .footer-links-hour .opening-hours li {
-    //   line-height: 1.5;
-    //   flex-wrap: wrap;
-    // }
-
-    // .footer-links-hour .opening-hours-time {
-    //   white-space: normal;
-    // }
-
-    // .copyright {
-    //   padding: 15px 0;
-    //   text-align: center;
-    // }
   }
 }
