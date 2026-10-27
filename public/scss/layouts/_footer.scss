@@ -52,11 +52,8 @@
 
     /* Alignement des titres */
     .footer-about>.logo,
-    .footer-links>h4,
     .footer-links>h6,
-    .footer-hours h4,
     .footer-hours h6,
-    .footer-links-hour h4,
     .footer-links-hour h6 {
       margin-top: 0;
     }
@@ -104,6 +101,7 @@
       margin-bottom: 6px;
       padding-bottom: 12px;
       position: relative;
+      white-space: nowrap;
     }
 
     ul {

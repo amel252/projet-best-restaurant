@@ -1,0 +1,16 @@
+
+<div class="col-lg-3 col-md-5 d-none d-md-block footer-links">
+    <h6>Liens utiles</h6>
+    <ul>
+        {% for link in usefullLinks %}
+            <li>
+                <i class="bi bi-chevron-right"></i>
+                {% if link.url %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                {% else %}
+                    <a class="footer-link-disabled">{{ link.title }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

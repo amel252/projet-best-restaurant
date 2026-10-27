@@ -15,11 +15,14 @@ use App\Entity\Carrier;
 use App\Entity\Allergen;
 use App\Entity\OpeningHour;
 use App\Entity\SiteInformation;
+use App\Entity\UsefullLink;
+
 
 use App\Controller\Admin\UserCrudController;
 use App\Controller\Admin\CategoryCrudController;
 use App\Controller\Admin\OpeningHurCrudController;
 use App\Controller\Admin\SiteInformationCrudController;
+use App\Controller\Admin\UsefullLinkCrudController;
 
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 // Cette classe permet de fabriquer des URLs vers une page EasyAdmin.
@@ -44,7 +47,7 @@ class DashboardController extends AbstractDashboardController
           // Config générale du tableau de bord
         return Dashboard::new()
         // Le texte affiché en haut à gauche de l'administration
-            ->setTitle('Best Restaurant');
+            ->setTitle('Vite&Gourmand');
     }
 
     public function configureMenuItems(): iterable
@@ -64,7 +67,7 @@ class DashboardController extends AbstractDashboardController
             ->setSubItems([
                 MenuItem::linkToRoute("Horaires d'ouvertures", 'fas fa-clock', 'admin_opening_hour_index'),
                 MenuItem::linkToRoute("Information du site", 'fas fa-info-circle', 'admin_site_information_index'),
-                MenuItem::linkToRoute('Liens utiles','fas fa-link','NOM_DE_TA_ROUTE'
+                MenuItem::linkToRoute('Liens utiles','fas fa-link','admin_usefull_link_index'
                 ),
             ]);
     }

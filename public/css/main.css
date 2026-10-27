@@ -925,11 +925,8 @@ h6 {
   /* Alignement des titres */
 }
 .footer .footer-about .footer-about > .logo,
-.footer .footer-about .footer-links > h4,
 .footer .footer-about .footer-links > h6,
-.footer .footer-about .footer-hours h4,
 .footer .footer-about .footer-hours h6,
-.footer .footer-about .footer-links-hour h4,
 .footer .footer-about .footer-links-hour h6 {
   margin-top: 0;
 }
@@ -972,6 +969,7 @@ h6 {
   margin-bottom: 6px;
   padding-bottom: 12px;
   position: relative;
+  white-space: nowrap;
 }
 .footer .footer-links ul {
   list-style: none;
