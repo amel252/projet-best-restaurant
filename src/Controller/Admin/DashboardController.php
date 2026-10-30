@@ -16,6 +16,7 @@ use App\Entity\Allergen;
 use App\Entity\OpeningHour;
 use App\Entity\SiteInformation;
 use App\Entity\UsefullLink;
+use App\Entity\LegalPage;
 
 
 use App\Controller\Admin\UserCrudController;
@@ -23,6 +24,7 @@ use App\Controller\Admin\CategoryCrudController;
 use App\Controller\Admin\OpeningHurCrudController;
 use App\Controller\Admin\SiteInformationCrudController;
 use App\Controller\Admin\UsefullLinkCrudController;
+use App\Controller\Admin\LegalPageCrudController;
 
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 // Cette classe permet de fabriquer des URLs vers une page EasyAdmin.
@@ -69,6 +71,9 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToRoute("Information du site", 'fas fa-info-circle', 'admin_site_information_index'),
                 MenuItem::linkToRoute('Liens utiles','fas fa-link','admin_usefull_link_index'
                 ),
+                MenuItem::linkToRoute('Mentions légales','fas fa-balance-scale','admin_legal_page_index'
+                ),
+
             ]);
     }
 }

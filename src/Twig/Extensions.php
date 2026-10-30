@@ -7,6 +7,8 @@ use App\Repository\CategoryRepository;
 use App\Repository\OpeningHourRepository;
 use App\Repository\SiteInformationRepository;
 use App\Repository\UsefullLinkRepository;
+use App\Repository\LegalPageRepository;
+
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFilter;
 use App\Classe\Cart;
@@ -18,14 +20,16 @@ class Extensions extends AbstractExtension implements GlobalsInterface
     private $openingHourRepository;
     private $siteInfoRepository;
     private $usefullLinkRepository;
+    private $legalPageRepository;
 
-    public function __construct(CategoryRepository $categoryRepository, Cart $cart , OpeningHourRepository $openingHourRepository, SiteInformationRepository $siteInfoRepository, UsefullLinkRepository $usefullLinkRepository)
+    public function __construct(CategoryRepository $categoryRepository, Cart $cart , OpeningHourRepository $openingHourRepository, SiteInformationRepository $siteInfoRepository, UsefullLinkRepository $usefullLinkRepository, LegalPageRepository $legalPageRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->cart = $cart;
         $this->openingHourRepository = $openingHourRepository;
         $this->siteInfoRepository = $siteInfoRepository;
         $this->usefullLinkRepository = $usefullLinkRepository;
+        $this->legalPageRepository = $legalPageRepository;
     }
 
     public function getFilters(): array
@@ -48,6 +52,7 @@ class Extensions extends AbstractExtension implements GlobalsInterface
             'openingHours' => $this->openingHourRepository->findBy([], ['id' => 'ASC']),
             'siteInformation' => $this->siteInfoRepository->findOneBy([]),
             'usefullLinks' => $this->usefullLinkRepository->findBy([],['position'=>'ASC']),
+            'legalPage' => $this->usefullLinkRepository->findBy([]),
         ];
     }
 }
