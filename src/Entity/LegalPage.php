@@ -7,6 +7,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LegalPageRepository::class)]
+/*mettre a jour la date */
+#[ORM\HasLifecycleCallbacks]
 class LegalPage
 {
     #[ORM\Id]
@@ -25,6 +27,17 @@ class LegalPage
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue(): void
+    {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -78,4 +91,5 @@ class LegalPage
 
         return $this;
     }
+    
 }

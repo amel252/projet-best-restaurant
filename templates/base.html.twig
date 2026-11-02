@@ -135,6 +135,33 @@
 
             {# COPYRIGHT #}
             <div class="container copyright text-center mt-4">
+                <div class="footer-legal">
+                    <ul>
+                        {% if legalPage is not defined or legalPage.slug is not defined or legalPage.slug != 'mentions-legales' %}
+                            <li>
+                                <a href="{{ path('app_legal_page', {'slug': 'mentions-legales'}) }}">
+                                    Mentions légales
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {# {% if legalPage is not defined or legalPage.slug != 'cgv' %}
+                            <li>
+                                <a href="{{ path('app_legal_page', {'slug': 'cgv'}) }}">
+                                    Conditions générales de vente
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if legalPage is not defined or legalPage.slug != 'confidentialite' %}
+                            <li>
+                                <a href="{{ path('app_legal_page', {'slug': 'confidentialite'}) }}">
+                                    Politique de confidentialité
+                                </a>
+                            </li>
+                        {% endif %} #}
+                    </ul>
+                </div>
                 <p>
                     © <span>Copyright</span>
                     <strong class="px-1 sitename">Vite&Gourmand</strong>
