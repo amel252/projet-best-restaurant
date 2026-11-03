@@ -22,10 +22,14 @@
                         Commande n° {{ order.id }}
                     </p>
                 {% endif %}
-
-                <a href="{{ path('app_home') }}" class="payment-success__button">
-                    Retour à l'accueil
-                </a>
+                <div class="payment-success-actions">
+                    <a href="{{ path('app_home') }}" class="payment-success__button">
+                        Retour à l'accueil
+                    </a>
+                    <a href="{{path('app_account_order', {'id_order': order.id})}}" class="btn-success">
+                        Consulter ma commande</a>
+                </div>
+                
             </div>
         </section>
     </div>

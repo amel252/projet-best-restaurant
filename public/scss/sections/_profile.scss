@@ -39,9 +39,7 @@
     font-size: 15px;
 }
 
-/* ========================================
-   CONTENU DU PROFIL
-======================================== */
+/*  DU PROFIL */
 
 .profile-content {
     display: grid;
@@ -71,9 +69,7 @@
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
 }
 
-/* ========================================
-   MENU MON COMPTE
-======================================== */
+/* MENU MON COMPTE */
 
 .profile-menu {
     width: 100%;
@@ -149,9 +145,7 @@
             transparent 94%);
 }
 
-/* ========================================
-   BLOC INFORMATIONS DU PROFIL
-======================================== */
+/* BLOC INFORMATIONS DU PROFIL */
 
 .profile-information {
     width: 100%;
@@ -271,9 +265,7 @@
     font-weight: 500;
 }
 
-/* ========================================
-   PAGE MES COMMANDES
-======================================== */
+/* PAGE MES COMMANDES */
 
 .profile-orders {
     display: block;
@@ -373,6 +365,8 @@
 
 .profile-orders .profile-orders-back {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: auto;
     margin-top: 25px;
 }
