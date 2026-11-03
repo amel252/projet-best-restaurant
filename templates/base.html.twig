@@ -1,186 +1,184 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Best Restaurant
-			{% endblock %}
-		</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}Best Restaurant{% endblock %}
+        </title>
 
-		{% block stylesheets %}
-			<link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
-			<link rel="stylesheet" href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}">
-			<link rel="stylesheet" href="{{asset('vendor/aos/aos.css') }}">
-			<link rel="stylesheet" href="{{asset('vendor/swiper/swiper-bundle.min.css')}}">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}">
+            <link rel="stylesheet" href="{{ asset('vendor/aos/aos.css') }}">
+            <link rel="stylesheet" href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        {% endblock %}
+    </head>
 
-			<link rel="stylesheet" href="{{asset('css/main.css') }}">
-		{% endblock %}
+    <body>
+        {# HEADER #}
+        <header id="header" class="header sticky-top">
+            <div class="container header-container">
 
-	</head>
-	<body>
-	<header id="header" class="header sticky-top">
-		<div class="container header-container">
-			{# LOGO #}
-			<a href="{{ path('app_home') }}" class="logo">
-				<i class="bi bi-fork-knife"></i>
-				<h1>BestRestaurant</h1>
-			</a>
-			{# MENU BURGER MOBILE #}
-			<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-			{# NAVIGATION #}
-			<nav id="navmenu" class="navmenu">
-				<ul>
-					<li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
-					<li><a href="#about">A propos</a></li>
-					<li><a href="#menu">Menu</a></li>
-					<li><a href="#chefs">Chefs</a></li>
-					<li><a href="#events">Événements</a></li>
-					<li><a href="#galerie">Galerie</a></li>
-					<li><a href="#contact">Contact</a></li>
-					
-					
-					{# PROFIL UTILISATEUR #}
-					<li class="nav-login">
-					{% if app.user %}
-						{% if is_granted('ROLE_ADMIN') %}
-						{#  voir pourquoi ca ffiche pas le user  #}
-        					<a href="{{ path('admin') }}">
-								<i class="bi bi-person"></i>
-								{{ app.user.firstname }}
-							</a>
-    					{% else %}
-        					<a href="{{ path('app_profile') }}">
-								<i class="bi bi-person"></i>
-								{{ app.user.firstname }}
-							</a>
-    					{% endif %}
+                {# LOGO #}
+                <a href="{{ path('app_home') }}" class="logo">
+                    <i class="bi bi-fork-knife"></i>
+                    <h1>Vite&Gourmand</h1>
+                </a>
 
-					{% else %}
-    					<a href="{{ path('app_login') }}">Connexion</a>
-					{% endif %}
+                {# MENU BURGER MOBILE #}
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
 
-					</li>
-					{# RESERVATION &  panier #}
-					<li class="nav-reservation">
-						<a href="#book-a-table" class="link-reservation">Réserver</a>
-						<a href="{{path('app_cart')}}"  class="cart-icon position-relative">
-							<i class="bi bi-cart"></i>
-							{% if fullCartQuantity > 0 %}
-        						<span class="cart-badge">
-           	 					{{ fullCartQuantity }}
-        						</span>
-    						{% endif %}
-						</a>
-						{# <span class="badge text-bg-light">{{fullCartQuantity}}</span> #}
+                {# NAVIGATION #}
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        {# LIENS PRINCIPAUX #}
+                        <li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#chefs">Chefs</a></li>
+                        <li><a href="#events">Événements</a></li>
+                        <li><a href="#galerie">Galerie</a></li>
+                        <li><a href="#contact">Contact</a></li>
 
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	{#  bloc pour avoir msg d'erreur #}
-		
-		<div class="flash-container ">
-    		{% for label, messages in app.flashes %}
-        		{% for message in messages %}
-            		<div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
-                		{{ message }}
+                        {# CONNEXION ET PANIER #}
+                        <li class="nav-actions">
+                            {# PROFIL UTILISATEUR #}
+                            <div class="nav-login">
+                                {% if app.user %}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('admin') }}" title="Administration">
+                                            <i class="bi bi-person"></i>
+                                            <span>{{ app.user.firstname }}</span>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('app_profile') }}" title="Mon profil">
+                                            <i class="bi bi-person"></i>
+                                            <span>{{ app.user.firstname }}</span>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{{ path('app_login') }}"
+                                       title="Connexion"
+                                       aria-label="Connexion">
+                                        <i class="bi bi-person"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
 
-                		<button
-                    		type="button"
-                    		class="btn-close"
-                    		data-bs-dismiss="alert"
-                    		aria-label="Fermer">
-                		</button>
-            		</div>
-        		{% endfor %}
-    		{% endfor %}
-		</div>
-		
+                            {# PANIER #}
+                            <a href="{{ path('app_cart') }}"
+                               class="cart-icon"
+                               title="Mon panier"
+                               aria-label="Mon panier">
+                                <i class="bi bi-cart"></i>
 
-		{% block body %}{% endblock %}
-		{# {{ dump(app.user) }} #}
-		<footer id="footer" class="footer">
-			<div class="container footer-top">
-				<div class="row gy-4">
-					<div class="col-lg-5 col-md-12 footer-about">
-						<a href="{{path("app_home")}}" class="logo d-flex align-items-center">
-							<span class="sitename">Best Restaurant</span>
-						</a>
-						<p>Bienvenue chez BestRestaurant, où saveurs, qualité et convivialité se rencontrent pour vous offrir une expérience culinaire inoubliable.</p>
-						<div class="social-links d-flex mt-4">
-							<a href="">
-								<i class="bi bi-twitter-x"></i>
-							</a>
-							<a href="">
-								<i class="bi bi-facebook"></i>
-							</a>
-							<a href="">
-								<i class="bi bi-instagram"></i>
-							</a>
-							<a href="">
-								<i class="bi bi-linkedin"></i>
-							</a>
-						</div>
-					</div>
+                                {% if fullCartQuantity > 0 %}
+                                    <span class="cart-badge">
+                                        {{ fullCartQuantity }}
+                                    </span>
+                                {% endif %}
+                            </a>
+                        </li>
 
-					<div class="col-lg-2 col-6 footer-links">
-						<h4>Liens Utiles</h4>
-						<ul>
-							<li><a href="#">Acceuil</a></li>
-							<li><a href="#">A propos</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">Menus</a></li>
-							<li><a href="#">Réservations</a></li>
-							<li><a href="#">Evénements</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-2 col-6 footer-links">
-						<h4>Nos Services</h4>
-						<ul>
-							<li><a href="#"> Le design des sites</a></li>
-							<li><a href="#">Developement des sites </a></li>
-							<li><a href="#">Management des produits</a></li>
-							<li><a href="#">Marketing</a></li>
-							<li><a href="#">Le design graphique </a></li>
-						</ul>
-						</div>
-					<div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-						<h4>Contactez-nous</h4>
-						<p>108 Avenue des belges</p>
-						<p>Paris, 93000  </p>
-						<p>France</p>
-						<p class="mt-4">
-							<strong>Télephone:</strong>
-							<span>+33 624097625</span>
-						</p>
-						<p>
-							<strong>Email:</strong>
-							<span>best@live.fr</span>
-						</p>
-					</div>
+                        {# BOUTON RÉSERVER #}
+                        <li class="nav-reservation">
+                            <a href="#book-a-table" class="link-reservation">
+                                Réserver
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-				</div>
-			</div>
+        {# MESSAGES FLASH #}
+        <div class="flash-container">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="Fermer">
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
 
-			<div class="container copyright text-center mt-4">
-				<p>©
-					<span>Copyright</span>
-					<strong class="px-1 sitename">NiceRestaurant</strong>
-					<span>All Rights Reserved</span>
-				</p>
-			</div>
+        {# CONTENU DE LA PAGE #}
+        {% block body %}{% endblock %}
 
-		</footer>
-		{% block javascripts %}
-			<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-			<script src="{{ asset('vendor/aos/aos.js') }}"></script>
-			<script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
-			<script src="{{ asset('vendor/purecounter/purecounter_vanilla.js') }}"></script>
-			<script src="{{ asset('vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-			<script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+        {# FOOTER #}
+        <footer id="footer" class="footer">
+            <div class="container footer-top">
+                <div class="row gy-4 align-items-start">
+                    {# BLOC  : info site  #}
+                    <div class="col-lg-5 col-md-6 footer-about ps-2">
+                        {% include 'partials/_site_info.html.twig' %}
+                    </div>
+                    {# BLOC 2 : LIENS UTILES #}
+					<div class="col-lg-3 col-md-5 d-none d-md-block footer-links">
+                        {% include 'partials/_usefull_link.html.twig' %}
+                    </div>
 
-			<script src="{{ asset('js/main.js') }}"></script>
-		{% endblock %}
-	</body>
+                    {# BLOC 3 : HORAIRES D'OUVERTURE #}
+                    <div class="col-lg-4 col-md-12 footer-hours footer-links-hour">
+                        {% include 'partials/_opening_hours.html.twig' %}
+                    </div>
+
+                </div>
+            </div>
+
+            {# COPYRIGHT #}
+            <div class="container copyright text-center mt-4">
+                <div class="footer-legal">
+                    <ul>
+                        {% if legalPage is not defined or legalPage.slug is not defined or legalPage.slug != 'mentions-legales' %}
+                            <li>
+                                <a href="{{ path('app_legal_page', {'slug': 'mentions-legales'}) }}">
+                                    Mentions légales
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {# {% if legalPage is not defined or legalPage.slug != 'cgv' %}
+                            <li>
+                                <a href="{{ path('app_legal_page', {'slug': 'cgv'}) }}">
+                                    Conditions générales de vente
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if legalPage is not defined or legalPage.slug != 'confidentialite' %}
+                            <li>
+                                <a href="{{ path('app_legal_page', {'slug': 'confidentialite'}) }}">
+                                    Politique de confidentialité
+                                </a>
+                            </li>
+                        {% endif %} #}
+                    </ul>
+                </div>
+                <p>
+                    © <span>Copyright</span>
+                    <strong class="px-1 sitename">Vite&Gourmand</strong>
+                    <span>Tous droits réservés</span>
+                </p>
+            </div>
+        </footer>
+
+        {# JAVASCRIPTS #}
+        {% block javascripts %}
+            <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('vendor/aos/aos.js') }}"></script>
+            <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
+            <script src="{{ asset('vendor/purecounter/purecounter_vanilla.js') }}"></script>
+            <script src="{{ asset('vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+            <script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
+        {% endblock %}
+    </body>
 </html>
