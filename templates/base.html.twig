@@ -117,18 +117,12 @@
             <div class="container footer-top">
                 <div class="row gy-4 align-items-start">
                     {# BLOC  : info site  #}
-                    <div class="col-lg-5 col-md-6 footer-about ps-2">
-                        {% include 'partials/_site_info.html.twig' %}
-                    </div>
+                    {% include 'partials/_site_info.html.twig' %}
                     {# BLOC 2 : LIENS UTILES #}
-					<div class="col-lg-3 col-md-5 d-none d-md-block footer-links">
-                        {% include 'partials/_usefull_link.html.twig' %}
-                    </div>
-
+                    {% include 'partials/_usefull_link.html.twig' %}
                     {# BLOC 3 : HORAIRES D'OUVERTURE #}
-                    <div class="col-lg-4 col-md-12 footer-hours footer-links-hour">
-                        {% include 'partials/_opening_hours.html.twig' %}
-                    </div>
+                    {% include 'partials/_opening_hours.html.twig' %}
+
 
                 </div>
             </div>
