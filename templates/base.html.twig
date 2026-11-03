@@ -139,7 +139,7 @@
                             </li>
                         {% endif %}
 
-                        {# {% if legalPage is not defined or legalPage.slug != 'cgv' %}
+                        {% if legalPage is not defined or legalPage.slug is not defined or legalPage.slug != 'cgv' %}
                             <li>
                                 <a href="{{ path('app_legal_page', {'slug': 'cgv'}) }}">
                                     Conditions générales de vente
@@ -147,13 +147,13 @@
                             </li>
                         {% endif %}
 
-                        {% if legalPage is not defined or legalPage.slug != 'confidentialite' %}
+                        {% if legalPage is not defined or legalPage.slug is not defined or legalPage.slug != 'confidentialite' %}
                             <li>
                                 <a href="{{ path('app_legal_page', {'slug': 'confidentialite'}) }}">
                                     Politique de confidentialité
                                 </a>
                             </li>
-                        {% endif %} #}
+                        {% endif %}
                     </ul>
                 </div>
                 <p>

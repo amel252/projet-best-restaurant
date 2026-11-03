@@ -26,7 +26,7 @@
   }
 
 
-  /* footer about */
+  /* -----bloc 1 : footer about ---------*/
   .footer-about {
     .logo {
       display: inline-flex;
@@ -91,7 +91,7 @@
     }
   }
 
-  /* Liens utiles : colonne indépendante */
+  /* ------ bloc 2 : Liens utiles : colonne indépendante---- */
   .footer-links {
     margin-bottom: 4px;
 
@@ -139,7 +139,7 @@
     }
   }
 
-  /* Horaires d'ouverture dans le footer */
+  /* ---- Bloc 3 : Horaires d'ouverture dans le footer----- */
   .footer-links-hour .opening-hours {
     list-style: none;
     padding-top: 6px;
@@ -189,19 +189,57 @@
     }
   }
 
+  /* ----Bloc en bas -------*/
   .copyright {
-    padding: 25px;
-    padding-bottom: 0;
+    padding: 25px 15px 18px;
     background-color: color-mix(in srgb, var(--default-color), transparent 95%);
+
+    .footer-legal {
+      margin-bottom: 14px;
+
+      ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin: 0;
+        padding: 0 15px;
+
+        &+li {
+          border-left: 1px solid color-mix(in srgb, var(--default-color), transparent 65%);
+        }
+      }
+
+      a {
+        color: var(--default-color);
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--accent-color);
+          text-decoration: underline;
+          text-underline-offset: 4px;
+        }
+      }
+    }
 
     p {
       margin: 0;
+      font-size: 13px;
+      line-height: 1.6;
     }
-  }
 
-  .credits {
-    margin-top: 6px;
-    font-size: 13px;
+    .sitename {
+      color: var(--heading-color);
+    }
   }
 }
 
@@ -310,5 +348,18 @@
       display: none !important;
     }
 
+    .copyright {
+      .footer-legal {
+        ul {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        li {
+          padding: 0;
+          border-left: none !important;
+        }
+      }
+    }
   }
 }
