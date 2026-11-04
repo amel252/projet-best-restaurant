@@ -19,7 +19,7 @@ class LegalPage
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true )]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -28,16 +28,23 @@ class LegalPage
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
     #[ORM\PrePersist]
-    public function setCreatedAtValue(): void
+    #[ORM\PreUpdate]
+    public function updateTimestamp(): void
     {
         $this->updatedAt = new \DateTimeImmutable();
     }
 
-    #[ORM\PreUpdate]
-    public function setUpdatedAtValue(): void
-    {
-        $this->updatedAt = new \DateTimeImmutable();
-    }
+    // #[ORM\PrePersist]
+    // public function setCreatedAtValue(): void
+    // {
+    //     $this->updatedAt = new \DateTimeImmutable();
+    // }
+
+    // #[ORM\PreUpdate]
+    // public function setUpdatedAtValue(): void
+    // {
+    //     $this->updatedAt = new \DateTimeImmutable();
+    // }
 
     public function getId(): ?int
     {
