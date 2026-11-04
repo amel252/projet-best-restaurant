@@ -71,7 +71,7 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToRoute("Information du site", 'fas fa-info-circle', 'admin_site_information_index'),
                 MenuItem::linkToRoute('Liens utiles','fas fa-link','admin_usefull_link_index'
                 ),
-                MenuItem::linkToRoute('Mentions légales','fas fa-balance-scale','admin_legal_page_index'
+                MenuItem::linkToRoute('Gestion des pages juridiques','fas fa-balance-scale','admin_legal_page_index'
                 ),
 
             ]);
