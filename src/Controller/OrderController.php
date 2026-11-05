@@ -79,6 +79,7 @@ final class OrderController extends AbstractController
 
             $order = new Order();
             $order->setUser($this->getUser());
+
             
              $order->setCreatedAt(new \DateTime());
              $order->setState(1);
