@@ -34,17 +34,21 @@ class ProductCrudController extends AbstractCrudController
         }
         return [
             TextField::new('name')->setLabel('Nom')->setHelp('Nom du produit'),
-            SlugField::new('slug')->setTargetFieldName('name')->setLabel('URL')->setHelp('URL de la categorie génerée'),
-            TextEditorField::new('description')->setLabel('Description')->setHelp('La description du produit'),
+            SlugField::new('slug')
+                ->setTargetFieldName('name')->setLabel('URL')
+                ->setHelp('URL de la categorie génerée')
+                ->hideOnIndex(),
+            TextEditorField::new('description')
+                ->setLabel('Description')
+                ->setHelp('La description du produit')
+                ->hideOnIndex(),
 
             ImageField::new('illustration')
-            ->setLabel('Image')->setHelp('Image du produit en 600x600px')
-            ->setUploadedFileNamePattern('[randomhash].[extension]')
-            
-            // ->setUploadedFileNamePattern('[year]-[month]-[day]-[contentHash].[extension]')
-
-            ->setBasePath('/uploads/products')
-            ->setUploadDir($this->params->get('kernel.project_dir') . '/public/uploads/products'),
+                ->setLabel('Image')->setHelp('Image du produit en 600x600px')
+                ->setUploadedFileNamePattern('[randomhash].[extension]')
+                // ->setUploadedFileNamePattern('[year]-[month]-[day]-[contentHash].[extension]')
+                ->setBasePath('/uploads/products')
+                ->setUploadDir($this->params->get('kernel.project_dir') . '/public/uploads/products'),
 
             NumberField::new('price')->setLabel('Prix H.T')->setHelp('Le prix H.T du produit'),
             ChoiceField::new('tva')
@@ -56,18 +60,16 @@ class ProductCrudController extends AbstractCrudController
             ]),
             AssociationField::new('category', 'Categorie'),
             ChoiceField::new('diet') 
-                ->setLabel('Régime') 
+                ->setLabel('Régime alimentaire') 
                 ->setChoices([ 
                     'Classique' => 'classic', 
                     'Végétarien' => 'vegetarian', 
                     'Végétalien' => 'vegan', 
-                ]) ->setRequired(false),
+                ])
+                ->setRequired(false),
             AssociationField::new('allergens')
                 ->setLabel('Allergènes')
                 ->setHelp('Sélectionnez les allergènes présents dans ce plat.')
-                // ->setFormTypeOptions([
-                //     'choice_label'=> 'name'
-                // ])
                 ->autocomplete(),
 
 

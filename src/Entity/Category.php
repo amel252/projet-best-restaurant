@@ -79,7 +79,7 @@ class Category
     {
         if (!$this->products->contains($product)) {
             $this->products->add($product);
-            $product->setRelation($this);
+            $product->setCategory($this);
         }
 
         return $this;
@@ -89,8 +89,8 @@ class Category
     {
         if ($this->products->removeElement($product)) {
             // set the owning side to null (unless already changed)
-            if ($product->getRelation() === $this) {
-                $product->setRelation(null);
+            if ($product->getCategory() === $this) {
+                $product->setCategory(null);
             }
         }
 
