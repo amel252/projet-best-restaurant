@@ -17,6 +17,8 @@ use App\Entity\OpeningHour;
 use App\Entity\SiteInformation;
 use App\Entity\UsefullLink;
 use App\Entity\LegalPage;
+use App\Entity\Menu;
+
 
 
 use App\Controller\Admin\UserCrudController;
@@ -59,7 +61,14 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToRoute('Utilisateurs', 'fas fa-user','admin_user_index');
         yield MenuItem::linkToRoute('Categories', 'fas fa-list', 'admin_category_index');
-        yield MenuItem::linkToRoute('Produits', 'fas fa-tag', 'admin_product_index');
+
+        yield MenuItem::subMenu('Gestion du catalogue', 'fas fa-utensils')
+        ->setSubItems([
+            MenuItem::linkToRoute('Menus', 'fas fa-book-open', 'admin_menu_index'),
+            MenuItem::linkToRoute('Plats', 'fas fa-utensils', 'admin_product_index'),
+            
+        
+    ]); 
         yield MenuItem::linkToRoute('Transporteurs', 'fas fa-truck', 'admin_carrier_index');
         yield MenuItem::linkToRoute('Commandes', 'fas fa-sort', 'admin_order_index');
         yield MenuItem::linkToRoute('Allergènes', 'fas fa-leaf', 'admin_allergen_index');
