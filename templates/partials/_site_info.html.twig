@@ -1,0 +1,58 @@
+
+{# BLOC 1 : IDENTITÉ ET CONTACT #}
+<div class="col-lg-5 col-md-6 footer-about ps-2">
+    <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
+        <span class="sitename">{{ siteInformation.siteName }}</span>
+    </a>
+
+    <p class="footer-description">
+        {{ siteInformation.description }}
+    </p>
+
+    <div class="footer-contact-info">
+        <p>
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>{{ siteInformation.address }}</span>
+        </p>
+
+        <p>
+            <i class="bi bi-telephone-fill"></i>
+            <a href="tel:{{ siteInformation.phone|replace({' ': '', '.': '', '-': ''}) }}">
+                {{ siteInformation.phone }}
+            </a>
+        </p>
+
+        <p>
+            <i class="bi bi-envelope-fill"></i>
+            <a href="mailto:{{ siteInformation.email }}">
+                {{ siteInformation.email }}
+            </a>
+        </p>
+    </div>
+
+    <div class="social-links d-flex mt-4">
+        {% if siteInformation.twitterUrl %}
+            <a href="{{ siteInformation.twitterUrl }}" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-twitter-x"></i>
+            </a>
+        {% endif %}
+
+        {% if siteInformation.facebookUrl %}
+            <a href="{{ siteInformation.facebookUrl }}" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-facebook"></i>
+            </a>
+        {% endif %}
+
+        {% if siteInformation.instagramUrl %}
+            <a href="{{ siteInformation.instagramUrl }}" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-instagram"></i>
+            </a>
+        {% endif %}
+
+        {% if siteInformation.linkedinUrl %}
+            <a href="{{ siteInformation.linkedinUrl }}" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-linkedin"></i>
+            </a>
+        {% endif %}
+    </div>
+</div>

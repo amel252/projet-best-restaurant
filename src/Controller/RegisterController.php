@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Attribute\Route;
 
 use App\Entity\User;
 use App\Form\RegisterUserType;
-// PasswordUserType
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-
+use App\Classe\Mail;
 
 
 
@@ -48,7 +48,19 @@ final class RegisterController extends AbstractController
 
             //  9- excuter l'insertion SQL- envoyer les donnée en BD 
             $entityManager->flush();
-            // 10 -redirige aprés vers page connexion
+
+            // 10- envoi l'email de bienvenue
+            $mail = new Mail();
+            $mail->send(
+                $user->getEmail(),
+                $user->getFirstName(),
+                'Bienvenue chez Best Restaurant! ',
+                [
+                    'firstname'=>$user->getFirstName(),
+                ]
+            );
+
+            // 11 -redirige aprés vers page connexion
             return $this->redirectToRoute('app_home');
         }
 

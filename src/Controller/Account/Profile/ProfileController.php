@@ -17,7 +17,9 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Entity\Address;
 use App\Repository\AddressRepository;
+use App\Repository\OrderRepository;
 use App\Form\AddressUserType;
+
 
 final class ProfileController extends AbstractController
 {
@@ -25,14 +27,15 @@ final class ProfileController extends AbstractController
    
     //  route profile 
     #[Route('/profile', name: 'app_profile')]
-    public function index(Request $request ,EntityManagerInterface $entityManager): Response
+    public function index(Request $request ,EntityManagerInterface $entityManager, OrderRepository $orderRepository): Response
     {
+        //  récup user connecté
         $user=$this->getUser();
         // si user n'est pas connecté , redirige vers login 
         if(!$user){
             return $this->redirectToRoute('app_login');
         }
-
+        //  gestion img de profil
         $profileImage = $request->files->get('profileImage');
         if($profileImage){
             $newFilename= uniqid() .'.' . $profileImage->guessExtension();
@@ -59,6 +62,12 @@ final class ProfileController extends AbstractController
                 );
             }
         }
+        // Récupérer les commandes de l'utilisateur connecté
+        $orders = $orderRepository->findBy(
+            ['user' => $user],
+            ['id' => 'DESC']
+        );
+        //  afficher profil avec les commandes 
         return $this->render('profile/index.html.twig',[
             'user'=> $user,
         ]);
@@ -69,6 +78,10 @@ final class ProfileController extends AbstractController
     {
         // on récup notre user
         $user = $this->getUser();
+        //  si pas connecté redirige 
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
         $form = $this->createForm(ProfileType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted()){
@@ -81,12 +94,11 @@ final class ProfileController extends AbstractController
             );
                 return $this->redirectToRoute('app_profile');
         }
-            // Notification d'erreur
+        // Notification d'erreur
         $this->addFlash(
             'danger',
             'Le formulaire contient des erreurs.'
-        );
-
+            );
         }
         return $this->render('profile/edit_profil.html.twig',[
             'profilModifForm'=>$form->createView(),

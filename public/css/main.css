@@ -134,28 +134,28 @@ h6 {
     transform: rotate(360deg);
   }
 }
-/* ------------------
-  Stylisation du HEADER
-*/
+/* ==================================================
+   NAVBAR — STYLE GÉNÉRAL
+================================================== */
 .header {
   position: sticky;
   top: 0;
   width: 100%;
-  padding: 15px 0;
+  padding: 12px 0;
   background-color: var(--background-color);
   color: var(--default-color);
   z-index: 1000;
 }
 
-/*CONTENEUR HEADER*/
 .header-container {
   display: flex;
   align-items: center;
   width: 100%;
+  gap: 16px;
 }
 
-/*LOGO*/
-.logo {
+/* Logo */
+.header .logo {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -163,18 +163,20 @@ h6 {
   flex-shrink: 0;
 }
 
-.logo i {
+.header .logo i {
   font-size: 20px;
   color: var(--accent-color);
 }
 
-.logo h1 {
+.header .logo h1 {
   margin: 0;
   font-size: 20px;
+  font-weight: 600;
   color: var(--heading-color);
+  white-space: nowrap;
 }
 
-/*NAVIGATION DESKTOP*/
+/* Menu desktop */
 .navmenu {
   margin-left: auto;
 }
@@ -182,115 +184,49 @@ h6 {
 .navmenu > ul {
   display: flex;
   align-items: center;
+  gap: 5px;
   margin: 0;
   padding: 0;
   list-style: none;
-  gap: 8px;
 }
 
 .navmenu > ul > li {
   display: flex;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-/*LIENS DU MENU*/
 .navmenu > ul > li > a {
   display: flex;
   align-items: center;
-  padding: 8px 7px;
+  padding: 8px 5px;
   color: var(--nav-color);
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 
 .navmenu > ul > li > a:hover,
 .navmenu > ul > li > a.active {
-  color: var(--nav-hover-color);
+  color: var(--accent-color);
 }
 
-/* BOUTON RESERVER*/
-.nav-reservation {
-  margin-left: 5px;
-  padding-right: 25px;
+/* Connexion et panier */
+.navmenu > ul > li.nav-actions {
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-
-.nav-reservation > a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 10px 20px !important;
-  color: var(--contrast-color) !important;
-  background-color: var(--accent-color);
-  border-radius: 50px;
-  transition: background-color 0.2s ease;
-}
-
-.nav-reservation > a:hover {
-  color: var(--contrast-color) !important;
-  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
-}
-
-/* PANIER*/
-.cart-icon {
-  position: relative;
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0 !important;
-  background-color: transparent !important;
-  border-radius: 0 !important;
-  color: var(--nav-color) !important;
-  text-decoration: none;
-}
-
-.cart-icon:hover {
-  color: var(--nav-hover-color) !important;
-}
-
-.cart-icon i {
-  font-size: 22px;
-}
-
-/* PETIT CHIFFRE SUR LE PANIER */
-.cart-badge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  min-width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 5px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-  z-index: 10;
-}
-
-/*PROFIL DESKTOP */
-.nav-login {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
+  gap: 8px;
+  margin-left: 22px;
+  flex-shrink: 0;
 }
 
 .nav-login a {
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 8px 7px;
+  padding: 7px 3px;
   color: var(--nav-color);
   text-decoration: none;
   font-size: 14px;
@@ -299,164 +235,547 @@ h6 {
 }
 
 .nav-login a:hover {
-  color: var(--nav-hover-color);
-}
-
-.nav-login a i {
-  font-size: 20px;
   color: var(--accent-color);
 }
 
-/* =====================================================
-   BURGER
-===================================================== */
+.nav-login a i {
+  font-size: 21px;
+  color: var(--accent-color);
+}
+
+.cart-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--nav-color);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.cart-icon i {
+  font-size: 21px;
+}
+
+.cart-icon:hover {
+  color: var(--accent-color);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -3px;
+  right: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Bouton réservation */
+.navmenu > ul > li.nav-reservation {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.navmenu > ul > li.nav-reservation > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 18px;
+  border-radius: 50px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 14px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.navmenu > ul > li.nav-reservation > a:hover {
+  background-color: color-mix(in srgb, var(--accent-color), black 10%);
+  color: var(--contrast-color);
+}
+
+/* Icône burger */
 .mobile-nav-toggle {
   display: none;
   margin-left: auto;
   font-size: 28px;
   color: var(--default-color);
   cursor: pointer;
-  transition: color 0.2s ease;
 }
 
-.mobile-nav-toggle:hover {
-  color: var(--accent-color);
-}
-
-/* =====================================================
-   TABLETTE
-   992px à 1199px
-===================================================== */
-@media (max-width: 1199px) {
+/* ==================================================
+   NAVBAR — ÉCRANS ENTRE 992 PX ET 1199 PX
+================================================== */
+@media (min-width: 992px) and (max-width: 1199px) {
   .header-container {
-    gap: 15px;
+    gap: 10px;
+  }
+  .header .logo h1 {
+    font-size: 18px;
+  }
+  .header .logo i {
+    font-size: 18px;
   }
   .navmenu > ul {
-    gap: 4px;
+    gap: 2px;
   }
   .navmenu > ul > li > a {
-    padding: 7px 5px;
-    font-size: 14px;
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+  .navmenu > ul > li.nav-actions {
+    gap: 4px;
+    margin-left: 10px;
   }
   .nav-login a {
-    padding: 7px 5px;
-    font-size: 14px;
+    font-size: 13px;
   }
-  .nav-reservation {
-    margin-left: 3px;
+  .cart-icon {
+    width: 30px;
   }
-  .nav-reservation > a {
-    padding: 9px 15px !important;
+  .navmenu > ul > li.nav-reservation {
+    margin-left: 6px;
+  }
+  .navmenu > ul > li.nav-reservation > a {
+    padding: 8px 12px;
+    font-size: 13px;
   }
 }
-/* MOBILE 991px et moins */
+/* ==================================================
+   NAVBAR — TABLETTES ET MOBILES : 991 PX MAXIMUM
+================================================== */
 @media (max-width: 991px) {
   .header {
-    padding: 15px 0;
+    padding: 12px 0;
   }
-  /* LOGO */
-  .logo {
-    margin-right: auto;
+  .header-container {
+    position: relative;
+    gap: 10px;
   }
-  /* BURGER */
+  .header .logo h1 {
+    font-size: 20px;
+  }
   .mobile-nav-toggle {
     display: block;
+    position: relative;
+    z-index: 1002;
   }
-  /* NAVIGATION FERMÉE */
+  /* Menu déroulant mobile */
   .navmenu {
     position: absolute;
-    top: 100%;
-    left: 15px;
-    right: 15px;
-    display: none;
+    top: calc(100% + 12px);
+    left: 12px;
+    right: 12px;
     margin: 0;
-    padding: 15px;
+    padding: 12px;
     background-color: var(--background-color);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    z-index: 9999;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    z-index: 1001;
   }
-  /* NAVIGATION OUVERTE */
-  .mobile-nav-active .navmenu {
-    display: block;
-  }
-  /* LISTE MOBILE */
   .navmenu > ul {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     width: 100%;
   }
-  /* LI */
+  /* À afficher lorsque ton JavaScript ajoute .active */
+  .navmenu.active > ul {
+    display: flex;
+  }
   .navmenu > ul > li {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     width: 100%;
   }
-  /* LIENS */
   .navmenu > ul > li > a {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    padding: 8px 15px;
+    width: 100%;
+    padding: 12px 10px;
     font-size: 15px;
+    white-space: normal;
   }
-  /* PROFIL / CONNEXION */
-  .nav-login {
-    width: fit-content;
-    margin-top: 5px;
-    border-top: none;
+  .navmenu > ul > li.nav-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    margin: 4px 0;
+    padding: 8px 10px;
   }
   .nav-login a {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    padding: 8px 15px;
-    font-size: 15px;
+    padding: 5px 0;
   }
-  /* RESERVATION + panier */
-  .nav-reservation {
-    width: fit-content;
-    margin: 8px 0 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .cart-icon {
+    width: 36px;
   }
-  .nav-reservation > a {
-    width: fit-content;
-    display: flex;
-    align-items: center;
+  .navmenu > ul > li.nav-reservation {
+    margin: 6px 0 0;
+  }
+  .navmenu > ul > li.nav-reservation > a {
     justify-content: center;
-    min-height: 40px;
-    padding: 9px 16px !important;
-    border-radius: 50px;
-  }
-  /* Panier */
-  .nav-reservation > a:last-child {
-    padding: 9px 12px !important;
-  }
-  .nav-reservation > a:last-child i {
-    font-size: 18px;
+    width: 100%;
+    padding: 11px 18px;
   }
 }
-/* =====================================================
-   PETIT MOBILE
-   575px et moins
-===================================================== */
+/* ==================================================
+   NAVBAR — PETITS MOBILES : 575 PX MAXIMUM
+================================================== */
 @media (max-width: 575px) {
   .header {
-    padding: 12px 0;
+    padding: 10px 0;
   }
-  .logo {
-    gap: 3px;
+  .header-container {
+    gap: 8px;
   }
-  .logo h1 {
+  .header .logo {
+    gap: 5px;
+  }
+  .header .logo h1 {
     font-size: 18px;
   }
-  .logo i {
+  .header .logo i {
     font-size: 19px;
   }
   .mobile-nav-toggle {
     font-size: 26px;
+  }
+  .navmenu {
+    left: 8px;
+    right: 8px;
+  }
+}
+/* ==================================================
+   FOOTER — STYLE GÉNÉRAL
+================================================== */
+#footer {
+  color: var(--default-color);
+}
+
+#footer .footer-top {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+#footer .footer-about .logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+#footer .footer-about .sitename {
+  color: var(--heading-color);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+#footer .footer-about p {
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+#footer .social-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+  border-radius: 50%;
+  color: var(--default-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+#footer .social-links a:hover {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+#footer h4 {
+  margin-bottom: 15px;
+  color: var(--heading-color);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#footer .footer-links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#footer .footer-links ul li {
+  padding: 7px 0;
+}
+
+#footer .footer-links ul a {
+  color: var(--default-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#footer .footer-links ul a:hover {
+  color: var(--accent-color);
+}
+
+/* Horaires */
+#footer .footer-location {
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#footer .opening-hours {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#footer .opening-hours li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+  font-size: 14px;
+}
+
+#footer .opening-hours li span:last-child {
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* Contact */
+#footer .footer-contact p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+#footer .footer-contact strong {
+  margin-right: 5px;
+}
+
+#footer .footer-contact p span {
+  overflow-wrap: anywhere;
+}
+
+/* Copyright */
+#footer .copyright {
+  margin-top: 20px;
+  padding: 20px 15px;
+  border-top: 1px solid rgba(127, 127, 127, 0.2);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#footer .copyright p {
+  margin-bottom: 0;
+}
+
+/* ==================================================
+   FOOTER — TABLETTES ET MOBILES : 991 PX MAXIMUM
+   Horaires et contact sur la même ligne
+================================================== */
+@media (max-width: 991px) {
+  #footer .footer-top {
+    padding-top: 35px;
+    padding-bottom: 20px;
+  }
+  #footer .footer-top > .row {
+    --bs-gutter-y: 1.5rem;
+  }
+  /* Présentation */
+  #footer .footer-about {
+    text-align: center;
+  }
+  #footer .footer-about .logo {
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  #footer .footer-about .sitename {
+    font-size: 25px;
+  }
+  #footer .footer-about p {
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  #footer .social-links {
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  /* Horaires */
+  #footer .footer-links-hour h4 {
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  #footer .footer-location {
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+  #footer .opening-hours li {
+    gap: 5px;
+    padding: 7px 0;
+    font-size: 13px;
+  }
+  #footer .opening-hours li span:last-child {
+    white-space: nowrap;
+  }
+  /* Contact */
+  #footer .footer-contact {
+    text-align: left !important;
+  }
+  #footer .footer-contact h4 {
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  #footer .footer-contact p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  #footer .copyright {
+    margin-top: 15px;
+    padding: 20px 15px;
+    font-size: 13px;
+  }
+}
+/* ==================================================
+   FOOTER — MOBILES : 720 PX MAXIMUM
+   Masquer uniquement les liens utiles
+================================================== */
+@media (max-width: 720px) {
+  #footer .footer-links {
+    display: none;
+  }
+}
+/* ==================================================
+   GRANDS ÉCRANS : 1800 PX ET PLUS
+================================================== */
+@media (min-width: 1800px) {
+  .container {
+    max-width: 1650px;
+  }
+  .container-fluid {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  section,
+  .section {
+    padding: 90px 0;
+  }
+  /* Navbar */
+  .header {
+    padding: 16px 0;
+  }
+  .header-container {
+    max-width: 1750px;
+    margin: 0 auto;
+  }
+  .header .logo h1 {
+    font-size: 25px;
+  }
+  .header .logo i {
+    font-size: 24px;
+  }
+  .navmenu > ul {
+    gap: 10px;
+  }
+  .navmenu > ul > li > a {
+    padding: 10px 8px;
+    font-size: 17px;
+  }
+  .nav-login a {
+    font-size: 16px;
+  }
+  .nav-login a i {
+    font-size: 24px;
+  }
+  .cart-icon {
+    width: 42px;
+    height: 42px;
+  }
+  .cart-icon i {
+    font-size: 24px;
+  }
+  .navmenu > ul > li.nav-reservation > a {
+    padding: 12px 22px;
+    font-size: 16px;
+  }
+  /* Footer */
+  #footer .container {
+    max-width: 1650px;
+  }
+  #footer .footer-top {
+    padding: 65px 35px 40px;
+  }
+  #footer .footer-top > .row {
+    --bs-gutter-x: 3.5rem;
+  }
+  #footer .footer-about .sitename {
+    font-size: 32px;
+  }
+  #footer .footer-about p {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  #footer .social-links {
+    gap: 14px;
+  }
+  #footer .social-links a {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+  #footer h4 {
+    margin-bottom: 20px;
+    font-size: 21px;
+  }
+  #footer .footer-links ul li {
+    padding: 9px 0;
+    font-size: 16px;
+  }
+  #footer .footer-location,
+  #footer .opening-hours li {
+    font-size: 16px;
+  }
+  #footer .footer-contact p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  #footer .copyright {
+    margin-top: 25px;
+    padding: 25px 15px;
+    font-size: 15px;
   }
 }
 /*--------------------------------------------------------------
@@ -554,109 +873,444 @@ h6 {
     font-size: 32px;
   }
 }
-/*--------------------------------------------------------------
-# Global Footer
---------------------------------------------------------------*/
+/*-----Global Footer------*/
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
   font-size: 14px;
-  padding-bottom: 50px;
+  padding-bottom: 0;
   position: relative;
 }
 .footer .footer-top {
   padding-top: 50px;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
-.footer .footer-about .logo {
-  line-height: 1;
-  margin-bottom: 25px;
-}
-.footer .footer-about .logo img {
-  max-height: 40px;
-  margin-right: 6px;
-}
-.footer .footer-about .logo span {
-  color: var(--heading-color);
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  font-family: var(--heading-font);
-}
-.footer .footer-about p {
-  font-size: 14px;
-  font-family: var(--heading-font);
-}
-.footer .social-links a {
+.footer .footer-top .row {
   display: flex;
+  align-items: flex-start;
+}
+.footer {
+  /* Alignement général des colonnes */
+}
+.footer .footer-about,
+.footer .footer-links,
+.footer .footer-hours,
+.footer .footer-links-hour {
+  margin-top: 0;
+  padding-top: 0;
+}
+.footer {
+  /* -----bloc 1 : footer about ---------*/
+}
+.footer .footer-about .logo {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
-  font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-  margin-right: 10px;
-  transition: 0.3s;
+  margin-bottom: 18px;
+  text-decoration: none;
 }
-.footer .social-links a:hover {
+.footer .footer-about .logo .sitename {
+  color: var(--heading-color);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-family: var(--heading-font);
+}
+.footer .footer-about .footer-description {
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.footer .footer-about {
+  /* Alignement des titres */
+}
+.footer .footer-about .footer-about > .logo,
+.footer .footer-about .footer-links > h6,
+.footer .footer-about .footer-hours h6,
+.footer .footer-about .footer-links-hour h6 {
+  margin-top: 0;
+}
+.footer .footer-about .footer-contact-info {
+  margin-top: 0;
+}
+.footer .footer-about .footer-contact-info p {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.footer .footer-about .footer-contact-info i {
+  color: #d4a056;
+  font-size: 17px;
+  width: 20px;
+  min-width: 20px;
+  text-align: center;
+  margin-top: 2px;
+}
+.footer .footer-about .footer-contact-info a {
+  color: var(--default-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer .footer-about .footer-contact-info a:hover {
   color: var(--accent-color);
-  border-color: var(--accent-color);
 }
-.footer h4 {
-  font-size: 16px;
-  font-weight: bold;
-  position: relative;
-  padding-bottom: 12px;
+.footer {
+  /* ------ bloc 2 : Liens utiles : colonne indépendante---- */
 }
 .footer .footer-links {
-  margin-bottom: 30px;
+  margin-bottom: 4px;
+}
+.footer .footer-links h6 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding-bottom: 12px;
+  position: relative;
+  white-space: nowrap;
 }
 .footer .footer-links ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.footer .footer-links ul i {
-  padding-right: 2px;
-  font-size: 12px;
-  line-height: 0;
-}
-.footer .footer-links ul li {
-  padding: 10px 0;
-}
-.footer .footer-links ul li:first-child {
-  padding-top: 0;
-}
 .footer .footer-links ul li {
   display: flex;
   align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+}
+.footer .footer-links ul i {
+  color: var(--accent-color);
+  font-size: 12px;
+  flex-shrink: 0;
 }
 .footer .footer-links ul a {
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   display: inline-block;
-  line-height: 1;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
 }
 .footer .footer-links ul a:hover {
   color: var(--accent-color);
+  transform: translateX(3px);
+}
+.footer {
+  /* ---- Bloc 3 : Horaires d'ouverture dans le footer----- */
+}
+.footer .footer-links-hour .opening-hours {
+  list-style: none;
+  padding-top: 6px;
+  margin: 0;
+}
+.footer .footer-links-hour .opening-hours li {
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 0.9;
+  border: none !important;
+  border-bottom: none !important;
+}
+.footer .footer-links-hour .opening-hours-day {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border: none !important;
+  border-bottom: none !important;
+}
+.footer .footer-links-hour .opening-hours-time {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  white-space: nowrap;
+  border: none !important;
+  border-bottom: none !important;
+}
+.footer .footer-links-hour h6 {
+  margin-bottom: 12px;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .footer .footer-contact p {
   margin-bottom: 5px;
 }
+.footer {
+  /* ----Bloc en bas -------*/
+}
 .footer .copyright {
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding: 25px 15px 18px;
   background-color: color-mix(in srgb, var(--default-color), transparent 95%);
 }
-.footer .copyright p {
-  margin-bottom: 0;
+.footer .copyright .footer-legal {
+  margin-bottom: 14px;
 }
-.footer .credits {
-  margin-top: 6px;
+.footer .copyright .footer-legal ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer .copyright .footer-legal li {
+  margin: 0;
+  padding: 0 15px;
+}
+.footer .copyright .footer-legal li + li {
+  border-left: 1px solid color-mix(in srgb, var(--default-color), transparent 65%);
+}
+.footer .copyright .footer-legal a {
+  color: var(--default-color);
   font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer .copyright .footer-legal a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.footer .copyright p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.footer .copyright .sitename {
+  color: var(--heading-color);
 }
 
+/*----- Footer responsive -----*/
+/* Tablettes */
+@media (max-width: 999px) {
+  .footer .footer-about {
+    margin-bottom: 25px;
+  }
+  .footer .footer-links {
+    margin-bottom: 25px;
+  }
+  .footer .footer-hours,
+  .footer .footer-links-hour {
+    margin-bottom: 20px;
+  }
+}
+/* Mobiles */
+@media (max-width: 767px) {
+  .footer .footer-top {
+    padding-top: 25px;
+  }
+  .footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .footer {
+    /* Présentation plus compacte */
+  }
+  .footer .footer-about {
+    width: 58.333%;
+    flex: 0 0 58.333%;
+    margin: 0;
+    padding-right: 10px;
+  }
+  .footer .footer-about .logo {
+    margin-bottom: 10px;
+  }
+  .footer .footer-about .logo .sitename {
+    font-size: 12px;
+  }
+  .footer .footer-about .footer-description {
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+  .footer .footer-about .footer-contact-info p {
+    font-size: 12px;
+    gap: 6px;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+  }
+  .footer .footer-about .footer-contact-info i {
+    font-size: 14px;
+    width: 16px;
+    min-width: 16px;
+  }
+  .footer {
+    /* Horaires à droite */
+  }
+  .footer .footer-hours,
+  .footer .footer-links-hour {
+    width: 41.667%;
+    flex: 0 0 41.667%;
+    margin: 0;
+    padding-left: 5px;
+  }
+  .footer .footer-hours h4,
+  .footer .footer-hours h6,
+  .footer .footer-links-hour h4,
+  .footer .footer-links-hour h6 {
+    font-size: 14px;
+    white-space: normal;
+    margin-bottom: 10px;
+  }
+  .footer .footer-hours .opening-hours li,
+  .footer .footer-links-hour .opening-hours li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 3px;
+    font-size: 11px;
+    line-height: 1.4;
+    padding: 4px 0;
+  }
+  .footer .footer-hours .opening-hours-day,
+  .footer .footer-hours .opening-hours-time,
+  .footer .footer-links-hour .opening-hours-day,
+  .footer .footer-links-hour .opening-hours-time {
+    white-space: normal;
+  }
+  .footer {
+    /* Masquer les liens utiles */
+  }
+  .footer .footer-links {
+    display: none !important;
+  }
+  .footer .copyright .footer-legal ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .footer .copyright .footer-legal li {
+    padding: 0;
+    border-left: none !important;
+  }
+}
+/* PAGE JURIDIQUE */
+.legal-page {
+  min-height: calc(100vh - 80px);
+  padding: 60px 0;
+  background-color: var(--background-color);
+}
+
+/* HEADER */
+.legal-header {
+  margin-bottom: 30px;
+}
+
+.legal-subtitle {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-color);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.legal-header h1 {
+  margin: 0 0 8px;
+  color: var(--heading-color);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.legal-header p {
+  margin: 0;
+  color: var(--default-color);
+  font-size: 15px;
+}
+
+/* CARTE PRINCIPALE */
+.legal-content {
+  width: 100%;
+  padding: 35px;
+  background-color: #fffdf8;
+  border-radius: 8px;
+}
+
+/* CONTENU JURIDIQUE */
+.legal-text {
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.legal-text h1 {
+  display: none;
+}
+
+.legal-text h2,
+.legal-text h3 {
+  margin: 30px 0 12px;
+  color: rgb(72, 30, 30);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.legal-text p,
+.legal-text div {
+  margin-bottom: 14px;
+}
+
+.legal-text ul {
+  margin: 15px 0 20px;
+  padding-left: 25px;
+}
+
+.legal-text li {
+  margin-bottom: 9px;
+  padding-left: 4px;
+}
+
+.legal-text strong {
+  color: rgb(72, 30, 30);
+  font-weight: 600;
+}
+
+.legal-text a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.legal-text a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 25px 0 40px;
+  }
+  .legal-content {
+    padding: 25px;
+  }
+  .legal-header h1 {
+    font-size: 25px;
+  }
+}
+@media (max-width: 576px) {
+  .legal-content {
+    padding: 20px;
+  }
+  .legal-header h1 {
+    font-size: 23px;
+  }
+  .legal-content-header h2 {
+    font-size: 20px;
+  }
+  .legal-text {
+    font-size: 13px;
+  }
+}
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -2556,7 +3210,9 @@ section,
   font-weight: 500;
 }
 
-/* PAGE PROFIL */
+/* ========================================
+   PAGE PROFIL
+======================================== */
 .profile-page {
   min-height: calc(100vh - 80px);
   padding: 60px 0;
@@ -2567,7 +3223,6 @@ section,
   width: 100%;
 }
 
-/* HEADER */
 .profile-header {
   margin-bottom: 35px;
 }
@@ -2595,7 +3250,7 @@ section,
   font-size: 15px;
 }
 
-/* CONTENU : LES 2 BLOCS */
+/*  DU PROFIL */
 .profile-content {
   display: grid;
   grid-template-columns: 290px minmax(0, 1fr);
@@ -2608,7 +3263,9 @@ section,
   min-width: 0;
 }
 
-/* CARTES */
+/* ========================================
+   CARTES
+======================================== */
 .profile-card {
   width: 100%;
   min-width: 0;
@@ -2619,7 +3276,7 @@ section,
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
 }
 
-/* BLOC GAUCHE : MON COMPTE */
+/* MENU MON COMPTE */
 .profile-menu {
   width: 100%;
   min-width: 0;
@@ -2629,9 +3286,9 @@ section,
 }
 
 .profile-menu-title {
-  padding-top: 22px;
   display: flex;
   justify-content: center;
+  padding-top: 22px;
   margin: 0 0 18px;
   color: rgb(72, 30, 30);
   font-size: 17px;
@@ -2641,9 +3298,9 @@ section,
 .profile-menu-links {
   display: flex;
   flex-direction: column;
-  padding-top: 34px;
   gap: 6px;
   width: 100%;
+  padding-top: 34px;
 }
 
 .profile-menu-link {
@@ -2672,7 +3329,7 @@ section,
   background-color: color-mix(in srgb, var(--accent-color), transparent 92%);
 }
 
-/*DÉCONNEXION */
+/* Déconnexion */
 .profile-menu-link-danger {
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   border-radius: 0;
@@ -2687,7 +3344,7 @@ section,
   background-color: color-mix(in srgb, #a00606, transparent 94%);
 }
 
-/* BLOC DROIT : INFORMATIONS */
+/* BLOC INFORMATIONS DU PROFIL */
 .profile-information {
   width: 100%;
   min-width: 0;
@@ -2697,7 +3354,7 @@ section,
   box-sizing: border-box;
 }
 
-/* PHOTO + IDENTITÉ*/
+/* Photo et identité */
 .profile-user-header {
   display: flex;
   flex-direction: column;
@@ -2708,7 +3365,6 @@ section,
   border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
 }
 
-/* AVATAR*/
 .profile-avatar-wrapper {
   display: flex;
   align-items: center;
@@ -2744,7 +3400,7 @@ section,
   object-fit: cover;
 }
 
-/* NOM + EMAIL */
+/* Nom et email */
 .profile-user-identity {
   width: 100%;
   color: rgb(72, 30, 30);
@@ -2758,7 +3414,7 @@ section,
   font-weight: 600;
 }
 
-/* TITRE INFORMATIONS */
+/* Titres des informations */
 .profile-information-header {
   margin: 25px 0 18px;
   text-align: center;
@@ -2771,7 +3427,7 @@ section,
   font-weight: 600;
 }
 
-/* INFORMATIONS */
+/* Informations */
 .profile-info {
   display: flex;
   flex-direction: column;
@@ -2786,13 +3442,14 @@ section,
   gap: 20px;
   padding: 14px 16px;
   background-color: #f8f5ed;
-  border-radius: 8px;
   border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .profile-info-label {
-  font-size: 13px;
   color: rgb(72, 30, 30);
+  font-size: 13px;
 }
 
 .profile-info-value {
@@ -2800,7 +3457,147 @@ section,
   font-weight: 500;
 }
 
-/* TABLETTE 991 px*/
+/* PAGE MES COMMANDES */
+.profile-orders {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.profile-orders .profile-information-header {
+  margin: 0 0 25px;
+  text-align: left;
+}
+
+.profile-orders .profile-information-header h2 {
+  text-align: left;
+}
+
+/* Liste des commandes */
+.profile-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Carte de chaque commande */
+.profile-orders .profile-order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f8f5ed;
+  border: 1px solid #e5dfd3;
+  border-radius: 8px;
+}
+
+/* Détails de la commande */
+.profile-order-details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  color: rgb(72, 30, 30);
+  text-align: left;
+}
+
+.profile-order-details h3 {
+  margin: 0 0 5px;
+  color: rgb(72, 30, 30);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile-order-details p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+}
+
+.profile-order-details .profile-info-label {
+  color: #795548;
+  font-weight: 500;
+}
+
+.profile-order-details .profile-info-value {
+  color: rgb(72, 30, 30);
+  font-weight: 600;
+}
+
+/* Bouton Voir le détail */
+.profile-orders .profile-order-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  gap: 8px;
+  width: auto;
+  white-space: nowrap;
+}
+
+/* Bouton Retour à mon profil */
+.profile-orders .profile-orders-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin-top: 25px;
+}
+
+/* Aucune commande */
+.profile-orders-empty {
+  margin: 0;
+  padding: 15px 0;
+  color: rgb(72, 30, 30);
+  text-align: left;
+}
+
+/* ========================================
+   NOTIFICATIONS / FLASH MESSAGES
+======================================== */
+.flash-container {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Message */
+.flash-container .alert {
+  display: flex;
+  align-items: center;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  min-height: 45px;
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* ========================================
+   TABLETTES : 991 PX
+======================================== */
 @media (max-width: 991px) {
   .profile-content {
     grid-template-columns: 240px minmax(0, 1fr);
@@ -2814,7 +3611,9 @@ section,
     font-size: 13px;
   }
 }
-/* TABLETTE  767px*/
+/* ========================================
+   TABLETTES ET MOBILES : 767 PX
+======================================== */
 @media (max-width: 767px) {
   .profile-page {
     padding: 45px 0;
@@ -2829,19 +3628,34 @@ section,
   }
   .profile-menu-links {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
   }
   .profile-menu-link-danger {
     margin-top: 0;
-    border-top: none;
     padding-top: 12px;
+    border-top: none;
   }
   .profile-information {
     padding: 25px;
   }
+  /* Commandes sur petits écrans */
+  .profile-orders {
+    padding: 20px;
+  }
+  .profile-orders .profile-order-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 16px;
+  }
+  .profile-orders .profile-order-link {
+    width: 100%;
+  }
 }
-/* MOBILE*/
+/* ========================================
+   MOBILES : 575 PX
+======================================== */
 @media (max-width: 575px) {
   .profile-page {
     padding: 30px 0;
@@ -2882,36 +3696,20 @@ section,
   .profile-info-value {
     text-align: left;
   }
-}
-/* NOTIFICATIONS / FLASH MESSAGE  */
-.flash-container {
-  position: fixed;
-  top: 90px;
-  right: 20px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* MESSAGE */
-.flash-container .alert {
-  width: 320px;
-  max-width: calc(100vw - 40px);
-  min-height: 45px;
-  margin: 0;
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  font-size: 14px;
-  line-height: 1.4;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* MOBILE */
-@media (max-width: 575px) {
+  /* Commandes sur téléphone */
+  .profile-orders {
+    padding: 16px;
+  }
+  .profile-orders .profile-information-header h2 {
+    font-size: 18px;
+  }
+  .profile-order-details h3 {
+    font-size: 17px;
+  }
+  .profile-order-details p {
+    font-size: 13px;
+  }
+  /* Notifications sur téléphone */
   .flash-container {
     top: 80px;
     right: 15px;
@@ -2921,6 +3719,325 @@ section,
     width: 100%;
     max-width: none;
     font-size: 13px;
+  }
+}
+/* PAGE DETAIL PRODUIT */
+.product-detail {
+  margin-top: 20px;
+  padding: 20px 0;
+}
+
+/* Carte principale */
+.product-detail-card {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Image */
+.product-detail-image {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.product-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contenu */
+.product-detail-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #333;
+}
+
+/* Catégorie */
+.product-category {
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.product-category:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Nom du produit */
+.product-detail-content h1 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgb(72, 30, 30);
+}
+
+/* Prix */
+.product-detail-price {
+  margin-bottom: 18px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+/* Description */
+.product-description {
+  margin-bottom: 15px;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Bouton panier */
+.product-detail-actions {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.product-cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  min-height: 38px;
+  padding: 8px 16px;
+  margin: 0 auto;
+  border-radius: 50px;
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.product-cart-btn:hover {
+  color: var(--contrast-color);
+  background-color: color-mix(in srgb, var(--accent-color), black 10%);
+  transform: translateY(-2px);
+}
+
+/* Régime alimentaire et allergènes */
+.product-detail-extra {
+  grid-column: 1/-1;
+  width: 100%;
+  padding: 20px 0 0;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 5px;
+}
+
+.product-detail-extra-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(72, 30, 30);
+}
+
+.product-diet,
+.product-allergens {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #555;
+  font-size: 14px;
+}
+
+.product-diet strong,
+.product-allergens strong {
+  margin-right: 8px;
+  color: rgb(72, 30, 30);
+}
+
+.product-allergens span {
+  display: inline-block;
+}
+
+/*RESPONSIVE */
+@media (max-width: 992px) {
+  .product-detail-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  .product-detail-image {
+    height: 240px;
+  }
+  .product-detail-content h1 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 576px) {
+  .product-detail {
+    padding: 15px 0;
+  }
+  .product-detail-card {
+    padding: 15px;
+    gap: 15px;
+  }
+  .product-detail-image {
+    height: 200px;
+  }
+  .product-detail-content h1 {
+    font-size: 22px;
+  }
+  .product-description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .product-detail-price {
+    font-size: 20px;
+  }
+}
+/* CONFIRMATION DE COMMANDE — STYLE ASSORTI AU PROFIL*/
+.payment-success-wrapper {
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+.payment-success-wrapper .payment-success {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-success-wrapper .payment-success__card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 650px;
+  padding: 45px 30px;
+  text-align: center;
+  color: rgb(72, 30, 30);
+  background-color: #fffdf8;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(72, 30, 30, 0.06);
+}
+
+.payment-success-wrapper .payment-success__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 88%);
+  font-size: 42px;
+  font-weight: 600;
+}
+
+.payment-success-wrapper .payment-success h1 {
+  margin: 0 0 18px;
+  color: black;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.payment-success-wrapper .payment-success__message {
+  margin: 0 0 24px;
+  color: rgb(72, 30, 30);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.payment-success-wrapper .payment-success__number {
+  margin: 0 0 25px;
+  color: rgb(16, 16, 16);
+  font-weight: 600;
+}
+
+/* BOUTONS DE CONFIRMATION DE COMMANDE */
+.payment-success-wrapper .payment-success-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 25px;
+}
+
+/* Style commun */
+.payment-success-wrapper .payment-success__button,
+.payment-success-wrapper .btn-success {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+/* Retour à l'accueil : beige clair */
+.payment-success-wrapper .payment-success__button {
+  color: rgb(72, 30, 30);
+  background-color: #e3d8bb;
+  border: 1px solid #e3d8bb;
+}
+
+.payment-success-wrapper .payment-success__button:hover {
+  color: var(--accent-color);
+  background-color: #fffdf8;
+  border-color: var(--accent-color);
+}
+
+/* Consulter ma commande : couleur d'accent */
+.payment-success-wrapper .btn-success {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.payment-success-wrapper .btn-success:hover {
+  color: var(--contrast-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+/* Responsive mobile */
+@media (max-width: 575px) {
+  .payment-success-wrapper .payment-success-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .payment-success-wrapper .payment-success-actions a {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .payment-success-wrapper .payment-success {
+    padding: 35px 15px;
+  }
+  .payment-success-wrapper .payment-success__card {
+    padding: 30px 20px;
+  }
+  .payment-success-wrapper .payment-success h1 {
+    font-size: 24px;
   }
 }
 /* MODIFICATION DES INFORMATIONS DU PROFIL */
@@ -3144,9 +4261,7 @@ section,
   font-size: 15px;
 }
 
-/* =========================================================
-   GRANDE CARTE PRINCIPALE
-   ========================================================= */
+/* GRANDE CARTE PRINCIPALE*/
 .addresses-content {
   width: 100%;
   padding: 35px;
@@ -3154,9 +4269,7 @@ section,
   border-radius: 8px;
 }
 
-/* =========================================================
-   HEADER DE LA CARTE
-   ========================================================= */
+/* HEADER DE LA CARTE*/
 .addresses-top {
   display: flex;
   align-items: center;
@@ -3183,9 +4296,35 @@ section,
   font-weight: 600;
 }
 
-/* =========================================================
-   BOUTON AJOUTER
-   ========================================================= */
+/* BOUTONS */
+/* btn valider adresse et supprimer*/
+.address-button-primary,
+.address-button-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.address-button-primary {
+  border: none;
+  color: #fff;
+  background-color: var(--accent-color);
+}
+
+.address-button-primary:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* btn modifier */
 .addresses-add-button {
   display: inline-flex;
   align-items: center;
@@ -3208,18 +4347,27 @@ section,
   opacity: 0.9;
 }
 
-/* =========================================================
-   GRILLE
-   ========================================================= */
+/* BOUTON SUPPRIMER */
+.address-button-danger {
+  border: 1px solid #ddd;
+  color: rgb(72, 30, 30);
+  background-color: #fff;
+}
+
+.address-button-danger:hover {
+  color: #a00606;
+  border-color: #a00606;
+  background-color: #fff8f8;
+}
+
+/* GRILLE*/
 .addresses-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
-/* =========================================================
-   CARTE ADRESSE
-   ========================================================= */
+/* CARTE ADRESSE */
 .address-item {
   padding: 25px;
   border: 1px solid #ddd;
@@ -3617,6 +4765,7 @@ section,
 }
 
 .address-button-primary:hover {
+  color: #fff;
   transform: translateY(-1px);
   opacity: 0.9;
 }
@@ -4185,7 +5334,8 @@ section,
 }
 
 .summary-total-card h2 {
-  margin-bottom: 25px;
+  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 /* PRODUITS*/
@@ -4341,15 +5491,24 @@ section,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 8px 15px;
   margin-bottom: 15px;
   color: rgb(72, 30, 30);
   font-size: 14px;
+  line-height: 1.5;
+}
+
+.summary-total-line span {
+  flex: 1 1 auto;
 }
 
 .summary-total-line strong {
   color: rgb(72, 30, 30);
   font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
 }
 
 .summary-total-separator {
@@ -4362,17 +5521,25 @@ section,
 .summary-total-final {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px 0;
   color: rgb(72, 30, 30);
   font-size: 16px;
 }
 
-.summary-total-final strong {
-  color: rgb(72, 30, 30);
-  font-size: 20px;
+.summary-total-final span {
   font-weight: 600;
+}
+
+.summary-total-final strong {
+  color: var(--accent-color);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: right;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
 }
 
 /* BOUTON PAIEMENT */
@@ -4392,12 +5559,55 @@ section,
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
+  min-height: 48px;
+  line-height: 1.4;
+  text-align: center;
 }
 
 .summary-payment-button:hover {
   color: var(--contrast-color);
   background-color: color-mix(in srgb, var(--accent-color), black 10%);
   transform: translateY(-2px);
+}
+
+.summary-payment-button:focus-visible {
+  outline: 3px solid var(--heading-color);
+  outline-offset: 3px;
+}
+
+/*ajout */
+/* EN-TÊTE DU RÉCAPITULATIF */
+.summary-total-header {
+  margin-bottom: 22px;
+}
+
+.summary-total-header .summary-subtitle {
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+
+.summary-total-header h2 {
+  margin-bottom: 8px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.summary-total-header p {
+  margin: 0;
+  color: #806f67;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* INFORMATIONS DE COMMANDE */
+.summary-order-info {
+  padding: 14px;
+  background-color: #f8f5ed;
+  border-radius: 8px;
+}
+
+.summary-order-info .summary-total-line:last-child {
+  margin-bottom: 0;
 }
 
 /* TABLETTE */
@@ -4511,6 +5721,267 @@ section,
   .summary-product-quantity,
   .summary-product-total {
     font-size: 13px;
+  }
+}
+/* DETAIL COMMANDE — STYLE RESUME COMMANDE */
+/* Réduire l'espace en haut de la page détail commande */
+.profile-page:has(.order-detail-card) {
+  padding-top: 15px;
+}
+
+.profile-page:has(.order-detail-card) .profile-header {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.order-detail-card {
+  color: rgb(72, 30, 30);
+  background-color: #fffdf8;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+  text-align: left;
+}
+
+.order-detail-header {
+  margin: 0;
+  padding: 0;
+}
+
+/* TITRE ET DATE */
+.order-detail-header h2 {
+  margin: 0 0 8px;
+  color: rgb(72, 30, 30);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.order-detail-date {
+  margin: 0;
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+}
+
+.order-detail-status {
+  margin: 0;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SEPARATEURS */
+.order-detail-divider {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+  opacity: 1;
+}
+
+/* CARTES ADRESSE ET TRANSPORTEUR */
+.order-detail-info {
+  min-width: 0;
+  padding: 17px;
+  color: rgb(72, 30, 30);
+  background-color: #f8f5ed;
+  border: none;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+  margin-bottom: 12px;
+}
+
+.order-detail-info h3 {
+  margin: 0 0 12px;
+  color: rgb(72, 30, 30);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.order-detail-info h3 i {
+  margin-right: 6px;
+  color: var(--accent-color);
+}
+
+.order-detail-info p,
+.order-detail-info div {
+  margin: 0;
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* TITRE DU CONTENU */
+.order-detail-section-title {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: rgb(72, 30, 30);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+/* TABLEAU DES PRODUITS */
+.order-detail-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+}
+
+.order-detail-table {
+  width: 100%;
+  min-width: 650px;
+  margin-bottom: 0;
+  color: rgb(72, 30, 30);
+  background-color: #fffdf8;
+  vertical-align: middle;
+}
+
+.order-detail-table thead th {
+  padding: 14px 12px;
+  color: rgb(72, 30, 30);
+  background-color: #f8f5ed;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.order-detail-table td {
+  padding: 12px;
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+}
+
+.order-detail-carrier-row {
+  background-color: #f8f5ed;
+}
+
+/* IMAGES */
+.order-detail-product-image {
+  display: block;
+  width: 75px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #f8f5ed;
+}
+
+/* RECAPITULATIF DES TOTAUX */
+.order-detail-totals {
+  width: 100%;
+  max-width: 350px;
+  margin: 8px 0 0 auto;
+  padding: 18px;
+  color: rgb(72, 30, 30);
+  background-color: #f8f5ed;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.order-detail-totals p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin: 0 0 15px;
+  color: rgb(72, 30, 30);
+  font-size: 14px;
+}
+
+.order-detail-totals strong {
+  color: rgb(72, 30, 30);
+  font-weight: 600;
+}
+
+.order-detail-totals p:last-child {
+  margin-bottom: 0;
+}
+
+.order-detail-grand-total {
+  padding-top: 15px;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+  font-size: 16px !important;
+  font-weight: 600;
+}
+
+.order-detail-grand-total strong {
+  color: var(--accent-color);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* BOUTON RETOUR */
+.order-detail-footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.order-detail-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 12px 18px;
+  color: rgb(72, 30, 30);
+  background-color: #f8f5ed;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.order-detail-back:hover {
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 94%);
+}
+
+/* TABLETTE ET MOBILE */
+@media (max-width: 767px) {
+  .order-detail-card {
+    padding: 25px;
+  }
+  .order-detail-addresses {
+    grid-template-columns: 1fr;
+  }
+  .order-detail-totals {
+    max-width: 100%;
+  }
+}
+@media (max-width: 575px) {
+  .order-detail-card {
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .order-detail-header h2 {
+    font-size: 18px;
+  }
+  .order-detail-info {
+    padding: 14px;
+  }
+  .order-detail-section-title {
+    font-size: 18px;
+  }
+  .order-detail-grand-total strong {
+    font-size: 19px;
+  }
+}
+@media (max-width: 399px) {
+  .order-detail-card {
+    padding: 16px;
+  }
+  .order-detail-header h2 {
+    font-size: 17px;
+  }
+  .order-detail-info h3 {
+    font-size: 14px;
+  }
+  .order-detail-section-title {
+    font-size: 17px;
   }
 }
 .category-container {
@@ -4648,152 +6119,6 @@ section,
 @media (max-width: 576px) {
   .products-grid {
     grid-template-columns: 1fr;
-  }
-}
-/* PAGE DETAIL PRODUIT */
-.product-detail {
-  padding: 60px 0;
-  min-height: 70vh;
-}
-
-/* Carte principale */
-.product-detail-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  background: #fff;
-  border-radius: 15px;
-  padding: 35px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-}
-
-/* Image */
-.product-detail-image {
-  width: 100%;
-  height: 350px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f8f8f8;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.product-detail-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Contenu */
-.product-detail-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  color: #333;
-}
-
-/* Catégorie */
-.product-category {
-  display: inline-block;
-  width: fit-content;
-  margin-bottom: 15px;
-  color: var(--accent-color);
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.product-category:hover {
-  color: var(--accent-color);
-  text-decoration: underline;
-}
-
-/* Nom du produit */
-.product-detail-content h1 {
-  margin: 0 0 15px;
-  font-size: 36px;
-  font-weight: 700;
-  color: rgb(72, 30, 30);
-}
-
-/* Prix */
-.product-detail-price {
-  margin-bottom: 25px;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--accent-color);
-}
-
-/* Description */
-.product-description {
-  margin-bottom: 25px;
-  color: #555;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-/* Bouton panier */
-.product-detail-actions {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.product-cart-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 25px;
-  border-radius: 50px;
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.product-cart-btn:hover {
-  color: var(--contrast-color);
-  background-color: color-mix(in srgb, var(--accent-color), black 10%);
-  transform: translateY(-2px);
-}
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-@media (max-width: 992px) {
-  .product-detail-card {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 25px;
-  }
-  .product-detail-image {
-    height: 350px;
-  }
-  .product-detail-content h1 {
-    font-size: 30px;
-  }
-}
-@media (max-width: 576px) {
-  .product-detail {
-    padding: 30px 0;
-  }
-  .product-detail-card {
-    padding: 20px;
-  }
-  .product-detail-image {
-    height: 280px;
-  }
-  .product-detail-content h1 {
-    font-size: 26px;
-  }
-  .product-detail-price {
-    font-size: 24px;
   }
 }
 /* PANIER*/

@@ -67,6 +67,9 @@ section,
 @import './sections/_starter-section.scss';
 @import './sections/_register.scss';
 @import './sections/_profile.scss';
+
+@import './sections/_product_details.scss';
+@import './sections/_payment.scss';
 @import './sections/_profile_edit.scss';
 @import './sections/_password_edit.scss';
 @import './sections/_addresses.scss';
@@ -74,7 +77,7 @@ section,
 
 @import './sections/_order.scss';
 @import './sections/_order_summary.scss';
+@import './sections/_order_single.scss';
 
 @import './sections/_category_product.scss';
-@import './sections/_product_details.scss';
 @import './sections/_cart.scss';

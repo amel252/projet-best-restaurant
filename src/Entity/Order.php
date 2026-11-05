@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\User;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
@@ -33,36 +32,27 @@ class Order
     #[ORM\Column(type: Types::TEXT)]
     private ?string $delivery = null;
 
-
     /**
      * @var Collection<int, OrderDetail>
      */
-    #[ORM\OneToMany(targetEntity: OrderDetail::class, mappedBy: 'myOrder', cascade:['persist'])]
-    
+    #[ORM\OneToMany(
+        targetEntity: OrderDetail::class,
+        mappedBy: 'myOrder',
+        cascade: ['persist']
+    )]
     private Collection $orderDetails;
-    
+
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-        return $this;
-    }
-
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $stripe_session_id = null;
 
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
     }
-
-
 
     public function getId(): ?int
     {
@@ -128,7 +118,7 @@ class Order
 
         return $this;
     }
-   
+
     /**
      * @return Collection<int, OrderDetail>
      */
@@ -146,11 +136,10 @@ class Order
 
         return $this;
     }
-    /* supprimer orderDetail*/ 
-     public function removeOrderDetail(OrderDetail $orderDetail): static
+
+    public function removeOrderDetail(OrderDetail $orderDetail): static
     {
         if ($this->orderDetails->removeElement($orderDetail)) {
-            // set the owning side to null (unless already changed)
             if ($orderDetail->getMyOrder() === $this) {
                 $orderDetail->setMyOrder(null);
             }
@@ -159,5 +148,61 @@ class Order
         return $this;
     }
 
-     
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTotalTva(): float
+    {
+        $totalTva = 0.0;
+
+        foreach ($this->orderDetails as $orderDetail) {
+            $price = $orderDetail->getProductPrice();
+            $quantity = $orderDetail->getProductQuantity();
+            $tva = $orderDetail->getProductTva();
+
+            if ($price !== null && $quantity !== null && $tva !== null) {
+                $totalTva += ($price * $quantity) * ($tva / 100);
+            }
+        }
+
+        return $totalTva;
+    }
+
+    public function getTotalTtc(): float
+    {
+        $totalTtc = 0.0;
+
+        foreach ($this->orderDetails as $orderDetail) {
+            $price = $orderDetail->getProductPrice();
+            $quantity = $orderDetail->getProductQuantity();
+            $tva = $orderDetail->getProductTva();
+
+            if ($price !== null && $quantity !== null && $tva !== null) {
+                $totalTtc += ($price * $quantity) * (1 + $tva / 100);
+            }
+        }
+
+        return $totalTtc + ($this->carrierPrice ?? 0);
+    }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripe_session_id;
+    }
+
+    public function setStripeSessionId(?string $stripe_session_id): static
+    {
+        $this->stripe_session_id = $stripe_session_id;
+
+        return $this;
+    }
 }

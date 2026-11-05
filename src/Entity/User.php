@@ -3,23 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-// interface de sécurity 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use App\Entity\Order;
-
-/*Cela permet d'empêcher deux utilisateurs de s'inscrire avec le même email.*/ 
 #[ORM\Entity]
 #[UniqueEntity(
     fields: ['email'],
     message: 'Cette adresse email est déjà utilisée.'
 )]
-
-// #[ORM\Entity]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -27,8 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    //  on met email a unique 
-    #[ORM\Column(length: 255, unique:true)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
@@ -43,37 +36,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
-    /*Avatar */ 
-    #[ORM\Column(name:'profile_image', length: 255, nullable: true)]
+    #[ORM\Column(length: 20)]
+    private ?string $gsm = null;
+
+    #[ORM\Column(name: 'profile_image', length: 255, nullable: true)]
     private ?string $profileImage = null;
 
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
-    /*mapped fait refernce a user */ 
-    /*déclarer addresses :  sorte de liste d'objets address */ 
-    private Collection $addresses;
-
-
+    /** @var Collection<int, Order> */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
-    private Collection $orders;     
+    private Collection $orders;
 
-
+    /** @var Collection<int, Address> */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+    private Collection $addresses;
 
     public function __construct()
     {
-    $this->roles = ['ROLE_USER'];
-    /*initialiser liste adresses */ 
-    $this->addresses = new ArrayCollection();
-     $this->orders = new ArrayCollection();
-
+        $this->roles = ['ROLE_USER'];
+        $this->orders = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
     }
 
-    
     public function getId(): ?int
     {
         return $this->id;
     }
-
 
     public function getEmail(): ?string
     {
@@ -91,19 +78,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return (string) $this->email;
     }
-    
+
     public function getRoles(): array
     {
         return $this->roles;
-        
     }
 
     public function setRoles(array $roles): static
     {
-        $this->roles = $roles ;
-       
-        return $this;
+        $this->roles = $roles;
 
+        return $this;
     }
 
     public function getPassword(): ?string
@@ -141,7 +126,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    // getter et seter avatar
+
+    public function getGsm(): ?string
+    {
+        return $this->gsm;
+    }
+
+    public function setGsm(string $gsm): static
+    {
+        $this->gsm = $gsm;
+
+        return $this;
+    }
+
     public function getProfileImage(): ?string
     {
         return $this->profileImage;
@@ -151,46 +148,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->profileImage = $profileImage;
 
-    return $this;
+        return $this;
     }
 
-    // récupérer la liste des adresses de l'utilisateur.
+    /** @return Collection<int, Address> */
     public function getAddresses(): Collection
     {
         return $this->addresses;
     }
 
-    //  add address
-    public function addAddresse(Address $adress): static
+    public function addAddress(Address $address): static
     {
-        //  vérif si l'addresse n'existe dans ma liste ?
-        if(!$this->address->contains($address)){
-            // ajoute l'addresse dans la collection
+        if (!$this->addresses->contains($address)) {
             $this->addresses->add($address);
-            //  faire le lien avec user -> cette addresse appartient a ce user 
             $address->setUser($this);
         }
-        return $this;
 
+        return $this;
     }
 
-    //  remove addresse 
+    public function addAddresse(Address $address): static
+    {
+        return $this->addAddress($address);
+    }
+
     public function removeAddress(Address $address): static
     {
-        //  si l'addresse est trouvé on la ca retire de la collection
-        if($this->addresses->removeElement($address)){
-            // Est-ce que l'utilisateur de cette adresse est bien l'utilisateur actuel ?
-            if($address->getUser()=== $this){
-                //  si oui je supprime aussi le lien vers cet utilisateur
+        if ($this->addresses->removeElement($address)) {
+            if ($address->getUser() === $this) {
                 $address->setUser(null);
             }
         }
-        // je retourne l'utilisateur.
+
         return $this;
-    }
-    public function getOrders(): Collection
-    {
-        return $this->orders;
     }
 
     public function addOrder(Order $order): static
@@ -210,7 +200,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setUser(null);
             }
         }
-        return $this;
-    }   
 
+        return $this;
+    }
+
+    /** @return Collection<int, Order> */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function eraseCredentials(): void
+    {
+    }
+
+    public function __toString(): string
+    {
+        return trim(($this->firstName ?? '') . ' ' . ($this->lastName ?? ''));
+    }
 }
+

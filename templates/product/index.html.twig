@@ -7,12 +7,14 @@
         <div class="container">
 
             <div class="product-detail-card">
+
                 <div class="product-detail-image">
                     <img
                         src="{{ asset('uploads/products/' ~ product.illustration) }}"
                         alt="{{ product.name }}"
                     >
                 </div>
+
                 <div class="product-detail-content">
                     <a
                         href="{{ path('app_category', {slug: product.category.slug}) }}"
@@ -22,23 +24,59 @@
                     </a>
 
                     <h1>{{ product.name }}</h1>
+
                     <div class="product-description">
                         {{ product.description|raw }}
                     </div>
+
                     <div class="product-detail-price">
-                        {{product.getPriceWithTaxe| price}}
+                        {{ product.getPriceWithTaxe|price }}
                     </div>
 
                     <div class="product-detail-actions">
-                        <a href="{{path('app_cart_add', {id:product.id})}}" class="product-cart-btn">
-                            Ajouter au panier
+                        <a
+                            href="{{ path('app_cart_add', {id: product.id}) }}"
+                            class="product-cart-btn"
+                        >
+                            Commander
                         </a>
+                    </div>
+                </div>
+
+                {# Informations supplémentaires en bas de la carte #}
+                <div class="product-detail-extra">
+                    <h2 class="product-detail-extra-title">
+                        À propos de ce plat
+                    </h2>
+                    {% if product.diet %}
+                        <div class="product-diet">
+                            <strong>Régime alimentaire :</strong>
+
+                            {% if product.diet == 'classic' %}
+                                Classique
+                            {% elseif product.diet == 'vegetarian' %}
+                                Végétarien
+                            {% elseif product.diet == 'vegan' %}
+                                Végétalien
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                    <div class="product-allergens">
+                        <strong>Allergènes :</strong>
+
+                        {% if product.allergens|length > 0 %}
+                            {% for allergen in product.allergens %}
+                                <span>{{ allergen.name }}</span>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <span>Non renseignés</span>
+                        {% endif %}
                     </div>
 
                 </div>
 
             </div>
-
         </div>
     </section>
 

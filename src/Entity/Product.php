@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Entity\Allergen;
+use App\Entity\Menu;
+
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -43,9 +46,16 @@ class Product
     #[ORM\ManyToMany(targetEntity: Menu::class, mappedBy: 'products')]
     private Collection $menus;
 
+    #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'products')]
+    private Collection $allergens;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $diet = null;
+
     public function __construct()
     {
         $this->menus = new ArrayCollection();
+        $this->allergens = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,10 +167,8 @@ class Product
             $this->menus->add($menu);
             $menu->addProduct($this);
         }
-
         return $this;
     }
-
     public function removeMenu(Menu $menu): static
     {
         if ($this->menus->removeElement($menu)) {
@@ -169,4 +177,42 @@ class Product
 
         return $this;
     }
+
+    public function getDiet(): ?string
+    {
+        return $this->diet;
+    }
+
+    public function setDiet(?string $diet): static
+    {
+        $this->diet = $diet;
+
+        return $this;
+    }
+    /**
+     * @return Collection<int, Allergen>
+     */
+    public function getAllergens(): Collection
+    {
+        return $this->allergens;
+    }
+
+    public function addAllergen(Allergen $allergen): static
+    {
+        if (!$this->allergens->contains($allergen)) {
+            $this->allergens->add($allergen);
+            $allergen->addProduct($this);
+        }
+
+        return $this;
+    }
+    public function removeAllergen(Allergen $allergen): static
+    {
+        if ($this->allergens->removeElement($allergen)) {
+            $allergen->removeProduct($this);
+        }
+
+        return $this;
+    }
+
 }

@@ -63,11 +63,11 @@ class Carrier
 
         return $this;
     }
-
-    // formater le prix 2 chiffre après la virgule
+    //  fonction de format prix (price) et affichage le name 
     public function __toString(): string
-    {
-        $price = number_format($this->getPrice(), 2, ',').'€';
-        return $this->getName().'<br/>'.$price;
+     { 
+        $price = number_format($this->getPrice() ?? 0, 2, ',', ' ') . ' €'; 
+        return ($this->getName() ?? '') . ' — ' . $price; 
     }
+
 }
