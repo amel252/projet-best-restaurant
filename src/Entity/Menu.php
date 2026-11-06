@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[ORM\Entity(repositoryClass: MenuRepository::class)]
 class Menu
@@ -30,6 +31,13 @@ class Menu
 
     #[ORM\Column(nullable: true)]
     private ?array $images = null;
+    /**
+    * Champ temporaire pour recevoir les nouvelles photos.
+    * Cette propriété n'est pas enregistrée en base de données.
+    *
+    * @var UploadedFile[]
+    */
+    private array $imagesUpload = [];
 
     #[ORM\Column]
     private ?int $minPeople = null;
@@ -121,6 +129,23 @@ class Menu
 
         return $this;
     }
+    /**
+    * @return UploadedFile[]
+    */
+    public function getImagesUpload(): array
+    {
+        return $this->imagesUpload;
+    }
+
+    /**
+    * @param UploadedFile[]|null $imagesUpload
+    */
+    public function setImagesUpload(?array $imagesUpload): static
+    {
+        $this->imagesUpload = $imagesUpload ?? [];
+
+        return $this;
+    }
 
     public function getMinPeople(): ?int
     {
@@ -207,6 +232,22 @@ class Menu
         }
         
 
+        return $this;
+    }
+    /**
+    * Photos sélectionnées pour suppression.
+    *
+    * @var string[]
+    */
+    private array $imagesToDelete = [];
+    public function getImagesToDelete(): array
+    {
+        return $this->imagesToDelete;
+    }
+
+    public function setImagesToDelete(?array $imagesToDelete): static
+    {
+        $this->imagesToDelete = $imagesToDelete ?? [];
         return $this;
     }
 
