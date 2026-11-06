@@ -15,7 +15,36 @@ class MenuRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Menu::class);
     }
-
+    public function findFilteredMenus(
+        ?float $minPrice = null,
+        ?float $maxPrice = null,
+        ?string $theme = null,
+        ?string $diet = null,
+        ?int $minPeople = null
+    ):array {
+        $qb = $this->createQueryBuilder('m');
+        if($minPrice !== null){
+            $qb->andWhere('m.basePrice >= :minPrice')
+                ->setParameter('minPrice', $minPrice);
+        }
+        if ($maxPrice !== null) {
+        $qb->andWhere('m.basePrice <= :maxPrice')
+           ->setParameter('maxPrice', $maxPrice);
+        }
+        if ($theme !== null && $theme !== '') {
+        $qb->andWhere('m.theme = :theme')
+           ->setParameter('theme', $theme);
+        }
+        if ($diet !== null && $diet !== '') {
+        $qb->andWhere('m.diet = :diet')
+           ->setParameter('diet', $diet);
+        }
+        if ($minPeople !== null) {
+        $qb->andWhere('m.minPeople <= :minPeople')
+           ->setParameter('minPeople', $minPeople);
+        }
+        return $qb->getQuery()->getResult();
+    }
     //    /**
     //     * @return Menu[] Returns an array of Menu objects
     //     */
