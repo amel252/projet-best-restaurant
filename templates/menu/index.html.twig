@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<section class="menus-page">
+    <div class="container">
+        <div class="category-header">
+            <h2>Nos menus</h2>
+            <p>Découvrez nos menus et choisissez celui qui vous convient.</p>
+        </div>
+
+        <div class="menu-layout">
+
+            {# BARRE DES FILTRES #}
+            <aside class="menu-filters">
+                <h3 class="filters-title">Filtrer les menus</h3>
+                <button
+                    type="button"
+                    class="filters-toggle"
+                    aria-expanded="false"
+                    aria-controls="menu-filter-form"
+                    onclick="
+                        const form = document.getElementById('menu-filters');
+                        const expanded = this.getAttribute('aria-expanded') === 'true';
+                        this.setAttribute('aria-expanded', String(!expanded));
+                        form.classList.toggle('is-open', !expanded);
+                    "
+                >
+                    <span>Filtrer les menus</span>
+                    <span class="filters-arrow">⌄</span>
+                </button>
+                {# <h3>Filtrer les menus</h3> #}
+
+                <form id="menu-filters" method="get" action="{{ path('app_menu') }}">
+
+                    <div class="filter-group">
+                        <label for="minPrice">Prix minimum (€)</label>
+                        <input type="number" id="minPrice"
+                               name="minPrice" min="0" step="0.01"
+                               value="{{ app.request.query.get('minPrice') }}">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="maxPrice">Prix maximum (€)</label>
+                        <input type="number" id="maxPrice"
+                               name="maxPrice" min="0" step="0.01"
+                               value="{{ app.request.query.get('maxPrice') }}">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="theme">Thème</label>
+                        <select id="theme" name="theme">
+                            <option value="">Tous les thèmes</option>
+                            <option value="classique" {% if app.request.query.get('theme') == 'classique' %}selected{% endif %}>Classique</option>
+                            <option value="noel" {% if app.request.query.get('theme') == 'noel' %}selected{% endif %}>Noël</option>
+                            <option value="paques" {% if app.request.query.get('theme') == 'paques' %}selected{% endif %}>Pâques</option>
+                            <option value="evenement" {% if app.request.query.get('theme') == 'evenement' %}selected{% endif %}>Évènement</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="diet">Régime alimentaire</label>
+                        <select id="diet" name="diet">
+                            <option value="">Tous les régimes</option>
+                            <option value="classique" {% if app.request.query.get('diet') == 'classique' %}selected{% endif %}>Classique</option>
+                            <option value="vegetarien" {% if app.request.query.get('diet') == 'vegetarien' %}selected{% endif %}>Végétarien</option>
+                            <option value="vegan" {% if app.request.query.get('diet') == 'vegan' %}selected{% endif %}>Vegan</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="minPeople">Nombre de personnes</label>
+                        <input type="number" id="minPeople"
+                               name="minPeople" min="1"
+                               value="{{ app.request.query.get('minPeople') }}" >
+                    </div>
+
+                    <a href="{{ path('app_menu') }}" class="product-btn product-btn-outline">
+                        Réinitialiser
+                    </a>
+
+                </form>
+            </aside>
+
+            {# LISTE DES MENUS #}
+            <div class="menu-results">
+
+                <div class="products-grid" id="menus-list">
+
+                    {% for menu in menus %}
+                        <article class="product-card">
+
+                            <div class="product-image">
+                                {% if menu.images is not empty %}
+                                    <img
+                                        src="{{ asset('uploads/menus/' ~ menu.images[0]) }}"
+                                        alt="{{ menu.title }}"
+                                    >
+                                {% else %}
+                                    <div class="menu-no-image">
+                                        Photo non disponible
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="product-content">
+                                <h3>{{ menu.title }}</h3>
+
+                                <p>{{ menu.description|striptags|slice(0, 40) }}...</p>
+
+                                <div class="product-footer">
+                                    <span>
+                                        Min. {{ menu.minPeople }} personnes
+                                    </span>
+                                    <span class="product-price">
+                                        {{ menu.basePrice|price }}
+                                    </span>
+                                </div>
+
+                                <div class="product-actions">
+                                    <a href="#"
+                                       class="product-btn product-btn-outline">
+                                        Découvrir le menu
+                                    </a>
+                                </div>
+                            </div>
+
+                        </article>
+
+                    {% else %}
+                        <p>Aucun menu disponible pour le moment.</p>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
