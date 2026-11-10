@@ -17,7 +17,7 @@
                     type="button"
                     class="filters-toggle"
                     aria-expanded="false"
-                    aria-controls="menu-filter-form"
+                    aria-controls="menu-filters"
                     onclick="
                         const form = document.getElementById('menu-filters');
                         const expanded = this.getAttribute('aria-expanded') === 'true';
@@ -73,7 +73,9 @@
                                name="minPeople" min="1"
                                value="{{ app.request.query.get('minPeople') }}" >
                     </div>
-
+                    <button type="submit" class="product-btn product-btn-primary">
+                        Rechercher
+                    </button>
                     <a href="{{ path('app_menu') }}" class="product-btn product-btn-outline">
                         Réinitialiser
                     </a>
@@ -135,7 +137,34 @@
             </div>
 
         </div>
+        {# PAGINATION PERSONNALISÉE #}
+        {% if menus.pageCount > 1 %}
+            <nav class="menu-pagination" aria-label="Pagination des menus">
 
+                {% if menus.currentPageNumber > 1 %}
+                    <a href="{{ path('app_menu', app.request.query.all|merge({'page': menus.currentPageNumber - 1})) }}"
+                    class="pagination-btn pagination-arrow"
+                    aria-label="Page précédente">
+                        &lsaquo;
+                    </a>
+                {% endif %}
+                <span class="pagination-current" aria-current="page">
+                    {{ menus.currentPageNumber }}
+                </span>
+                {% if menus.currentPageNumber < menus.pageCount %}
+                    <a href="{{ path('app_menu', app.request.query.all|merge({'page': menus.currentPageNumber + 1})) }}"
+                    class="pagination-btn"
+                    aria-label="Page suivante">
+                        {{ menus.currentPageNumber + 1 }}
+                    </a>
+                    <a href="{{ path('app_menu', app.request.query.all|merge({'page': menus.currentPageNumber + 1})) }}"
+                    class="pagination-btn pagination-arrow"
+                    aria-label="Page suivante">
+                        &rsaquo;
+                    </a>
+                {% endif %}
+            </nav>
+        {% endif %}
     </div>
 </section>
 
