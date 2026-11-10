@@ -83,6 +83,22 @@
             margin-top: 5px;
         }
 
+        /* Bouton Rechercher */
+        .product-btn-primary {
+            color: #fff;
+            background-color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            cursor: pointer;
+            padding: 10px 12px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 600;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
         .filters-toggle {
             display: none;
         }
@@ -225,6 +241,62 @@
     }
 }
 
+// PAGINATION DES MENUS
+section.menus-page {
+    nav.menu-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+        margin: 40px auto 25px;
+        padding: 0;
+        text-align: center;
+
+        a.pagination-btn,
+        .pagination-current {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 42px;
+            min-width: 42px;
+            height: 42px;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+
+            background-color: #ffffff;
+            color: #ceaf7f;
+            border: 1px solid #ceaf7f;
+            border-radius: 8px;
+
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        a.pagination-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--contrast-color);
+            border-color: var(--accent-color);
+        }
+
+        .pagination-current {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            font-weight: 700;
+        }
+
+        a.pagination-arrow {
+            font-size: 22px;
+        }
+    }
+}
+
 // PETITS MOBILES : filtres en haut, une carte par ligne
 @media (max-width: 569px) {
     .menus-page {
@@ -235,10 +307,32 @@
             gap: 25px;
         }
 
+        .menu-pagination {
+            gap: 6px;
+            margin-top: 25px;
+
+            a.pagination-btn {
+                width: 34px !important;
+                min-width: 34px !important;
+                height: 34px !important;
+                font-size: 13px !important;
+
+                &.pagination-arrow {
+                    font-size: 19px !important;
+                }
+            }
+        }
+
+
         .menu-filters {
             width: 100%;
             box-sizing: border-box;
             padding: 18px;
+
+            .product-btn {
+                min-height: 43px;
+                font-size: 14px;
+            }
         }
 
         .products-grid {
@@ -298,6 +392,8 @@
                     display: block;
                 }
             }
+
+
         }
     }
 }
@@ -313,6 +409,12 @@
 
         .menu-filters {
             padding: 12px;
+
+            .product-btn {
+                min-height: 38px;
+                padding: 8px 6px;
+                font-size: 12px;
+            }
 
             h3 {
                 font-size: 17px;
@@ -385,7 +487,7 @@
 }
 
 // TABLETTES ET ÉCRANS INTERMÉDIAIRES : filtres à gauche, 2 cartes à droite
-@media (min-width: 770px) and (max-width: 991px) {
+@media (min-width: 770px) and (max-width: 990px) {
     .menus-page {
         .menu-layout {
             grid-template-columns: 220px minmax(0, 1fr);
@@ -409,6 +511,13 @@
             }
 
             >p {
+                font-size: 13px;
+            }
+        }
+
+        .menu-filters {
+            .product-btn {
+                min-height: 40px;
                 font-size: 13px;
             }
         }

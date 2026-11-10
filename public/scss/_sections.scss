@@ -1,3 +1,32 @@
+@use './sections/_hero.scss';
+@use './sections/_about.scss';
+/*@use './sections/_menu_home.scss';*/
+@use './sections/_menu.scss';
+
+@use './sections/_testimonials.scss';
+@use './sections/_chefs.scss';
+@use './sections/_book-a-table.scss';
+@use './sections/_location.scss';
+@use './sections/_events.scss';
+@use './sections/_contact.scss';
+@use './sections/_starter-section.scss';
+@use './sections/_register.scss';
+@use './sections/_profile.scss';
+
+@use './sections/_product_details.scss';
+@use './sections/_payment.scss';
+@use './sections/_profile_edit.scss';
+@use './sections/_password_edit.scss';
+@use './sections/_addresses.scss';
+@use './sections/_address_form.scss';
+
+@use './sections/_order.scss';
+@use './sections/_order_summary.scss';
+@use './sections/_order_single.scss';
+
+@use './sections/_category_product.scss';
+@use './sections/_cart.scss';
+
 /*--------------------------------------------------------------
 # Global Sections
 --------------------------------------------------------------*/
@@ -54,32 +83,3 @@ section,
     margin-bottom: 0;
   }
 }
-
-@import './sections/_hero.scss';
-@import './sections/_about.scss';
-@import './sections/_menu_home.scss';
-@import './sections/_menu.scss';
-
-@import './sections/_testimonials.scss';
-@import './sections/_chefs.scss';
-@import './sections/_book-a-table.scss';
-@import './sections/_location.scss';
-@import './sections/_events.scss';
-@import './sections/_contact.scss';
-@import './sections/_starter-section.scss';
-@import './sections/_register.scss';
-@import './sections/_profile.scss';
-
-@import './sections/_product_details.scss';
-@import './sections/_payment.scss';
-@import './sections/_profile_edit.scss';
-@import './sections/_password_edit.scss';
-@import './sections/_addresses.scss';
-@import './sections/_address_form.scss';
-
-@import './sections/_order.scss';
-@import './sections/_order_summary.scss';
-@import './sections/_order_single.scss';
-
-@import './sections/_category_product.scss';
-@import './sections/_cart.scss';
