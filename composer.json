@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^4.0",
         "doctrine/orm": "^3.6",
         "easycorp/easyadmin-bundle": "^5.4",
+        "knplabs/knp-paginator-bundle": "^6.11",
         "mailjet/mailjet-apiv3-php": "^1.6",
         "nyholm/psr7": "^1.8",
         "phpdocumentor/reflection-docblock": "^6.0",
