@@ -1,11 +1,3 @@
-/**
-* Template Name: NiceRestaurant
-* Template URL: https://bootstrapmade.com/nice-restaurant-bootstrap-template/
-* Updated: Jun 06 2025 with Bootstrap v5.3.6
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function () {
   "use strict";
 
@@ -22,9 +14,7 @@
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
-  /**
-   * Mobile nav toggle
-   */
+  /* Mobile nav toggle */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToogle() {
@@ -36,9 +26,7 @@
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
   }
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
+  /* Hide mobile nav on same-page/hash links */
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
       if (document.querySelector('.mobile-nav-active')) {
@@ -48,9 +36,7 @@
 
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
+  /* Toggle mobile nav dropdowns */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function (e) {
       e.preventDefault();
@@ -60,19 +46,7 @@
     });
   });
 
-  /**
-   * Preloader
-   */
-  // const preloader = document.querySelector('#preloader');
-  // if (preloader) {
-  //   window.addEventListener('load', () => {
-  //     preloader.remove();
-  //   });
-  // }
-
-  /**
-   * Scroll top button
-   */
+  /* Scroll top button */
   let scrollTop = document.querySelector('.scroll-top');
 
   function toggleScrollTop() {
@@ -101,9 +75,7 @@
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
-  /**
-   * Animation on scroll function and init
-   */
+  /* Animation on scroll function and init */
   function aosInit() {
     AOS.init({
       duration: 600,
@@ -114,9 +86,7 @@
   }
   window.addEventListener('load', aosInit);
 
-  /**
-   * Init swiper sliders
-   */
+  /* Init swiper sliders */
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
@@ -189,9 +159,7 @@
     }
   });
 
-  /**
-   * Navmenu Scrollspy
-   */
+  /* Navmenu Scrollspy */
   let navmenulinks = document.querySelectorAll('.navmenu a');
 
   function navmenuScrollspy() {
@@ -213,14 +181,12 @@
 
 })();
 
-//  fonction pour l'img avatar
+/* ---fonction pour l'img avatar --- */
 const profileImageInput = document.querySelector('#profileImage');
 const avatarForm = document.querySelector('#avatarForm');
 
 if (profileImageInput && avatarForm) {
-
   profileImageInput.addEventListener('change', function () {
-
     if (profileImageInput.files.length > 0) {
       avatarForm.submit();
     }
@@ -228,4 +194,89 @@ if (profileImageInput && avatarForm) {
   });
 
 }
+/* Filtrage dynamique des menus AJAX */
+document.addEventListener('DOMContentLoaded', () => {
+
+  const form = document.querySelector('#menu-filters');
+  const results = document.querySelector('#menu-results');
+
+  if (!form || !results) {
+    return;
+  }
+
+  // Charger les résultats sans recharger la page
+  async function loadResults(url) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Erreur lors du chargement des menus.');
+      }
+
+      const html = await response.text();
+      results.innerHTML = html;
+
+      // Mettre à jour l'URL sans recharger la page
+      window.history.pushState({}, '', url);
+
+    } catch (error) {
+      console.error(error);
+      window.location.href = url;
+    }
+  }
+
+  // Soumission des filtres
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const params = new URLSearchParams(new FormData(form));
+    const url = params.toString()
+      ? `${form.action}?${params.toString()}`
+      : form.action;
+
+    loadResults(url);
+  });
+
+  // Pagination sans rechargement
+  results.addEventListener('click', (event) => {
+    const link = event.target.closest('.menu-pagination a');
+
+    if (!link) {
+      return;
+    }
+
+    event.preventDefault();
+    loadResults(link.href);
+  });
+
+  // Réinitialisation des filtres
+  const resetLink = form.querySelector('a[href]');
+
+  if (resetLink) {
+    resetLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      form.reset();
+
+      form.querySelectorAll('input').forEach(input => {
+        input.value = '';
+      });
+
+      form.querySelectorAll('select').forEach(select => {
+        select.selectedIndex = 0;
+      });
+
+      loadResults(resetLink.href);
+    });
+  }
+
+  // Gestion des boutons précédent / suivant du navigateur
+  window.addEventListener('popstate', () => {
+    loadResults(window.location.href);
+  });
+
+});
 

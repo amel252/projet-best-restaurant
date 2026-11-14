@@ -35,7 +35,11 @@ final class MenuController extends AbstractController
             $request->query->getInt('page', 1),
             9
         );
-
+        if ($request->isXmlHttpRequest()) {
+            return $this->render('menu/_results.html.twig', [
+                'menus' => $menus,
+            ]);
+        }
         return $this->render('menu/index.html.twig', [
             'menus' => $menus,
         ]);

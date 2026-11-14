@@ -9,7 +9,6 @@
         </div>
 
         <div class="menu-layout">
-
             {# BARRE DES FILTRES #}
             <aside class="menu-filters">
                 <h3 class="filters-title">Filtrer les menus</h3>
@@ -28,24 +27,19 @@
                     <span>Filtrer les menus</span>
                     <span class="filters-arrow">⌄</span>
                 </button>
-                {# <h3>Filtrer les menus</h3> #}
-
                 <form id="menu-filters" method="get" action="{{ path('app_menu') }}">
-
                     <div class="filter-group">
                         <label for="minPrice">Prix minimum (€)</label>
                         <input type="number" id="minPrice"
                                name="minPrice" min="0" step="0.01"
                                value="{{ app.request.query.get('minPrice') }}">
                     </div>
-
                     <div class="filter-group">
                         <label for="maxPrice">Prix maximum (€)</label>
                         <input type="number" id="maxPrice"
                                name="maxPrice" min="0" step="0.01"
                                value="{{ app.request.query.get('maxPrice') }}">
                     </div>
-
                     <div class="filter-group">
                         <label for="theme">Thème</label>
                         <select id="theme" name="theme">
@@ -82,89 +76,11 @@
 
                 </form>
             </aside>
-
             {# LISTE DES MENUS #}
-            <div class="menu-results">
-
-                <div class="products-grid" id="menus-list">
-
-                    {% for menu in menus %}
-                        <article class="product-card">
-
-                            <div class="product-image">
-                                {% if menu.images is not empty %}
-                                    <img
-                                        src="{{ asset('uploads/menus/' ~ menu.images[0]) }}"
-                                        alt="{{ menu.title }}"
-                                    >
-                                {% else %}
-                                    <div class="menu-no-image">
-                                        Photo non disponible
-                                    </div>
-                                {% endif %}
-                            </div>
-
-                            <div class="product-content">
-                                <h3>{{ menu.title }}</h3>
-
-                                <p>{{ menu.description|striptags|slice(0, 40) }}...</p>
-
-                                <div class="product-footer">
-                                    <span>
-                                        Min. {{ menu.minPeople }} personnes
-                                    </span>
-                                    <span class="product-price">
-                                        {{ menu.basePrice|price }}
-                                    </span>
-                                </div>
-
-                                <div class="product-actions">
-                                    <a href="{{path('app_menu_show', {'slug': menu.slug})}}"
-                                       class="product-btn product-btn-outline">
-                                        Découvrir le menu
-                                    </a>
-                                </div>
-                            </div>
-
-                        </article>
-
-                    {% else %}
-                        <p>Aucun menu disponible pour le moment.</p>
-                    {% endfor %}
-
-                </div>
-
+            <div class="menu-results" id="menu-results">
+                {% include 'menu/_results.html.twig' %}
             </div>
-
         </div>
-        {# PAGINATION PERSONNALISÉE #}
-        {% if menus.pageCount > 1 %}
-            <nav class="menu-pagination" aria-label="Pagination des menus">
-
-                {% if menus.currentPageNumber > 1 %}
-                    <a href="{{ path('app_menu', app.request.query.all|merge({'page': menus.currentPageNumber - 1})) }}"
-                    class="pagination-btn pagination-arrow"
-                    aria-label="Page précédente">
-                        &lsaquo;
-                    </a>
-                {% endif %}
-                <span class="pagination-current" aria-current="page">
-                    {{ menus.currentPageNumber }}
-                </span>
-                {% if menus.currentPageNumber < menus.pageCount %}
-                    <a href="{{ path('app_menu', app.request.query.all|merge({'page': menus.currentPageNumber + 1})) }}"
-                    class="pagination-btn"
-                    aria-label="Page suivante">
-                        {{ menus.currentPageNumber + 1 }}
-                    </a>
-                    <a href="{{ path('app_menu', app.request.query.all|merge({'page': menus.currentPageNumber + 1})) }}"
-                    class="pagination-btn pagination-arrow"
-                    aria-label="Page suivante">
-                        &rsaquo;
-                    </a>
-                {% endif %}
-            </nav>
-        {% endif %}
     </div>
 </section>
 
