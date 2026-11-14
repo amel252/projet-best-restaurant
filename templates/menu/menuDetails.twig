@@ -1,0 +1,118 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="menu-detail">
+    <div class="container">
+
+        <div class="menu-detail-card">
+
+            {# Galerie photos #}
+            <div class="menu-detail-images">
+                {% if menu.images is not empty %}
+                    {% for image in menu.images %}
+                        <img
+                            src="{{ asset('uploads/menus/' ~ image) }}"
+                            alt="Photo du menu {{ menu.title }}"
+                        >
+                    {% endfor %}
+                {% else %}
+                    <p>Aucune photo disponible pour ce menu.</p>
+                {% endif %}
+            </div>
+
+            {# Informations principales #}
+            <div class="menu-detail-content">
+                <span class="menu-theme">{{ menu.theme }}</span>
+                <h1>{{ menu.title }}</h1>
+                <div class="menu-description">
+                    {{ menu.description|raw }}
+                </div>
+                <div class="menu-detail-price">
+                    {{ menu.basePrice|number_format(2, ',', ' ') }} €
+                    <small>pour {{ menu.minPeople }} personnes minimum</small>
+                </div>
+                <div class="menu-detail-meta">
+                    <p>
+                        <strong>Régime alimentaire :</strong>
+                        <span>{{ menu.diet ?: 'Non renseigné' }}</span>
+                    </p>
+                    <p>
+                        <strong>Stock disponible :</strong>
+                        <span>{{ menu.stock }}</span>
+                    </p>
+                </div>
+                
+                <div class="menu-detail-actions">
+                    {% if app.user %}
+                        <a href="{{ path('app_cart') }}" class="menu-order-btn">
+                            Commander
+                        </a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="menu-order-btn">
+                            Commander
+                        </a>
+                    {% endif %}
+                    <a href="{{ path('app_menu') }}" class="menu-back-btn">
+                        Retour aux menus
+                    </a>
+                </div>
+            </div>
+            {# Conditions particulières mises en évidence #}
+            <div class="menu-conditions">
+                <h>Conditions particulières</h>
+                {% if menu.conditions %}
+                    {{ menu.conditions|nl2br }}
+                {% else %}
+                    <p>Aucune condition particulière renseignée.</p>
+                {% endif %}
+            </div>
+
+            {# Composition du menu #}
+            <div class="menu-products">
+                <h2>Composition du menu</h2>
+                {% for product in menu.products %}
+                    <article class="menu-product">
+                        <div class="menu-product-image">
+                            <img
+                                src="{{ asset('uploads/products/' ~ product.illustration) }}"
+                                alt="{{ product.name }}"
+                            >
+                        </div>
+                        <div class="menu-product-content">
+                            <h3>{{ product.name }}</h3>
+                            <div class="menu-product-description">
+                                {{ product.description|raw }}
+                            </div>
+                            <div class="menu-product-regime">
+                                {% if product.diet %}
+                                    <p>
+                                        <strong>Régime alimentaire :</strong>
+                                        {{ product.diet }}
+                                    </p>
+                                {% endif %}
+                            </div>
+
+                            <div class="menu-product-allergens">
+                                <strong>Allergènes :</strong>
+                                {% if product.allergens|length > 0 %}
+                                    {% for allergen in product.allergens %}
+                                        <span>{{ allergen.name }}</span>{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <span>Non renseignés</span>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </article>
+                {% else %}
+                    <p>Aucun plat associé à ce menu.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
