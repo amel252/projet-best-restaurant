@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 use App\Entity\User;
+use App\Entity\Address;
+
 use App\Form\RegisterUserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-
-
-
+use App\Classe\Mail;
 
 final class RegisterController extends AbstractController
 {
@@ -41,13 +41,37 @@ final class RegisterController extends AbstractController
             );
             // 7- Enregistrer le MDP
             $user->setPassword($hashedPassword);
+            // 8 Création la premiere adresse de user 
+            $address = new Address();
 
-            //  8- Enregister user dans BD 
+            $address->setFirstname($user->getFirstName());
+            $address->setLastname($user->getLastName());
+            $address->setAddress($form->get('address')->getData());
+            $address->setPostalCode($form->get('postalCode')->getData());
+            $address->setCity($form->get('city')->getData());
+            $address->setCountry($form->get('country')->getData());
+            $address->setPhoneNumber($user->getGsm());
+
+            // Association avec le nouvel utilisateur
+            $address->setUser($user);
+            
+            //  9- Enregister user & adresse dans BD 
             $entityManager->persist($user);
-
-            //  9- excuter l'insertion SQL- envoyer les donnée en BD 
+            $entityManager->persist($address);
+            //  10- excuter l'insertion SQL- envoyer les donnée en BD 
             $entityManager->flush();
-            // 10 -redirige aprés vers page connexion
+            // 11- envoi l'email de bienvenue
+            $mail = new Mail();
+            $mail->send(
+                $user->getEmail(),
+                $user->getFirstName(),
+                'Bienvenue chez Vite&Gourmand! ',
+                [
+                    'firstname'=>$user->getFirstName(),
+                ]
+            );
+
+            // 11 -redirige aprés vers page connexion
             return $this->redirectToRoute('app_home');
         }
 

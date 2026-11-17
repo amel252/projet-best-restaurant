@@ -85,13 +85,39 @@ class RegisterUserType extends AbstractType
                         message: 'Veuillez saisir votre numéro de GSM.'
                     ),
                     new Regex(
-                        pattern: '/^(?:(?:\+|00)33|0)[67]\d{8}$/',
+                        pattern: '/^(?:(?:\+|00)33|0)[1-9](?:[ .-]?\d{2}){4}$/',
                         message: 'Veuillez saisir un numéro de portable valide (ex: 0612345678).'
                     )
                 ],
             ])
+            /*Ajout adresse*/ 
+            ->add('address', TextType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank(message: 'Veuillez saisir votre adresse.'),
+                ],
+            ])
+            ->add('postalCode', TextType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank(message: 'Veuillez saisir votre code postal.'),
+                ],
+            ])
+            ->add('city', TextType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank(message: 'Veuillez saisir votre ville.'),
+                ],
+            ])
+            ->add('country', TextType::class, [
+                'mapped' => false,
+                'constraints' => [
+                   new NotBlank(message: 'Veuillez saisir votre pays.'),
+                ],
+            ])
         ;
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
