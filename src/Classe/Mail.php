@@ -28,7 +28,7 @@ class Mail
                 [
                     'From'=>[
                         'Email'=> 'amelghanem25@gmail.com',
-                        'Name'=> "Best restaurant"
+                        'Name'=> "Vite & Gourmand"
 
                     ],
                     'To'=>[
