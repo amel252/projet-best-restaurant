@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Entity;
@@ -70,7 +71,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -87,7 +87,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -99,7 +98,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -111,7 +109,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFirstName(string $firstName): static
     {
         $this->firstName = $firstName;
-
         return $this;
     }
 
@@ -123,7 +120,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName(string $lastName): static
     {
         $this->lastName = $lastName;
-
         return $this;
     }
 
@@ -135,7 +131,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGsm(string $gsm): static
     {
         $this->gsm = $gsm;
-
         return $this;
     }
 
@@ -147,7 +142,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfileImage(?string $profileImage): static
     {
         $this->profileImage = $profileImage;
-
         return $this;
     }
 
@@ -183,6 +177,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /** @return Collection<int, Order> */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
     public function addOrder(Order $order): static
     {
         if (!$this->orders->contains($order)) {
@@ -204,12 +204,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /** @return Collection<int, Order> */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
-    }
-
     public function eraseCredentials(): void
     {
     }
@@ -219,4 +213,3 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return trim(($this->firstName ?? '') . ' ' . ($this->lastName ?? ''));
     }
 }
-

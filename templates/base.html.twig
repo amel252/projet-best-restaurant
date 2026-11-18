@@ -35,7 +35,7 @@
                         {# LIENS PRINCIPAUX #}
                         <li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
                         <li><a href="#about">À propos</a></li>
-                        <li><a href="{{path('app_menu')}}">Menu</a></li>
+                        <li><a href="#">Menu</a></li>
                         <li><a href="#chefs">Chefs</a></li>
                         <li><a href="#events">Événements</a></li>
                         <li><a href="#galerie">Galerie</a></li>
@@ -46,6 +46,17 @@
                             {# PROFIL UTILISATEUR #}
                             <div class="nav-login">
                                 {% if app.user %}
+                                    <a href="{{ path('app_home') }}" title="Mon profil">
+                                        <i class="bi bi-person-circle"></i>
+                                        <span>{{ app.user.firstName }}</span>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('app_login') }}" title="Connexion">
+                                        <i class="bi bi-person-circle"></i>
+                                        <span>Connexion</span>
+                                    </a>
+                                {% endif %}
+                                {# {% if app.user %}
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('admin') }}" title="Administration">
                                             <i class="bi bi-person"></i>
@@ -63,11 +74,11 @@
                                        aria-label="Connexion">
                                         <i class="bi bi-person"></i>
                                     </a>
-                                {% endif %}
+                                {% endif %} #}
                             </div>
 
                             {# PANIER #}
-                            <a href="{{ path('app_cart') }}"
+                            {# <a href="#{{ path('app_cart') }}"
                                class="cart-icon"
                                title="Mon panier"
                                aria-label="Mon panier">
@@ -78,7 +89,7 @@
                                         {{ fullCartQuantity }}
                                     </span>
                                 {% endif %}
-                            </a>
+                            </a> #}
                         </li>
 
                         {# BOUTON RÉSERVER #}
@@ -117,18 +128,18 @@
             <div class="container footer-top">
                 <div class="row gy-4 align-items-start">
                     {# BLOC  : info site  #}
-                    {% include 'partials/_site_info.html.twig' %}
+                    {# {% include 'partials/_site_info.html.twig' %} #}
                     {# BLOC 2 : LIENS UTILES #}
-                    {% include 'partials/_usefull_link.html.twig' %}
+                    {# {% include 'partials/_usefull_link.html.twig' %} #}
                     {# BLOC 3 : HORAIRES D'OUVERTURE #}
-                    {% include 'partials/_opening_hours.html.twig' %}
+                    {# {% include 'partials/_opening_hours.html.twig' %} #}
 
 
                 </div>
             </div>
 
             {# COPYRIGHT #}
-            <div class="container copyright text-center mt-4">
+            {# <div class="container copyright text-center mt-4">
                 <div class="footer-legal">
                     <ul>
                         {% if legalPage is not defined or legalPage.slug is not defined or legalPage.slug != 'mentions-legales' %}
@@ -161,7 +172,7 @@
                     <strong class="px-1 sitename">Vite&Gourmand</strong>
                     <span>Tous droits réservés</span>
                 </p>
-            </div>
+            </div> #}
         </footer>
 
         {# JAVASCRIPTS #}
