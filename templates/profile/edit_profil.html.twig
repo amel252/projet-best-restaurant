@@ -72,6 +72,22 @@
                         {{ form_errors(profilModifForm.email) }}
                     </div>
                 </div>
+                <div class='col-md-6'>
+                    {{form_label(profilModifForm.gsm,'Votre Numéro de téléphone',{
+                        'label_attr':{
+                        'class': 'form-label'
+                    }
+                    })}}
+                    {{ form_widget(profilModifForm.gsm, {
+                        'attr': {
+                        'class': 'form-control custom-input',
+                        'placeholder': 'Numéro de téléphone'
+                    }
+                    }) }}
+                    <div class='form-errors '>
+                        {{ form_errors(profilModifForm.gsm) }}
+                    </div>
+                </div>
             </div>
             <div class="profile-actions">
                 <button type="submit"

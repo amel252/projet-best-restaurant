@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}
@@ -86,15 +85,19 @@
                                         alt="Photo de profil"
                                         id="profilePreview"
                                     >
+                                    {# <p>Changer votre photo en cliquant </p> #}
                                 {% else %}
                                     <i
                                         class="bi bi-person"
                                         id="profileIcon"
                                     ></i>
                                 {% endif %}
-
+                                <span class="avatar-edit">
+                                    <i class="bi bi-camera-fill"></i>
+                                    <span>Modifier</span>
+                                </span>
                             </label>
-
+                            
                             <input
                                 type="file"
                                 id="profileImage"
@@ -103,13 +106,6 @@
                                 hidden
                             >
 
-                        </div>
-                        {# NOM  #}
-                        <div class="profile-user-identity">
-                            <h2 class="profile-card-title">
-                                {{ app.user.firstName }}
-                                {{ app.user.lastName }}
-                            </h2>
                         </div>
                     </div>
 
@@ -130,16 +126,13 @@
                         </span>
 
                     </div>
-
                     {# NOM #}
-
                     <div class="profile-info-item">
                         <span class="profile-info-label">Nom :</span>
                         <span class="profile-info-value">
                             {{ app.user.lastName }}
                         </span>
                     </div>
-
                     {# EMAIL #}
                     <div class="profile-info-item">
                         <span class="profile-info-label">Adresse email :</span>
@@ -147,14 +140,15 @@
                             {{ app.user.email }}
                         </span>
                     </div>
+                    <div class="profile-info-item">
+                        <span class="profile-info-label">Numéro de téléphone :</span>
+                        <span class="profile-info-value">
+                            {{ app.user.gsm }}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-
-
 {% endblock %}
-
