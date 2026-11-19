@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 use App\Entity\User;
 use App\Entity\Category;
@@ -31,6 +32,7 @@ use App\Controller\Admin\LegalPageCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 // Cette classe permet de fabriquer des URLs vers une page EasyAdmin.
 
+#[IsGranted('ROLE_ADMIN')]
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {

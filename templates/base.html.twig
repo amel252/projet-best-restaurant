@@ -45,19 +45,12 @@
                         <li class="nav-actions">
                             {# PROFIL UTILISATEUR #}
                             <div class="nav-login">
-                                {% if app.user %}
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="{{ path('admin') }}" title="Administration">
-                                            <i class="bi bi-speedometer2"></i>
-                                            <span>Administration</span>
-                                        </a>
-                                    {% else %}
-                                        <a href="{{ path('app_profile') }}" title="Mon profil">
-                                            <i class="bi bi-person-circle"></i>
-                                            <span>{{ app.user.firstName }}</span>
-                                        </a>
-                                    {% endif %}
-                                {% else %}
+                                {% if app.user and not is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_profile') }}" title="Mon profil">
+                                        <i class="bi bi-person-circle"></i>
+                                        <span>{{ app.user.firstName }}</span>
+                                    </a>
+                                {% elseif not app.user %}
                                     <a href="{{ path('app_login') }}" title="Connexion">
                                         <i class="bi bi-person-circle"></i>
                                         <span>Connexion</span>
