@@ -82,22 +82,24 @@
                                 {% if app.user.profileImage %}
                                     <img
                                         src="{{ asset('uploads/profile/' ~ app.user.profileImage) }}"
-                                        alt="Photo de profil"
-                                        id="profilePreview"
+                                        alt=""
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                     >
-                                    {# <p>Changer votre photo en cliquant </p> #}
-                                {% else %}
-                                    <i
-                                        class="bi bi-person"
-                                        id="profileIcon"
-                                    ></i>
                                 {% endif %}
+                                <div
+                                    class="profile-avatar-placeholder"
+                                    {% if app.user.profileImage %}
+                                        style="display: none;"
+                                    {% endif %}
+                                >
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
                                 <span class="avatar-edit">
                                     <i class="bi bi-camera-fill"></i>
                                     <span>Modifier</span>
                                 </span>
                             </label>
-                            
+                        
                             <input
                                 type="file"
                                 id="profileImage"

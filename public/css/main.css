@@ -4224,6 +4224,20 @@ section.menus-page nav.menu-pagination a.pagination-arrow {
   transition: transform 0.3s ease;
 }
 
+.profile-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.profile-avatar-placeholder i {
+  font-size: 55px;
+}
+
 .avatar-edit {
   position: absolute;
   bottom: 0;
