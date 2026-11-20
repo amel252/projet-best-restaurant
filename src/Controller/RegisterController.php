@@ -9,18 +9,18 @@ use Symfony\Component\Routing\Attribute\Route;
 
 use App\Entity\User;
 use App\Entity\Address;
-
 use App\Form\RegisterUserType;
+use App\Classe\Mail;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-use App\Classe\Mail;
+
 
 final class RegisterController extends AbstractController
 {
     #[Route('/inscription', name: 'app_register')]
-    public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, Mail $mail): Response
     {
         // 1- on crée un nouveau user 
         $user = new User();
@@ -59,20 +59,27 @@ final class RegisterController extends AbstractController
             //  9- Enregister user & adresse dans BD 
             $entityManager->persist($user);
             $entityManager->persist($address);
+
             //  10- excuter l'insertion SQL- envoyer les donnée en BD 
             $entityManager->flush();
-            // 11- envoi l'email de bienvenue
-            $mail = new Mail();
-            $mail->send(
-                $user->getEmail(),
-                $user->getFirstName(),
-                'Bienvenue chez Vite&Gourmand! ',
-                [
-                    'firstname'=>$user->getFirstName(),
-                ]
-            );
 
-            // 11 -redirige aprés vers page connexion
+            // 11- envoi l'email de bienvenue
+            $mailSend = $mail->send(
+                (string) $user->getEmail(),
+                (string) $user->getFirstName(),
+                'Bienvenue chez Vite&Gourmand !',
+                [
+                    'firstName'=>$user->getFirstName(),
+                ],
+                8453422
+            );
+            if (!$mailSend) {
+                $this->addFlash(
+                    'warning',
+                    'Votre compte est créé, mais le mail de bienvenue n’a pas pu être envoyé.'
+                );
+            }
+            // 12 -redirige aprés vers page connexion
             return $this->redirectToRoute('app_home');
         }
 

@@ -14,8 +14,11 @@ class Mail
         string $to_email, 
         string $to_name, 
         string $subject,
-        array $vars=[]
+        array $vars=[],
+        int $template_id = 8453422
+
     ):bool { 
+        // dd('La méthode Mail.php est bien appelée');
         $mj= new Client(
             $_ENV['MJ_APIKEY_PUBLIC'],
             $_ENV['MJ_APIKEY_PRIVATE'], 
@@ -27,7 +30,7 @@ class Mail
             'Messages'=>[
                 [
                     'From'=>[
-                        'Email'=> 'amelghanem25@gmail.com',
+                        'Email'=> 'contact.vitegourmand.restau@gmail.com',
                         'Name'=> "Vite & Gourmand"
 
                     ],
@@ -37,7 +40,7 @@ class Mail
                             'Name'=> $to_name
                         ]
                     ],
-                    'TemplateID'=> 8453422,
+                    'TemplateID'=> $template_id,
                     'TemplateLanguage'=> true,
                     'Subject'=>$subject,
                     'Variables'=> $vars
