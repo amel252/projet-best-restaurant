@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau mot de passe | Vite&Gourmand{% endblock %}
+
+{% block body %}
+<section class="register min-vh-100 d-flex align-items-center justify-content-center py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-7 col-md-9">
+
+                <div class="card register-card shadow-lg border-0">
+                    <div class="card-body p-5">
+
+                        <div class="text-center mb-4">
+                            <h2 class="register-title">Nouveau mot de passe</h2>
+                            <p class="register-subtitle">
+                                Choisissez un nouveau mot de passe pour accéder à votre compte.
+                            </p>
+                        </div>
+
+                        {% for flash_error in app.flashes('reset_password_error') %}
+                            <div class="form-errors mb-3" role="alert">
+                                {{ flash_error }}
+                            </div>
+                        {% endfor %}
+
+                        {{ form_start(resetForm, {
+                            attr: {
+                                class: 'needs-validation',
+                                autocomplete: 'off'
+                            }
+                        }) }}
+
+                            <div class="mb-3">
+                                {{ form_label(resetForm.plainPassword.first, 'Nouveau mot de passe', {
+                                    'label_attr': {'class': 'form-label'}
+                                }) }}
+
+                                {{ form_widget(resetForm.plainPassword.first, {
+                                    'attr': {
+                                        'class': 'form-control custom-input',
+                                        'placeholder': 'Votre nouveau mot de passe',
+                                        'autocomplete': 'new-password'
+                                    }
+                                }) }}
+
+                                <div class="form-errors">
+                                    {{ form_errors(resetForm.plainPassword.first) }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form_label(resetForm.plainPassword.second, 'Répéter le mot de passe', {
+                                    'label_attr': {'class': 'form-label'}
+                                }) }}
+
+                                {{ form_widget(resetForm.plainPassword.second, {
+                                    'attr': {
+                                        'class': 'form-control custom-input',
+                                        'placeholder': 'Confirmez votre nouveau mot de passe',
+                                        'autocomplete': 'new-password'
+                                    }
+                                }) }}
+
+                                <div class="form-errors">
+                                    {{ form_errors(resetForm.plainPassword.second) }}
+                                </div>
+                            </div>
+
+                            <div class="form-errors mb-3">
+                                {{ form_errors(resetForm.plainPassword) }}
+                            </div>
+
+                            <div class="mt-4">
+                                <button class="btn register-button w-100" type="submit">
+                                    Enregistrer mon nouveau mot de passe
+                                </button>
+                            </div>
+
+                        {{ form_end(resetForm) }}
+
+                        <div class="text-center mt-4">
+                            <p class="small paragraphe mb-0">
+                                Vous vous souvenez de votre mot de passe ?
+                                <a href="{{ path('app_login') }}" class="login-link">
+                                    Se connecter
+                                </a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

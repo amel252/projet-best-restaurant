@@ -1,10 +1,6 @@
 
 {% extends 'base.html.twig' %}
-
-{% block title %}Connexion | Mon Restaurant{% endblock %}
-
 {% block body %}
-
 <section class="register min-vh-100 d-flex align-items-center justify-content-center py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -61,6 +57,25 @@
                                     autocomplete="current-password"
                                     required
                                 >
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input
+                                        type="checkbox"
+                                        name="_remember_me"
+                                        id="_remember_me"
+                                        class="form-check-input"
+                                    >
+                                    <label class="form-check-label" for="_remember_me">
+                                        Se souvenir de moi
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="text-end mt-2">
+                                <a href="{{ path('app_forgot_password_request') }}" class="login-link">
+                                    Mot de passe oublié ?
+                                </a>
                             </div>
                             <div class="col-12">
                                 <button

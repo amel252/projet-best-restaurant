@@ -22,7 +22,11 @@ security:
             form_login:
                 login_path : app_login
                 check_path: app_login
-
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                # secret : sécurise le cookie de connexion. / lifetime: 604800 : conserve la connexion 7 jrs. / path:/ rend le cookie valable sur tout le site.
             lazy: true
             provider: app_user_provider
 
